@@ -24,7 +24,7 @@
       --radius-sm: 6px;
       --reader-size: 18px;
       --reader-lh: 1.75;
-      --topbar-h: 52px;
+      --topbar-h: calc(52px + env(safe-area-inset-top, 0px));
       --nav-h: 64px;
       --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
       --shadow-strong: 0 18px 48px rgba(0,0,0,0.18);
@@ -87,7 +87,7 @@
     .topbar {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; gap: 0.5rem;
-      height: var(--topbar-h); padding: 0 0.75rem;
+      height: var(--topbar-h); padding: env(safe-area-inset-top, 0px) 0.75rem 0;
       background: color-mix(in srgb, var(--surface) 86%, transparent);
       backdrop-filter: blur(18px) saturate(1.2);
       border-bottom: 1px solid color-mix(in srgb, var(--border) 74%, transparent);
@@ -975,7 +975,7 @@
       position: fixed; bottom: 0; left: 0; right: auto; z-index: 100;
       width: 100%; max-width: 100vw; min-width: 0;
       display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
-      height: var(--nav-h); padding-bottom: env(safe-area-inset-bottom);
+      height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px)); padding-bottom: env(safe-area-inset-bottom, 0px);
       background: color-mix(in srgb, var(--surface) 88%, transparent);
       backdrop-filter: blur(20px) saturate(1.25); border-top: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
       box-shadow: 0 -12px 34px rgba(0,0,0,0.08);
@@ -3126,7 +3126,7 @@
       .reader-ch-nav-label-long { display: none; }
       .reader-ch-nav-label-short { display: inline; }
       .reader-ch-nav-prev, .reader-ch-nav-next { max-width: none; font-size: 0.78rem; padding: 0.55rem 0.5rem; }
-      .topbar { padding: 0 0.5rem; }
+      .topbar { padding-left: 0.5rem; padding-right: 0.5rem; }
       .topbar-title { font-size: 0.88rem; }
     }
   </style>

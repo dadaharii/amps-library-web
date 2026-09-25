@@ -1,4 +1,5 @@
-/* AMPS Reader — "new version available" banner for the sideloaded Android APK */
+/* AMPS Reader — "new version available" banner for the sideloaded Android APK,
+   and an "Add to Home Screen / Dock" guide for the iPhone and Mac web app */
 (function () {
   "use strict";
 
@@ -81,7 +82,8 @@
         background: var(--surface, #fffaf0); color: var(--text, #1a1410); border: 1px solid var(--border, rgba(166,124,0,0.35));
         box-shadow: 0 10px 30px rgba(0,0,0,0.25); font-size: 14px; line-height: 1.45; }
       .amps-update-banner h4 { margin: 0 0 4px; font-size: 15px; }
-      .amps-update-banner ul { margin: 6px 0 0; padding-left: 18px; }
+      .amps-update-banner ul, .amps-update-banner ol { margin: 6px 0; padding-left: 20px; }
+      .amps-update-banner li { margin: 3px 0; }
       .amps-update-banner p { margin: 0; opacity: 0.8; }
       .amps-update-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
       .amps-update-actions .btn-ghost { color: inherit; border-color: var(--border, rgba(0,0,0,0.2)); }
@@ -140,8 +142,60 @@
     return latest;
   }
 
+  function installPlatform() {
+    if (window.Capacitor?.isNativePlatform?.()) return null;
+    const standalone = navigator.standalone === true || window.matchMedia?.("(display-mode: standalone)").matches;
+    if (standalone) return null;
+    const ua = navigator.userAgent || "";
+    if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return "ios";
+    if (/Macintosh/.test(ua) && /Safari\//.test(ua) && !/Chrome|Chromium|Edg|Firefox|OPR/.test(ua)) return "mac";
+    return null;
+  }
+
+  function showInstallHint(opts = {}) {
+    const platform = opts.platform || installPlatform();
+    if (!platform) return false;
+    const s = loadStore();
+    if (!opts.force && (s.installHintDismissed || Date.now() < (s.installHintSnoozedUntil || 0))) return false;
+    document.getElementById("ampsInstallHint")?.remove();
+    injectStyles();
+    const shareIcon = `<svg width="16" height="20" viewBox="0 0 16 20" aria-hidden="true" style="vertical-align:-3px"><path d="M8 1v12M4 5l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 8H2v11h12V8h-1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>`;
+    const steps = platform === "ios"
+      ? `<ol><li>Tap the Share button ${shareIcon} in Safari's toolbar.</li><li>Choose <strong>Add to Home Screen</strong>, then <strong>Add</strong>.</li></ol>
+         <p>AMPS Library then opens from your Home Screen like any other app.</p>`
+      : `<ol><li>In Safari's menu bar, choose <strong>File → Add to Dock…</strong></li><li>Click <strong>Add</strong>.</li></ol>
+         <p>AMPS Library then opens from your Dock in its own window.</p>`;
+    const el = document.createElement("div");
+    el.id = "ampsInstallHint";
+    el.className = "amps-update-banner";
+    el.setAttribute("role", "dialog");
+    el.setAttribute("aria-label", "Install AMPS Library");
+    el.innerHTML = `
+      <h4>Install AMPS Library on your ${platform === "ios" ? "iPhone" : "Mac"}</h4>
+      ${steps}
+      <div class="amps-update-actions">
+        <button type="button" class="btn btn-ghost btn-sm" id="ampsInstallLater">Later</button>
+        <button type="button" class="btn btn-gold btn-sm" id="ampsInstallDone">Got it</button>
+      </div>`;
+    document.body.appendChild(el);
+    document.getElementById("ampsInstallLater").addEventListener("click", () => {
+      const st = loadStore();
+      st.installHintSnoozedUntil = Date.now() + 3 * SNOOZE_MS;
+      saveStore(st);
+      el.remove();
+    });
+    document.getElementById("ampsInstallDone").addEventListener("click", () => {
+      const st = loadStore();
+      st.installHintDismissed = true;
+      saveStore(st);
+      el.remove();
+    });
+    return true;
+  }
+
   function start() {
     setTimeout(() => check(), 4000);
+    setTimeout(() => showInstallHint(), 6000);
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "visible") check();
     });
@@ -150,5 +204,5 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();
 
-  window.AmpsUpdateCheck = { check, isNewer, currentVersion };
+  window.AmpsUpdateCheck = { check, isNewer, currentVersion, showInstallHint };
 })();
