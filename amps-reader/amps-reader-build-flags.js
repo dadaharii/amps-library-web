@@ -1,1 +1,1 @@
-window.AmpsBuildFlags = {"shlokaBookEditor":true,"presentationBuilder":true,"licenseServerUrl":"https://amps-ebook-api.onrender.com","appVersion":"0.1.4"};
+window.AmpsBuildFlags = {"shlokaBookEditor":true,"presentationBuilder":true,"licenseServerUrl":"https://amps-ebook-api.onrender.com","appVersion":"0.1.5"};

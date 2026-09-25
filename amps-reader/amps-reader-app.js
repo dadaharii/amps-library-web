@@ -4611,6 +4611,12 @@
   // AMPS_AV9_BILINGUAL_V1
   // One visible library family, separate language-edition files.
   const BOOK_EDITION_FAMILIES = Object.freeze({
+    // वर्ण विज्ञान ↔ Varńa Vijinána (Unicode DOCX, 21 discourses 1983)
+    "varna-vijinana": Object.freeze({
+      familyId: "varna-vijinana",
+      en: "varna-vijinana",
+      hi: "varna-vijinana-hi",
+    }),
     // आनन्द मार्ग — प्रारम्भिक दर्शन ↔ Ananda Marga: Elementary Philosophy (IDML 2018)
     "ananda-marga-elementary-philosophy": Object.freeze({
       familyId: "ananda-marga-elementary-philosophy",
