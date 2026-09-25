@@ -1,0 +1,9 @@
+{
+  "paragraph_id": "ch-verses-p21",
+  "text_hash": "sha256:b2d8c906fd294810b5f2885d3959f93ca7ac599dab95bafe73e7af8c8ceb760c",
+  "audio_type": "machine_recitation",
+  "engine": "xtts-v2",
+  "audio_hash": "sha256:532faf0b91ffcb6d0716bd91f0d984c89a2ff339e73bb58722d11e321e64cc7f",
+  "duration_seconds": 0,
+  "written_at": "2026-07-30T11:49:53.708Z"
+}

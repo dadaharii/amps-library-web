@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "packId": "books-prout",
+  "version": "1.0.0",
+  "type": "books",
+  "title": "PROUT and socio-economic books",
+  "description": "PROUT nutshell volumes and related socio-economic discourses.",
+  "releaseId": "2026.09.06-10",
+  "compatibleReleaseIds": [
+    "2026.09.06-10"
+  ],
+  "minimumRuntimeSchema": 1,
+  "dependencies": [],
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "status": "public",
+  "fileCount": 56,
+  "sizeBytes": 23791056,
+  "sha256": "b3438baf9c36d37c3c51c13354702b7c8f0451e3ed3eee7db496be050a75f7bf",
+  "installOrder": 100,
+  "uninstallSafety": {
+    "preservesNotes": true,
+    "preservesBookmarks": true,
+    "preservesReadingHistory": true,
+    "preservesResumePosition": true,
+    "preservesShlokaReviewDecisions": true,
+    "preservesPresentationProjects": true
+  },
+  "approvedAudioStatus": "n/a",
+  "attribution": "Ananda Marga publications — AMPS Library offline pack",
+  "files": [
+    {
+      "path": "books/discourses-on-prout.json",
+      "bytes": 168682,
+      "sha256": "651a9bdef7131b2c450c665d29a498877f8a0c235eddf5dab7839dfde1e1fcfd"
+    },
+    {
+      "path": "books/human-society-1.json",
+      "bytes": 1029717,
+      "sha256": "ed84d0592c8f006ef5c0ebd8baca92c4b2ddc8f4e9d33bea91f3544f1006d6b8"
+    },
+    {
+      "path": "books/human-society-2.json",
+      "bytes": 1001795,
+      "sha256": "3722dd141fe77e0e31fba4319064e51951bc2da9590f86542a79330ea81e8254"
+    },
+    {
+      "path": "books/ideal-farming-2.json",
+      "bytes": 1079025,
+      "sha256": "e57db3b915f1ddcadd06dbe432794d04635c1398c9f33e9e7e2552dbc13149c5"
+    },
+    {
+      "path": "books/one-human-society.json",
+      "bytes": 378181,
+      "sha256": "2f0d459c40e0d87343d396cce12cfeb21accdf41c3b61bb96a9e4363498246e0"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-01.json",
+      "bytes": 508357,
+      "sha256": "df87d1a9aaac978ea8f8ed35a47f56be2d5a7c24ecee06f2753b68530f7e469c"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-02.json",
+      "bytes": 544443,
+      "sha256": "bbeea3ca422674b23d7cc8dddd9297f754ec3e5ceac64620e016818080e98247"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-03.json",
+      "bytes": 536852,
+      "sha256": "c1eacfc678d896fc6b7446e862d5736e2f3d281a0046d73e7e155e68936f5599"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-04-hi.json",
+      "bytes": 781759,
+      "sha256": "0dd2e87398a99cd948611c31ac410aaeb7131a874b2af74ee7c2ee37bb88c000"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-04.json",
+      "bytes": 462866,
+      "sha256": "ac2596c73a65fe51bb0f18308e4342b21efd7a5f27ba71dbd7edf44cb732eccb"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-05.json",
+      "bytes": 913068,
+      "sha256": "5d8ae8b68e1155c2ccb0502a75dc93eef93538b864e9aae1a14c4d49c9627103"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-06.json",
+      "bytes": 421621,
+      "sha256": "e0fc4d6706005f19552eff176bc19564b0ca88fb46c780dee93c7ab443214a9e"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-07.json",
+      "bytes": 518290,
+      "sha256": "62c8666be008067530836f29a22cb44f93287298dfa10f0d2bfbcf73959619ff"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-08.json",
+      "bytes": 539635,
+      "sha256": "2463761ff824ba1ddbf9d3a17ec0f1e4162f2b212a43e6abc25d677f247385ba"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-09.json",
+      "bytes": 534106,
+      "sha256": "a1b8fdc12266bc816eeb228fc71560aeac77149c5cfc6debd6a3372cd40c1947"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-10.json",
+      "bytes": 669318,
+      "sha256": "ceb9b808f78a2e310602e77e2729ee7424a172584d14d670bf9c5cf904eb2c1e"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-11.json",
+      "bytes": 657420,
+      "sha256": "fd7c6492cc4d0351f02f8fb843ed68954db081a464f526685ef43478e1b83e61"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-12.json",
+      "bytes": 452113,
+      "sha256": "0916c1866f4ba5ec4259b490ce6f2bec333df066ef5be8d80cf055936693c884"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-13.json",
+      "bytes": 524796,
+      "sha256": "a979b03623d0d983cf9c0aad8c8abc04f853a80302565ded3af1ef81ad7bf322"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-14.json",
+      "bytes": 484147,
+      "sha256": "1a31840d7b2da7c1a73513539d70925b209e3c361d7a4972558287d72c52d87d"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-15.json",
+      "bytes": 491282,
+      "sha256": "9f490d05aac5a8631704e371a5964749215567571b789393320c29d21a5ec823"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-16.json",
+      "bytes": 591893,
+      "sha256": "5c83fb9de409ef0d382fbcde057a2496a4a8e60dbcb603104f586f18f727b57c"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-17.json",
+      "bytes": 519704,
+      "sha256": "c4d220adbf2494ea0fb4d5cb1af01b425a45ca40698ace345dc3d80978a9ba97"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-18.json",
+      "bytes": 543432,
+      "sha256": "1309178d1515c02783d0bb4ab8fa9c483f3afabc1fe7245cce6fe954c5e94abf"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-19.json",
+      "bytes": 488126,
+      "sha256": "1ddb7ea1b9b77b8ba848ff8177718a28919352063a16e1fedd34cce7daf68cf6"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-20.json",
+      "bytes": 518417,
+      "sha256": "540c4b9b6435d84fd79243bfeb03c80a58ea443cf29161b9238e2059a3cf31d6"
+    },
+    {
+      "path": "books/prout-in-a-nutshell-21.json",
+      "bytes": 478956,
+      "sha256": "22383bdb7dc4cdeed912f60084c6ee5cfd349174fe305014d969b37e2ce09955"
+    },
+    {
+      "path": "books/proutist-economics.json",
+      "bytes": 2627053,
+      "sha256": "7d5e914c2148ae94ba49056a171b76bb141628b1e1a887788ab5de71e6bf71ab"
+    },
+    {
+      "path": "search/discourses-on-prout.json",
+      "bytes": 47470,
+      "sha256": "6e40848ec0ed60e1548fc4550f4b200eba6b1bd74c1d88588ba3cd4668762c1b"
+    },
+    {
+      "path": "search/human-society-1.json",
+      "bytes": 290854,
+      "sha256": "8ec11b0f67ee099918b91ac786652ed8e9fbec909938cd92033687124d648285"
+    },
+    {
+      "path": "search/human-society-2.json",
+      "bytes": 262489,
+      "sha256": "7b8629adde009ba202978106130675094f7a33107778e4231c7c61d0c7b06181"
+    },
+    {
+      "path": "search/ideal-farming-2.json",
+      "bytes": 298743,
+      "sha256": "19457484c990d9036754acbd717512fe9dbdda8ec3f0eb9b5a45297e307e2b88"
+    },
+    {
+      "path": "search/one-human-society.json",
+      "bytes": 122289,
+      "sha256": "7a34b405bd4f12be882f6172abf38a6e7673b0d27bbd738a92c249c3bdb26047"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-01.json",
+      "bytes": 144940,
+      "sha256": "32bfe76e47664ef252f46fa1a081f930d3a36f5f8883237de8d0d48b903987b2"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-02.json",
+      "bytes": 153979,
+      "sha256": "5899d544d94f2511bccfe5e2f8269a3173139bfd638baa8fce7c8c0cae9a8934"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-03.json",
+      "bytes": 146109,
+      "sha256": "3d2ae90d0b7ddad765a5e0d2fc861fdc84893d918b7ed50a9b065376c761aa6b"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-04-hi.json",
+      "bytes": 178931,
+      "sha256": "8c24542ea2a4ddb494418f1a7bea622e3755a66b3681d124eac739c834a3a010"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-04.json",
+      "bytes": 129085,
+      "sha256": "37dc4666120ce1203a89e0631d3f675e297c520f758a83be875e6635b849f298"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-05.json",
+      "bytes": 239872,
+      "sha256": "cb0b2bbd13ce5d9fdaef7abc06baf1338e78c0b014f2be6c0ab8f44b54a7f426"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-06.json",
+      "bytes": 135062,
+      "sha256": "23c4812e92cb6b4c8cedb7e6ce7e3fd6931c335426486ef1af7bdedda66a95b8"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-07.json",
+      "bytes": 168311,
+      "sha256": "ec4d8a84a1770eecf2526fc3c61f24844f2480ae5ed2fd8c8766fb8451f3a537"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-08.json",
+      "bytes": 164900,
+      "sha256": "6ea2e8433bc4b045c7ef92a4c6907018086e4ff6e656d0431a8a4f03ceb82bef"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-09.json",
+      "bytes": 161951,
+      "sha256": "2cf280cd5952efe8e6b7ca26bd9a20424673a7734569df1c1d065ead5d25eec8"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-10.json",
+      "bytes": 205033,
+      "sha256": "dc1e5220e4dcbccd45be8c5dd34cd52055ddef3028cf3ea6aa8e8a3f866b1c61"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-11.json",
+      "bytes": 213358,
+      "sha256": "f8c33cebd0126a32b8fee5ba1bf5e6a7d7ab797027691ab0ddabe3dc559b32ef"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-12.json",
+      "bytes": 129041,
+      "sha256": "9f391a94fda28a41f167d67228dcd1354afcdb3ed60a921ae124523c13b7df2f"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-13.json",
+      "bytes": 149648,
+      "sha256": "73815cde1fb263d3a0ce522886f9b6fe54921de9c5ffa0930c528fb538626fcc"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-14.json",
+      "bytes": 146167,
+      "sha256": "c3feef2c627821384a149c848683ebee3707665d1f052548f3f5663695458c03"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-15.json",
+      "bytes": 147823,
+      "sha256": "a054dcfdfcac893e481f3497d6baad297cfa008833700a9884aaadeecfb33f55"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-16.json",
+      "bytes": 177963,
+      "sha256": "cdd6da15ab673c9cbcf8c4d2ad311836ed77e4725fa2c3181691d056368042ba"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-17.json",
+      "bytes": 162658,
+      "sha256": "cbb99e0befa433cf0c067b10080d8b350f67bebea9b8d7cc76e5492e3dd80381"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-18.json",
+      "bytes": 160553,
+      "sha256": "1ea125d433007d113a7c3bb8df3d3b5e6fa16635a0ecaf85fde758824a094d19"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-19.json",
+      "bytes": 142354,
+      "sha256": "d6830f145cf72f970a183ca575c340bd0b6f334894a0389bb562cb6b0f9f5d69"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-20.json",
+      "bytes": 158410,
+      "sha256": "2f146d93ce1f478ebd779060e44d32f99cdd2f5495a07531a739a68731c20c04"
+    },
+    {
+      "path": "search/prout-in-a-nutshell-21.json",
+      "bytes": 140148,
+      "sha256": "d46f3092aa69bfd537383e3c74061af374df00661f2faee14ed258d2ea37223f"
+    },
+    {
+      "path": "search/proutist-economics.json",
+      "bytes": 747861,
+      "sha256": "542a0044f6cd130c1273debdd0432b2c5cbe23623f82176bf84242e8345fd2ef"
+    }
+  ],
+  "payloadMode": "canonical-reference"
+}

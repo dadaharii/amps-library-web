@@ -1,0 +1,454 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-07-31T08:56:41.476Z",
+  "aliases": {
+    "ch-verses-p99": {
+      "canonical_id": "ch-verses-p100",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p101": {
+      "canonical_id": "ch-verses-p100",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p102": {
+      "canonical_id": "ch-verses-p100",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p371": {
+      "canonical_id": "ch-verses-p370",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p110": {
+      "canonical_id": "ch-verses-p109",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p111": {
+      "canonical_id": "ch-verses-p109",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p70": {
+      "canonical_id": "ch-verses-p69",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p71": {
+      "canonical_id": "ch-verses-p69",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p189": {
+      "canonical_id": "ch-verses-p188",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p190": {
+      "canonical_id": "ch-verses-p188",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p191": {
+      "canonical_id": "ch-verses-p188",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p192": {
+      "canonical_id": "ch-verses-p188",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p193": {
+      "canonical_id": "ch-verses-p188",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p245": {
+      "canonical_id": "ch-verses-p246",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p247": {
+      "canonical_id": "ch-verses-p246",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p248": {
+      "canonical_id": "ch-verses-p246",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p249": {
+      "canonical_id": "ch-verses-p246",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p250": {
+      "canonical_id": "ch-verses-p246",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p380": {
+      "canonical_id": "ch-verses-p379",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p424": {
+      "canonical_id": "ch-verses-p423",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p425": {
+      "canonical_id": "ch-verses-p423",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-approved-merge-2026-07-31T01-01-55-215Z-dd1ff0"
+    },
+    "ch-verses-p262": {
+      "canonical_id": "ch-verses-p260",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-seven-secrets-group-2026-07-31T06-24-50-614Z-8a4bc5",
+      "requested_alias_id_retained_in_provenance": true,
+      "member_classification": "orthographic_near_duplicate / formatting_only_difference"
+    },
+    "ch-verses-p26": {
+      "canonical_id": "ch-verses-p27",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-merge-2026-07-31T01-36-33-715Z-03f910"
+    },
+    "ch-verses-p40": {
+      "canonical_id": "ch-verses-p39",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-merge-2026-07-31T01-51-26-386Z-2015c4"
+    },
+    "ch-verses-p29": {
+      "canonical_id": "ch-verses-p27",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-merge-2026-07-31T02-04-29-453Z-b961af"
+    },
+    "ch-verses-p359": {
+      "canonical_id": "ch-verses-p358",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-merge-2026-07-31T02-09-01-128Z-691215"
+    },
+    "ch-verses-p43": {
+      "canonical_id": "ch-verses-p44",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T03-06-41-954Z-247537"
+    },
+    "ch-verses-p364": {
+      "canonical_id": "ch-verses-p363",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-varnashrama-group-2026-07-31T05-54-26-456Z-26b95b",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p365": {
+      "canonical_id": "ch-verses-p363",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-varnashrama-group-2026-07-31T05-54-26-456Z-26b95b",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p366": {
+      "canonical_id": "ch-verses-p363",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-varnashrama-group-2026-07-31T05-54-26-456Z-26b95b",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p345": {
+      "canonical_id": "ch-verses-p346",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-yuktiyuktam-group-2026-07-31T06-03-56-229Z-973115",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p347": {
+      "canonical_id": "ch-verses-p346",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-yuktiyuktam-group-2026-07-31T06-03-56-229Z-973115",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p114": {
+      "canonical_id": "ch-verses-p113",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-caraeveti-group-2026-07-31T06-12-26-735Z-4b8c67",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p261": {
+      "canonical_id": "ch-verses-p260",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-seven-secrets-group-2026-07-31T06-24-50-614Z-8a4bc5",
+      "requested_alias_id_retained_in_provenance": true,
+      "member_classification": "full_text_and_excerpt"
+    },
+    "ch-verses-p341": {
+      "canonical_id": "ch-verses-p340",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T06-29-11-586Z-f8de01"
+    },
+    "ch-verses-p165": {
+      "canonical_id": "ch-verses-p166",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-maheshvara-group-2026-07-31T06-33-32-259Z-572ebf",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p433": {
+      "canonical_id": null,
+      "redirect_type": "split_source",
+      "status": "archived_split_source",
+      "split_notice": true,
+      "successors": [
+        {
+          "segment": 1,
+          "canonical_id": "ch-verses-p444",
+          "opening": "सूक्ष्मातिसूक्ष्मम्",
+          "original_segment_devanagari": "सूक्ष्मातिसूक्ष्मं कलिलस्य मध्ये विश्वस्य स्रष्टा-रमनेकरूपम्।\nविश्वस्यैकं परिवेष्टितारां ज्ञात्वा देवं मुच्यते सर्वपाशैः॥",
+          "original_segment_roman": "Súkśmátisúkśmaḿ kalilasya madhye vishvasya sraśt́á-ramanekarúpam\nVishvasyaekaḿ pariveśt́itáráḿ jiṋátvá Devaḿ mucyate sarvapáshaeh"
+        },
+        {
+          "segment": 2,
+          "canonical_id": "ch-verses-p12",
+          "opening": "अनाद्यनन्तम्",
+          "original_segment_devanagari": "अनाद्यनन्तं कलिलस्य मध्ये विश्वस्य स्रष्ठारमनेकरूपम्।\nविश्वस्यैकं परिवेष्टितारं ज्ञात्वा देवं मुच्यते सर्वपाशैः॥",
+          "original_segment_roman": "Anádyanantaḿ kalilasya madhye vishvasya sraśt́á-ramanekarúpam\nVishvasyaekaḿ pariveśt́itáráḿ jiṋátvá Devaḿ mucyate sarvapáshaeh"
+        }
+      ],
+      "merge_operation_id": "shloka-kalilasya-split-2026-07-31T06-48-21-659Z-da328c",
+      "note": "Do not redirect to a single successor. Display split-source notice with links to both successor records.",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p288": {
+      "canonical_id": "ch-verses-p292",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-six-family-2026-07-31T07-25-12-797Z-4cc6fa",
+      "family_id": "mind-action-and-sin",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p196": {
+      "canonical_id": "ch-verses-p197",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-six-family-2026-07-31T07-25-12-797Z-4cc6fa",
+      "family_id": "two-birds-on-one-tree",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p430": {
+      "canonical_id": "ch-verses-p431",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-six-family-2026-07-31T07-25-12-797Z-4cc6fa",
+      "family_id": "all-beings-desire-happiness",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p90": {
+      "canonical_id": "ch-verses-p89",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-bhaga-group-2026-07-31T07-39-25-328Z-b2f81d",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p91": {
+      "canonical_id": "ch-verses-p89",
+      "redirect_type": "duplicate_merge",
+      "status": "archived_duplicate",
+      "merge_operation_id": "shloka-bhaga-group-2026-07-31T07-39-25-328Z-b2f81d",
+      "requested_alias_id_retained_in_provenance": true
+    },
+    "ch-verses-p284": {
+      "canonical_id": "ch-verses-p283",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-07-19-915Z-9e722e"
+    },
+    "ch-verses-p285": {
+      "canonical_id": "ch-verses-p283",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-10-28-468Z-b8cbe3"
+    },
+    "ch-verses-p129": {
+      "canonical_id": "ch-verses-p130",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-13-22-074Z-53221b"
+    },
+    "ch-verses-p274": {
+      "canonical_id": "ch-verses-p244",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-15-46-886Z-1ca9c2"
+    },
+    "ch-verses-p388": {
+      "canonical_id": "ch-verses-p387",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-27-19-352Z-5137f4"
+    },
+    "ch-verses-p231": {
+      "canonical_id": "ch-verses-p230",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-39-50-934Z-d99b20"
+    },
+    "ch-verses-p143": {
+      "canonical_id": "ch-verses-p142",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-22-071Z-f99970"
+    },
+    "ch-verses-p147": {
+      "canonical_id": "ch-verses-p148",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-22-243Z-8abd74"
+    },
+    "ch-verses-p167": {
+      "canonical_id": "ch-verses-p168",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-22-405Z-44b3eb"
+    },
+    "ch-verses-p194": {
+      "canonical_id": "ch-verses-p195",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-22-566Z-c1520f"
+    },
+    "ch-verses-p205": {
+      "canonical_id": "ch-verses-p204",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-22-759Z-d795f0"
+    },
+    "ch-verses-p209": {
+      "canonical_id": "ch-verses-p208",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-22-918Z-3202a7"
+    },
+    "ch-verses-p232": {
+      "canonical_id": "ch-verses-p233",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-23-065Z-a4abdf"
+    },
+    "ch-verses-p258": {
+      "canonical_id": "ch-verses-p259",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-23-222Z-ee2d77"
+    },
+    "ch-verses-p277": {
+      "canonical_id": "ch-verses-p276",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-23-378Z-7bb3b4"
+    },
+    "ch-verses-p287": {
+      "canonical_id": "ch-verses-p286",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-23-528Z-19f1e2"
+    },
+    "ch-verses-p297": {
+      "canonical_id": "ch-verses-p296",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-23-675Z-254a01"
+    },
+    "ch-verses-p308": {
+      "canonical_id": "ch-verses-p309",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-23-832Z-9f51d8"
+    },
+    "ch-verses-p319": {
+      "canonical_id": "ch-verses-p320",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-23-988Z-a100bb"
+    },
+    "ch-verses-p324": {
+      "canonical_id": "ch-verses-p323",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-24-134Z-613c93"
+    },
+    "ch-verses-p330": {
+      "canonical_id": "ch-verses-p329",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-24-289Z-9a3f2f"
+    },
+    "ch-verses-p374": {
+      "canonical_id": "ch-verses-p373",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-24-418Z-5f7c0f"
+    },
+    "ch-verses-p391": {
+      "canonical_id": "ch-verses-p392",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-24-568Z-afc576"
+    },
+    "ch-verses-p393": {
+      "canonical_id": "ch-verses-p392",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-24-719Z-b1587f"
+    },
+    "ch-verses-p400": {
+      "canonical_id": "ch-verses-p401",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-24-870Z-ce10d2"
+    },
+    "ch-verses-p403": {
+      "canonical_id": "ch-verses-p402",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-25-024Z-d25aa8"
+    },
+    "ch-verses-p407": {
+      "canonical_id": "ch-verses-p408",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-25-170Z-6e6d15"
+    },
+    "ch-verses-p419": {
+      "canonical_id": "ch-verses-p420",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-25-320Z-ee0487"
+    },
+    "ch-verses-p66": {
+      "canonical_id": "ch-verses-p67",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-25-488Z-234786"
+    },
+    "ch-verses-p80": {
+      "canonical_id": "ch-verses-p81",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-25-648Z-d83f11"
+    },
+    "ch-verses-p86": {
+      "canonical_id": "ch-verses-p87",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-44-25-810Z-3c58ed"
+    },
+    "ch-verses-p55": {
+      "canonical_id": "ch-verses-p56",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-46-13-452Z-abed68"
+    },
+    "ch-verses-p54": {
+      "canonical_id": "ch-verses-p56",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-46-13-590Z-55055d"
+    },
+    "ch-verses-p396": {
+      "canonical_id": "ch-verses-p314",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-46-13-731Z-8c8850"
+    },
+    "ch-verses-p315": {
+      "canonical_id": "ch-verses-p314",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-46-13-861Z-18b0be"
+    },
+    "ch-verses-p316": {
+      "canonical_id": "ch-verses-p314",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-46-13-999Z-a6303f"
+    },
+    "ch-verses-p82": {
+      "canonical_id": "ch-verses-p81",
+      "redirect_type": "duplicate_merge",
+      "merge_operation_id": "shloka-review-2026-07-31T08-56-41-429Z-f3d9bb"
+    }
+  }
+}

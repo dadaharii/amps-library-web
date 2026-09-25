@@ -1,0 +1,9 @@
+{
+  "paragraph_id": "ch-verses-p58",
+  "text_hash": "sha256:ff65949ffed034b39b4679f27a1c26b71ecf854726c6785947070b6be0f64194",
+  "audio_type": "machine_recitation",
+  "engine": "xtts-v2",
+  "audio_hash": "sha256:3866759b36782799647bfe39c9a9ab18ab93361a88b4892ce4c9bdf2b2b651c0",
+  "duration_seconds": 0,
+  "written_at": "2026-07-30T22:32:13.350Z"
+}

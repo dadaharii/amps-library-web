@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "packId": "books-history-language",
+  "version": "1.0.0",
+  "type": "books",
+  "title": "History, language and stories",
+  "description": "Language studies, histories, and narrative collections.",
+  "releaseId": "2026.09.06-10",
+  "compatibleReleaseIds": [
+    "2026.09.06-10"
+  ],
+  "minimumRuntimeSchema": 1,
+  "dependencies": [],
+  "languages": [
+    "en"
+  ],
+  "status": "public",
+  "fileCount": 38,
+  "sizeBytes": 23762830,
+  "sha256": "4960aa6dd9b814b7a4606dba9771f4457a9407ffcc2d729d54c2d2cd02d9096b",
+  "installOrder": 100,
+  "uninstallSafety": {
+    "preservesNotes": true,
+    "preservesBookmarks": true,
+    "preservesReadingHistory": true,
+    "preservesResumePosition": true,
+    "preservesShlokaReviewDecisions": true,
+    "preservesPresentationProjects": true
+  },
+  "approvedAudioStatus": "n/a",
+  "attribution": "Ananda Marga publications — AMPS Library offline pack",
+  "files": [
+    {
+      "path": "books/bengal-and-bengalees.json",
+      "bytes": 2775491,
+      "sha256": "70fc1a50e019b4fabf0034e7e2f5f7cb70a888a31b315564232fed4a3bc9a6ba"
+    },
+    {
+      "path": "books/birds-and-animals-our-neighbours.json",
+      "bytes": 1828467,
+      "sha256": "b70d699cb91772d0df73b8fda44e4f06608fad51e2fd37d72b956ad86aeadca7"
+    },
+    {
+      "path": "books/golden-lotus-of-the-blue-sea.json",
+      "bytes": 173894,
+      "sha256": "d9b86bc960f01f980ce7479587e4f584f8845fcfb7ec1153e33d27cc958df013"
+    },
+    {
+      "path": "books/histories-along-the-way.json",
+      "bytes": 2273949,
+      "sha256": "ea5c644bc01a90fbc86e77418ca9972c4a166769894c882294818e9365bcdea9"
+    },
+    {
+      "path": "books/in-the-land-of-hattamala-1.json",
+      "bytes": 413719,
+      "sha256": "6da35415082b2f955f1b491077f4ea8db6eafc517714013c04855fcab1369045"
+    },
+    {
+      "path": "books/in-the-land-of-hattamala-2.json",
+      "bytes": 400728,
+      "sha256": "d43afcafce861e845c57767071c3d2823f23282f06504e7217d0f2ed6c1c5440"
+    },
+    {
+      "path": "books/sarkar-s-english-grammar.json",
+      "bytes": 616414,
+      "sha256": "67f68d2d304cf4f2732c000fce58f25b64d3cab1e3e725794c3797ce4cf9935a"
+    },
+    {
+      "path": "books/sarkar-s-short-stories-9.json",
+      "bytes": 22962,
+      "sha256": "7d10bec34b988c4a7c37998d1efdc79bf7594c3c34bb6b8e5489934cb9f4d781"
+    },
+    {
+      "path": "books/sarkars-short-stories-1.json",
+      "bytes": 550464,
+      "sha256": "4c24be12d089940aa208bf322ff93e1ff416bf6bcf940740ebbf377a6db17817"
+    },
+    {
+      "path": "books/sarkars-short-stories-2.json",
+      "bytes": 607327,
+      "sha256": "5f6179d732428457c19cab020b624efaa0ee13a6e67efaa61fefc1aa47e2d89d"
+    },
+    {
+      "path": "books/sarkars-short-stories-3.json",
+      "bytes": 620815,
+      "sha256": "5902ef8d5f49b56cbfd136ccaa5996af1f066b5e31577a9cd2b437427fc6e477"
+    },
+    {
+      "path": "books/sarkars-short-stories-4.json",
+      "bytes": 740539,
+      "sha256": "a9d1a6500333b50ebc808ad7a685b936a2840c90b739d14ddc9d75b7eea9f9e7"
+    },
+    {
+      "path": "books/sarkars-short-stories-5.json",
+      "bytes": 408748,
+      "sha256": "c17330dbabbfd980967c090170ada31a03d64be39c81628232ade1cab2711277"
+    },
+    {
+      "path": "books/sarkars-short-stories-6.json",
+      "bytes": 768715,
+      "sha256": "c314ce54ceb601424fa7931c76b343f2e545d809151900fc2debd8b9608d67d5"
+    },
+    {
+      "path": "books/shabda-cayanika-01.json",
+      "bytes": 1128492,
+      "sha256": "e32443c593aaa7f8524e1a0a212c7f1f7e0c9b7893c4b7b9d717eae24e3fd2b4"
+    },
+    {
+      "path": "books/shabda-cayanika-02.json",
+      "bytes": 1191214,
+      "sha256": "331753061db24cdab1b5abe7387f8810fd78de809b90d448105cf8493a637f28"
+    },
+    {
+      "path": "books/shabda-cayanika-03.json",
+      "bytes": 1501586,
+      "sha256": "18a281459f27fa2eaa57ec087343c296b3fea2608293d73a0346a36178ac2039"
+    },
+    {
+      "path": "books/shabda-cayanika-04.json",
+      "bytes": 1106184,
+      "sha256": "5c39ed6f7cd46a00a2189778a9e73e1e6b86ab822b2f03b696b35e83b036b746"
+    },
+    {
+      "path": "books/shabda-cayanika-05.json",
+      "bytes": 1121575,
+      "sha256": "80c4dd2f7fb6d3311a61cf5f7503a10ceb5b82400f8cd1a3aa9676417c9f35cc"
+    },
+    {
+      "path": "search/bengal-and-bengalees.json",
+      "bytes": 838507,
+      "sha256": "df45d2ecb8a911a66527d5ab95e46d60696e2b46d58b566fee177c4579919195"
+    },
+    {
+      "path": "search/birds-and-animals-our-neighbours.json",
+      "bytes": 564505,
+      "sha256": "f8580212b739d7a720d276c251939868083d37180bce21653af46c241caf2dde"
+    },
+    {
+      "path": "search/golden-lotus-of-the-blue-sea.json",
+      "bytes": 55990,
+      "sha256": "5c983a9bb48169fb06ef9b37b66d6d72f3b00adc7b8155921830c9bfb3f0d591"
+    },
+    {
+      "path": "search/histories-along-the-way.json",
+      "bytes": 739498,
+      "sha256": "c7433265dcd107522acca74b23794151daedc28b994445f02b5911495d56be3e"
+    },
+    {
+      "path": "search/in-the-land-of-hattamala-1.json",
+      "bytes": 120701,
+      "sha256": "543821f50b54d62be46c196b75cf2779a22478a54d70caf8d2073d351fd199a8"
+    },
+    {
+      "path": "search/in-the-land-of-hattamala-2.json",
+      "bytes": 114964,
+      "sha256": "9225efc4bc3b7e96cfbf055fd596554e115cee14b56cca0d4123d7004c33029b"
+    },
+    {
+      "path": "search/sarkar-s-english-grammar.json",
+      "bytes": 165365,
+      "sha256": "77d0076ed2bc75c0878a87b17a9b1cf3b6acc57e3d81682d9b0164e7f5569600"
+    },
+    {
+      "path": "search/sarkar-s-short-stories-9.json",
+      "bytes": 6738,
+      "sha256": "d947bea70e312cd3baa989688a0a32e4eea806c85b10f7ab8f361d775a1eefad"
+    },
+    {
+      "path": "search/sarkars-short-stories-1.json",
+      "bytes": 149939,
+      "sha256": "508ea210eb6f03a79ca3456ea2699ebf4bf09282102c7ddd551e2157a4bf6f28"
+    },
+    {
+      "path": "search/sarkars-short-stories-2.json",
+      "bytes": 170808,
+      "sha256": "94ffca67173bf48bcfa61d4b0edcb7ec8479294d58fa9ef754436e0cb55636a9"
+    },
+    {
+      "path": "search/sarkars-short-stories-3.json",
+      "bytes": 189995,
+      "sha256": "bea8a8b81346b43f537d7ec5178354e64c80ea36901aff694953f82e22047840"
+    },
+    {
+      "path": "search/sarkars-short-stories-4.json",
+      "bytes": 222335,
+      "sha256": "dd82b887fd8b3c6025eed5a1d4cbffec6d95aa469095a189e6e00bcab606f314"
+    },
+    {
+      "path": "search/sarkars-short-stories-5.json",
+      "bytes": 123154,
+      "sha256": "11a5c275b660ddf50b561974c50dcd16dd9eba3949bb40c833cb0e9a033d76a3"
+    },
+    {
+      "path": "search/sarkars-short-stories-6.json",
+      "bytes": 248900,
+      "sha256": "42dda2298402c0691139e264f4d241bc5c862a679e753687dd1d0466edfa9d74"
+    },
+    {
+      "path": "search/shabda-cayanika-01.json",
+      "bytes": 333915,
+      "sha256": "0faba53027f45f6834330f5a329ce8f6581fa202486ddb2e31d31414fa84898c"
+    },
+    {
+      "path": "search/shabda-cayanika-02.json",
+      "bytes": 357736,
+      "sha256": "664b3fd8eca2df91f206e859ba84dc7fa4949fb00de14b3a3118b0d821f961f1"
+    },
+    {
+      "path": "search/shabda-cayanika-03.json",
+      "bytes": 437178,
+      "sha256": "c1d557c55591541501d9a1ae1ba62ab3c3b2977066eba330fa9048c31b160348"
+    },
+    {
+      "path": "search/shabda-cayanika-04.json",
+      "bytes": 329946,
+      "sha256": "e1f37d01d645eef5561100fc2f52e55719f2d9ca827ac72ba3967b607c28ffd5"
+    },
+    {
+      "path": "search/shabda-cayanika-05.json",
+      "bytes": 341373,
+      "sha256": "39dbe4afb439210dd6717b6dcfc0020edaa33b9c5ff7f84ab961e7023a51722b"
+    }
+  ],
+  "payloadMode": "canonical-reference"
+}

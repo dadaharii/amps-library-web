@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-21T13:53:41.056Z",
+  "releaseId": "2026.09.06-10",
+  "packs": [
+    {
+      "packId": "books-core-spirituality",
+      "version": "1.0.0",
+      "type": "books",
+      "title": "Core spirituality books",
+      "description": "Primary spiritual discourses and philosophy volumes.",
+      "required": false,
+      "sizeBytes": 114891048,
+      "fileCount": 279,
+      "sha256": "a4aef6f1e512bada12a8ba51e195203d66bc5f5e6fe0980a6f065a190cbc746e",
+      "manifestPath": "packs/books-core-spirituality/manifest.json",
+      "minimumRuntimeSchema": 1,
+      "compatibleReleaseIds": [
+        "2026.09.06-10"
+      ],
+      "dependencies": [],
+      "languages": [
+        "en",
+        "hi"
+      ],
+      "status": "public",
+      "payloadMode": "canonical-reference"
+    },
+    {
+      "packId": "books-prout",
+      "version": "1.0.0",
+      "type": "books",
+      "title": "PROUT and socio-economic books",
+      "description": "PROUT nutshell volumes and related socio-economic discourses.",
+      "required": false,
+      "sizeBytes": 23791056,
+      "fileCount": 56,
+      "sha256": "b3438baf9c36d37c3c51c13354702b7c8f0451e3ed3eee7db496be050a75f7bf",
+      "manifestPath": "packs/books-prout/manifest.json",
+      "minimumRuntimeSchema": 1,
+      "compatibleReleaseIds": [
+        "2026.09.06-10"
+      ],
+      "dependencies": [],
+      "languages": [
+        "en",
+        "hi"
+      ],
+      "status": "public",
+      "payloadMode": "canonical-reference"
+    },
+    {
+      "packId": "books-history-language",
+      "version": "1.0.0",
+      "type": "books",
+      "title": "History, language and stories",
+      "description": "Language studies, histories, and narrative collections.",
+      "required": false,
+      "sizeBytes": 23762830,
+      "fileCount": 38,
+      "sha256": "4960aa6dd9b814b7a4606dba9771f4457a9407ffcc2d729d54c2d2cd02d9096b",
+      "manifestPath": "packs/books-history-language/manifest.json",
+      "minimumRuntimeSchema": 1,
+      "compatibleReleaseIds": [
+        "2026.09.06-10"
+      ],
+      "dependencies": [],
+      "languages": [
+        "en"
+      ],
+      "status": "public",
+      "payloadMode": "canonical-reference"
+    },
+    {
+      "packId": "shloka-text",
+      "version": "1.0.0",
+      "type": "shloka-text",
+      "title": "Samskrta Shloka text corpus",
+      "description": "Active shloka verses, search shard, and source index.",
+      "required": false,
+      "sizeBytes": 2787385,
+      "fileCount": 4,
+      "sha256": "b4c33d6b20a43500402149412c52946635999820d38e0c9b5708ba59a0d273dc",
+      "manifestPath": "packs/shloka-text/manifest.json",
+      "minimumRuntimeSchema": 1,
+      "compatibleReleaseIds": [
+        "2026.09.06-10"
+      ],
+      "dependencies": [],
+      "languages": [
+        "sa",
+        "en"
+      ],
+      "status": "public",
+      "payloadMode": "canonical-reference"
+    },
+    {
+      "packId": "meanings-hindi",
+      "version": "1.0.0",
+      "type": "meanings",
+      "title": "meanings-hindi",
+      "description": "No Hindi meaning assets present in canonical data",
+      "required": false,
+      "sizeBytes": 0,
+      "fileCount": 0,
+      "sha256": null,
+      "manifestPath": null,
+      "minimumRuntimeSchema": 1,
+      "compatibleReleaseIds": [
+        "2026.09.06-10"
+      ],
+      "dependencies": [],
+      "languages": [
+        "hi"
+      ],
+      "status": "BLOCKED_NO_MEANINGS_ASSETS",
+      "payloadMode": "none"
+    },
+    {
+      "packId": "shloka-human-approved",
+      "version": "1.0.0",
+      "type": "shloka-audio-human",
+      "title": "Approved human shloka audio",
+      "description": "Administrator-approved human shloka recordings only.",
+      "required": false,
+      "sizeBytes": 7838174,
+      "fileCount": 16,
+      "sha256": "2c352a7cc03c44a0ba522024f576a2a5cf28d2d41caebd77302008ede1e13750",
+      "manifestPath": "packs/shloka-human-approved/manifest.json",
+      "minimumRuntimeSchema": 1,
+      "compatibleReleaseIds": [
+        "2026.09.06-10"
+      ],
+      "dependencies": [
+        "shloka-text"
+      ],
+      "languages": [
+        "sa"
+      ],
+      "status": "public",
+      "payloadMode": "canonical-reference"
+    }
+  ]
+}

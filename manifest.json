@@ -1,0 +1,76 @@
+{
+  "name": "AMPS Library",
+  "short_name": "AMPS Library",
+  "description": "Premium Ananda Marga library — read, search, highlight, note & study sacred texts.",
+  "start_url": "./amps-reader/amps-reader.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f6f3",
+  "theme_color": "#e85d04",
+  "orientation": "any",
+  "categories": [
+    "education",
+    "books"
+  ],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Sacred Library",
+      "short_name": "Sacred Library",
+      "url": "./amps-reader/amps-reader.html#library",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Reading plan",
+      "short_name": "Reading plan",
+      "url": "./amps-reader/amps-reader.html#plan",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Continue search",
+      "short_name": "Continue search",
+      "url": "./amps-reader/amps-reader.html#search",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,495 @@
+:root {
+  --lp-status: #3d4a3a;
+  --lp-warn: #6b4a1a;
+}
+
+/* ==========================================================================
+   AMPS_PRINT_READER_HOUSE_STYLE_V1
+   Master publication reference — printed-book reading column (A5 benchmark).
+   See docs/AMPS-PRINT-READER-HOUSE-STYLE-V1.md
+   ========================================================================== */
+
+.reader-article.amps-print-reader-house-style-v1 {
+  max-width: 42rem;
+  font-family: "Noto Serif Devanagari", "Noto Serif", Georgia, serif;
+}
+
+.reader-article.amps-print-reader-house-style-v1 .reader-head {
+  margin-bottom: 2.35rem;
+  padding-top: 0.35rem;
+}
+
+.reader-article.amps-print-reader-house-style-v1 .reader-head h1 {
+  font-family: "Noto Serif Devanagari", "Noto Serif", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.reader-article.amps-print-reader-house-style-v1 .reader-para {
+  margin-bottom: 1.12rem;
+}
+
+.reader-article.amps-print-reader-house-style-v1 .reader-para.has-samskrta-unit {
+  margin-bottom: 1.25rem;
+}
+
+.reader-article.amps-print-reader-house-style-v1 .rich-language-blocks {
+  max-width: 100%;
+}
+
+/* ========================================================================== */
+#book-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.bilingual-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 100%;
+}
+@media (max-width: 720px) {
+  .bilingual-row {
+    grid-template-columns: 1fr;
+  }
+}
+.mode-translation-only .source-english { display: none; }
+.translation-status-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--lp-status);
+  margin-top: 0.25rem;
+}
+.translation-text[dir="rtl"] {
+  text-align: right;
+}
+#lang-select:focus, #display-mode:focus, #instant-translate-btn:focus {
+  outline: 2px solid #2c5aa0;
+  outline-offset: 2px;
+}
+.reader-edition-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.65rem;
+  padding: 0.65rem var(--reader-margin, 1rem);
+  border-bottom: 1px solid rgba(98, 79, 42, 0.18);
+  background: color-mix(in srgb, var(--paper, #fffaf0) 90%, #ffffff);
+}
+.reader-edition-bar label {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 9rem;
+  font-size: 0.76rem;
+  color: #5f5245;
+  -webkit-text-fill-color: #5f5245;
+}
+.reader-edition-bar select,
+.reader-language-select,
+.reader-view-select {
+  min-height: 2.1rem;
+  border-radius: 7px;
+  border: 1px solid rgba(70, 50, 30, 0.35);
+  background: #fffdf6;
+  color: #2b241d;
+  -webkit-text-fill-color: #2b241d;
+  opacity: 1;
+  padding: 0.25rem 0.5rem;
+}
+.reader-edition-bar select option,
+.reader-language-select option,
+.reader-view-select option {
+  background: #ffffff;
+  color: #2b241d;
+  -webkit-text-fill-color: #2b241d;
+}
+.reader-edition-bar select:focus,
+.reader-language-select:focus,
+.reader-view-select:focus {
+  outline: 2px solid #2b241d;
+  outline-offset: 2px;
+}
+.reader-edition-bar select:disabled,
+.reader-language-select:disabled,
+.reader-view-select:disabled {
+  background: #ece7dc;
+  color: #6f675e;
+  -webkit-text-fill-color: #6f675e;
+  border-color: rgba(70, 50, 30, 0.22);
+  opacity: 1;
+}
+.reader-edition-status,
+.edition-pill {
+  white-space: nowrap;
+}
+
+/* AMPS_LANGUAGE_SWITCH_VISIBLE_STATES_V1
+   The edition bar can be nested in a dark hero. Own every foreground and
+   surface here so hero/theme button rules cannot erase the inactive label. */
+.reader-edition-bar .reader-edition-status {
+  color: #493d31 !important;
+  -webkit-text-fill-color: #493d31 !important;
+  opacity: 1 !important;
+}
+
+.reader-edition-bar .btn[data-book-language] {
+  min-width: 6.5rem;
+  color: #2b241d !important;
+  -webkit-text-fill-color: #2b241d !important;
+  background: #fffdf6 !important;
+  border: 1px solid #74624f !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reader-edition-bar .btn[data-book-language][aria-pressed="true"] {
+  color: #1a1410 !important;
+  -webkit-text-fill-color: #1a1410 !important;
+  background: linear-gradient(135deg, #d4af37, #a67c00) !important;
+  border-color: #8b6914 !important;
+}
+
+.book-edition-switch .btn {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.book-edition-switch .reader-edition-status {
+  color: inherit;
+}
+
+.rich-language-blocks {
+  display: block;
+}
+
+.rich-language-blocks > :first-child {
+  margin-top: 0;
+}
+
+.rich-language-blocks > :last-child {
+  margin-bottom: 0;
+}
+
+.amps-hindi-prose {
+  margin: 0 0 0.72em;
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
+  text-indent: 1.15em;
+  line-height: 1.7;
+  font-family: "Noto Serif Devanagari", "Noto Serif", Georgia, serif;
+  overflow-wrap: break-word;
+}
+
+.rich-language-blocks > .amps-hindi-prose:first-child {
+  text-indent: 0;
+}
+
+.amps-samskrta-unit {
+  margin: 1.15em 0;
+  text-indent: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* ==========================================================================
+   AMPS_SANSKRTA_TYPOGRAPHY_V1
+   Shared Sanskrit publication typography (Publisher + Reader canonical book).
+   ========================================================================== */
+
+.amps-samskrta-devanagari {
+  text-align: center;
+  text-align-last: center;
+  font-family:
+    "Shobhika",
+    "Tiro Devanagari Sanskrit",
+    "Noto Serif Devanagari",
+    "Devanagari Sangam MN",
+    "Kohinoor Devanagari",
+    serif;
+  font-weight: 400;
+  font-size: clamp(1.06em, 1.12em + 0.15vw, 1.18em);
+  line-height: 1.52;
+  letter-spacing: normal;
+  margin-bottom: 0.42em;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.amps-samskrta-roman {
+  text-align: center;
+  text-align-last: center;
+  font-family: "Noto Serif", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(0.98em, 1.01em + 0.08vw, 1.06em);
+  line-height: 1.62;
+  margin-bottom: 0.52em;
+  overflow-wrap: break-word;
+}
+
+.amps-samskrta-meaning {
+  text-align: center;
+  text-align-last: center;
+  font-family: "Noto Serif Devanagari", "Noto Serif", Georgia, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.96em;
+  line-height: 1.62;
+  overflow-wrap: break-word;
+}
+
+.reader-article.amps-sanskrit-typography-v1 .reader-para.shloka-verse-entry {
+  margin: 1.15em 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.reader-article.amps-sanskrit-typography-v1 .amps-canonical-shloka-unit {
+  margin: 0.85em 0 0.65em;
+}
+
+.reader-article.amps-sanskrit-typography-v1 .shloka-verse-audio {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto 0.65rem;
+  display: block;
+}
+
+.reader-article.amps-sanskrit-typography-v1 .shloka-supplementary-scripts,
+.reader-article.amps-sanskrit-typography-v1 .shloka-supplementary-meanings {
+  margin-top: 0.75em;
+  text-align: center;
+}
+
+.reader-article.amps-sanskrit-typography-v1 .shloka-supplementary-meanings .shloka-collapsible-panel {
+  text-align: left;
+}
+
+.reader-article.amps-sanskrit-typography-v1 .canonical-shloka-nav {
+  margin-top: 0.85em;
+}
+
+.reader-article.amps-sanskrit-typography-v1 .shloka-supplementary-scripts .shloka-line {
+  display: block;
+  margin: 0.28em 0;
+  text-align: center;
+  text-align-last: center;
+  font-style: normal;
+}
+
+.reader-article.amps-sanskrit-typography-v1 .shloka-supplementary-meanings .shloka-meaning-section {
+  max-width: 36rem;
+  margin: 0.65em auto 0;
+  text-align: left;
+  font-size: 0.92em;
+  color: var(--text-muted);
+}
+
+.reader-article.amps-sanskrit-typography-v1 .shloka-sources {
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.reader-article.amps-sanskrit-typography-v1.reader-virtualized .reader-para.shloka-verse-entry {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 168px;
+}
+
+.shloka-verse-spacer {
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Shloka ≠ Classic Quote ≠ Callout — strip discourse card chrome from publication units */
+.reader-para.has-samskrta-unit,
+.reader-para.has-samskrta-unit .para-text,
+.reader-para.has-samskrta-unit .para-text.rich-language-blocks,
+.reader-para:has(.amps-samskrta-unit),
+.reader-para.shloka-entry:has(.amps-samskrta-unit),
+.reader-para.discourse-shloka-entry:has(.amps-samskrta-unit) {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-left: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.rich-language-blocks .amps-samskrta-unit blockquote:not(.amps-publication-quote) {
+  border: 0;
+  padding-left: 0;
+  margin: 0;
+  font-style: inherit;
+  color: inherit;
+}
+
+.amps-publication-quote {
+  position: relative;
+  display: block;
+  width: min(86%, 42rem);
+  max-width: 42rem;
+  margin: 0.85em auto 1em;
+  padding: 0.12em 0.3em 0.12em 1.18em;
+  border: 0;
+  border-left: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+  text-align-last: left;
+  text-indent: 0;
+  font-size: 0.96em;
+  line-height: 1.68;
+  font-style: normal;
+  color: inherit;
+  text-justify: auto;
+}
+
+.rich-language-blocks .amps-publication-quote,
+.reader-para.has-classic-quotation .amps-publication-quote {
+  width: min(86%, 42rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[data-text-align="justify"] .amps-publication-quote,
+[data-text-align="justify"] .rich-language-blocks .amps-publication-quote {
+  text-align: left;
+  text-align-last: left;
+  text-justify: auto;
+}
+
+.amps-publication-quote::before {
+  content: "“";
+  position: absolute;
+  left: 0.05em;
+  top: -0.3em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45em;
+  font-weight: 600;
+  line-height: 1;
+  color: color-mix(in srgb, currentColor 42%, transparent);
+}
+
+.amps-publication-quote-attribution {
+  display: block;
+  margin: 0.72em 0 0;
+  padding: 0;
+  text-align: right;
+  text-align-last: right;
+  text-indent: 0;
+  font-size: 0.92em;
+  line-height: 1.55;
+  font-style: normal;
+  color: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+.chapter-end-meta {
+  display: block;
+  width: 100%;
+  margin: 1.65em 0 0;
+  padding: 0;
+  text-align: right;
+  text-align-last: right;
+  text-indent: 0;
+  line-height: 1.42;
+  color: var(--text-muted, #686868);
+}
+
+.chapter-end-place,
+.chapter-end-date {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  text-indent: 0;
+}
+
+.chapter-end-place {
+  font-size: 0.9em;
+  font-weight: 550;
+}
+
+.chapter-end-date {
+  margin-top: 0.08em;
+  font-size: 0.84em;
+  font-weight: 400;
+}
+
+/* AMPS_SAMSKRTA_OPEN_LINK_V2_START */
+
+/*
+ * Secondary navigation beneath a centered
+ * Saḿskrta publication unit.
+ */
+.amps-samskrta-open-link {
+  display: block !important;
+  width: fit-content !important;
+  max-width: 100%;
+
+  margin:
+    0.55rem auto 1.65rem !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
+  background: transparent !important;
+
+  text-align: center !important;
+
+  font: inherit;
+  font-size: 0.88em !important;
+  font-weight: 500 !important;
+
+  color: inherit;
+  opacity: 0.82;
+
+  cursor: pointer;
+
+  text-decoration: none !important;
+}
+
+.amps-samskrta-open-link:hover {
+  opacity: 1;
+  text-decoration: underline !important;
+  text-underline-offset: 0.18em;
+}
+
+.amps-samskrta-open-link:focus-visible {
+  opacity: 1;
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* AMPS_SAMSKRTA_OPEN_LINK_V2_END */
+
+
+/* Batch1 bilingual book edition switch (AV9 architecture) */
+.book-edition-switch .btn {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.book-edition-switch .reader-edition-status {
+  color: inherit;
+  opacity: 1;
+}

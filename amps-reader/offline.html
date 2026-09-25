@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AMPS Library — Offline</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <style>
+    :root { color-scheme: light; --bg:#f7f1e8; --ink:#1a120b; --accent:#e85d04; }
+    body { margin:0; font:16px/1.5 Georgia, "Times New Roman", serif; background:linear-gradient(160deg,#f7f1e8,#ebe2d4); color:var(--ink); min-height:100vh; }
+    main { max-width:34rem; margin:0 auto; padding:2.5rem 1.25rem; }
+    h1 { font-size:1.75rem; margin:0 0 .5rem; letter-spacing:.02em; }
+    .status { display:inline-block; padding:.25rem .6rem; border-radius:999px; background:#fff; border:1px solid #c9b8a2; font-size:.85rem; }
+    p { margin:1rem 0; }
+    .actions { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1.5rem; }
+    a, button {
+      appearance:none; border:0; border-radius:10px; padding:.7rem 1rem; font:inherit; text-decoration:none; cursor:pointer;
+    }
+    .primary { background:var(--accent); color:#fff; font-weight:600; }
+    .secondary { background:#fff; color:var(--ink); border:1px solid #c9b8a2; }
+    .note { font-size:.92rem; color:#5a4a3a; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="status" id="netStatus" role="status">You are offline</p>
+    <h1>AMPS Library</h1>
+    <p>The application shell is available on this device. Content that has not been installed yet cannot be opened until you reconnect or download it.</p>
+    <p class="note">This page never claims books are installed unless they are already cached. No endless spinner — use Retry or open the library shell.</p>
+    <div class="actions">
+      <button type="button" class="primary" id="btnRetry">Retry connection</button>
+      <a class="secondary" href="amps-reader.html#library">Open local library</a>
+      <a class="secondary" href="amps-reader.html#offline">Offline &amp; Downloads</a>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var status = document.getElementById("netStatus");
+      function sync() {
+        var online = navigator.onLine;
+        status.textContent = online ? "Back online" : "You are offline";
+      }
+      window.addEventListener("online", sync);
+      window.addEventListener("offline", sync);
+      sync();
+      document.getElementById("btnRetry").addEventListener("click", function () {
+        location.reload();
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "paragraph_id": "ch-verses-p25",
+  "text_hash": "sha256:27690447fd247c09fb7267487bb2e7e47f410736ecfeb2365bbeb36a71f76a84",
+  "audio_type": "machine_recitation",
+  "engine": "xtts-v2",
+  "audio_hash": "sha256:79fb1aefe7e5245ef9e52a2dc03cfc32e2456b87ad98c43281e64d427a01212c",
+  "duration_seconds": 0,
+  "written_at": "2026-07-30T11:50:07.867Z"
+}

@@ -1,0 +1,9 @@
+{
+  "paragraph_id": "ch-verses-p246",
+  "text_hash": "sha256:3565c1a3447b18e517617878e168114a1f820da8083571ba65cc366061d2c80b",
+  "audio_type": "machine_recitation",
+  "engine": "xtts-v2",
+  "audio_hash": "sha256:d4c440a43fa5347e7a4f4c09c18174023e3543723754c6889f82cf1a9f741794",
+  "duration_seconds": 0,
+  "written_at": "2026-07-30T11:52:23.473Z"
+}

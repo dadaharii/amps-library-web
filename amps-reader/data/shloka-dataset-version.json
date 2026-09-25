@@ -1,0 +1,22 @@
+{
+  "dataset": "Samskrta Shloka Dataset",
+  "version": "1.42.24",
+  "hash": "sha256:3e2c395f3ef3c4d1f497abba6d64dc1f4e542b59949a280e67d70a3249d6a0c8",
+  "active_records": 383,
+  "aliases": 79,
+  "freeze_activated": true,
+  "activated_at": "2026-07-31T01:32:21.316Z",
+  "activated_by": "Acharya Hariishananda Avadhuta",
+  "baseline_freeze_version": "1.0",
+  "baseline_freeze_hash": "sha256:4d0b375b808ebd5b62ef0ad9abd074a455b8c5695c0556217b17cac7f623b01e",
+  "previous_version": "1.42.23",
+  "previous_hash": "sha256:b3953efa6cce2c4c61d1faf27a5457f63167008fec0584e303aa8c8b8aeac95e",
+  "revised_at": "2026-08-04T03:12:15.732Z",
+  "revision_reason": "Recent-book shloka link: +1 verses, 14 source locs",
+  "last_operation_id": "shloka-corpus-expansion-1785801613976",
+  "last_decision_id": "approved-p443-guru-orthography-canonical.json",
+  "last_group_id": "bhaga-p89-p91",
+  "updated_at": "2026-08-04T03:12:15.732Z",
+  "last_meaning_review_operation": "meaning-review-2026-08-01T02-58-36-817Z-4b853cb8",
+  "last_meaning_review_decision": "p2-add_hindi-e856c428"
+}

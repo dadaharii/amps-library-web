@@ -1,0 +1,126 @@
+{
+  "generatedAt": "2026-08-05T06:01:27.378Z",
+  "schemaVersion": 1,
+  "sourceMeta": {
+    "docs/roman-samskrta-pronunciation.md": {
+      "bytes": 1627,
+      "sha256": "e638062df81101aca4356d0cc7c7633cd33cf22cdf3b00f762e1e525ad7caf19"
+    },
+    "docs/samskrta-pronunciation-corrections.tsv": {
+      "bytes": 29301,
+      "sha256": "2a8c6a4cc4eddf65dee725198d81c7d07d6ec4741d597852030c4676476cc2a2",
+      "rowCount": 276,
+      "statusCounts": {
+        "fix": 276
+      },
+      "headers": [
+        "status",
+        "roman",
+        "devanagari",
+        "speak_as",
+        "notes"
+      ],
+      "embeddedInRuntime": true
+    },
+    "docs/samskrta-pronunciation-priority.tsv": {
+      "bytes": 12210,
+      "sha256": "eb9872be91ede205d597d153786f66c97f2a0151dce642f2ea32a00b7869ed67",
+      "rowCount": 119,
+      "statusCounts": {
+        "fix": 119
+      },
+      "headers": [
+        "status",
+        "roman",
+        "devanagari",
+        "speak_as",
+        "occurrence_count",
+        "notes"
+      ],
+      "embeddedInRuntime": true
+    },
+    "docs/samskrta-pronunciation-redownload-raw.tsv": {
+      "bytes": 2600607,
+      "sha256": "0d3cb46bcf1ef8cd5bbccfb6efd2cd0ae5c447977208fa37fdced759d1c7c1ee",
+      "rowCount": 17245,
+      "statusCounts": {
+        "fix": 238,
+        "auto-pronunciation": 17007
+      },
+      "headers": [
+        "status",
+        "roman",
+        "devanagari",
+        "speak_as",
+        "occurrence_count",
+        "notes"
+      ]
+    },
+    "docs/samskrta-pronunciation-review-priority-first.tsv": {
+      "bytes": 2584598,
+      "sha256": "53beb758730516e5f7c0b9b37c122e98b50ef6cb6d3c6aa9477249ac6b1a0e61",
+      "rowCount": 17251,
+      "statusCounts": {
+        "fix": 249,
+        "auto-pronunciation": 17002
+      },
+      "headers": [
+        "status",
+        "roman",
+        "devanagari",
+        "speak_as",
+        "occurrence_count",
+        "notes"
+      ]
+    },
+    "docs/samskrta-pronunciation-review.md": {
+      "bytes": 1007,
+      "sha256": "d3aeec1756f619375875db493d8a07e3e4bab56d41cde0b2d75acf791f90ff5e"
+    },
+    "docs/samskrta-pronunciation-review.tsv": {
+      "bytes": 734355,
+      "sha256": "58b25ed564798820ff747ff47a803ef3668b7a733920d9715c6958e09b368a5b",
+      "rowCount": 17196,
+      "statusCounts": {
+        "(empty)": 17099,
+        "fix": 97
+      },
+      "headers": [
+        "status",
+        "roman",
+        "devanagari",
+        "speak_as",
+        "occurrence_count",
+        "notes"
+      ]
+    },
+    "docs/samskrta-pronunciation-top-500.tsv": {
+      "bytes": 20377,
+      "sha256": "abb4bb21020b286e5a5e291203151e53507ccd57e32d5dbc06d1ae7fd8769205",
+      "rowCount": 504,
+      "statusCounts": {
+        "fix": 31,
+        "(empty)": 473
+      },
+      "headers": [
+        "status",
+        "roman",
+        "devanagari",
+        "speak_as",
+        "occurrence_count",
+        "notes"
+      ],
+      "embeddedInRuntime": true
+    }
+  },
+  "roles": {
+    "docs/roman-samskrta-pronunciation.md": "Canonical pronunciation specification",
+    "docs/samskrta-pronunciation-corrections.tsv": "Approved or proposed correction rules",
+    "docs/samskrta-pronunciation-priority.tsv": "General review priority",
+    "docs/samskrta-pronunciation-redownload-raw.tsv": "Raw audio/source recovery queue",
+    "docs/samskrta-pronunciation-review-priority-first.tsv": "First human-review queue",
+    "docs/samskrta-pronunciation-review.md": "Human-review policy and instructions",
+    "docs/samskrta-pronunciation-review.tsv": "Review decisions and status",
+    "docs/samskrta-pronunciation-top-500.tsv": "Highest-value pronunciation coverage"
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "nativeName": "English",
+      "direction": "ltr"
+    },
+    {
+      "code": "hi",
+      "name": "Hindi",
+      "nativeName": "हिन्दी",
+      "direction": "ltr"
+    },
+    {
+      "code": "ar",
+      "name": "Arabic",
+      "nativeName": "العربية",
+      "direction": "rtl"
+    },
+    {
+      "code": "ur",
+      "name": "Urdu",
+      "nativeName": "اردو",
+      "direction": "rtl"
+    },
+    {
+      "code": "bn",
+      "name": "Bangla",
+      "nativeName": "বাংলা",
+      "direction": "ltr"
+    },
+    {
+      "code": "mr",
+      "name": "Marathi",
+      "nativeName": "मराठी",
+      "direction": "ltr",
+      "script": "Devanagari"
+    },
+    {
+      "code": "ml",
+      "name": "Malayalam",
+      "nativeName": "മലയാളം",
+      "direction": "ltr",
+      "script": "Malayalam"
+    },
+    {
+      "code": "kn",
+      "name": "Kannada",
+      "nativeName": "ಕನ್ನಡ",
+      "direction": "ltr",
+      "script": "Kannada"
+    },
+    {
+      "code": "te",
+      "name": "Telugu",
+      "nativeName": "తెలుగు",
+      "direction": "ltr",
+      "script": "Telugu"
+    },
+    {
+      "code": "or",
+      "name": "Odia",
+      "nativeName": "ଓଡ଼ିଆ",
+      "direction": "ltr",
+      "script": "Odia"
+    },
+    {
+      "code": "pa",
+      "name": "Punjabi",
+      "nativeName": "ਪੰਜਾਬੀ",
+      "direction": "ltr",
+      "script": "Gurmukhi"
+    },
+    {
+      "code": "mwr",
+      "name": "Marwari",
+      "nativeName": "मारवाड़ी",
+      "direction": "ltr",
+      "script": "Devanagari"
+    },
+    {
+      "code": "gu",
+      "name": "Gujarati",
+      "nativeName": "ગુજરાતી",
+      "direction": "ltr",
+      "script": "Gujarati"
+    },
+    {
+      "code": "ta",
+      "name": "Tamil",
+      "nativeName": "தமிழ்",
+      "direction": "ltr",
+      "script": "Tamil"
+    },
+    {
+      "code": "ne",
+      "name": "Nepali",
+      "nativeName": "नेपाली",
+      "direction": "ltr",
+      "script": "Devanagari"
+    },
+    {
+      "code": "fil",
+      "name": "Filipino",
+      "nativeName": "Filipino",
+      "direction": "ltr",
+      "script": "Latin"
+    },
+    {
+      "code": "pl",
+      "name": "Polish",
+      "nativeName": "Polski",
+      "direction": "ltr",
+      "script": "Latin"
+    },
+    {
+      "code": "de",
+      "name": "German",
+      "nativeName": "Deutsch",
+      "direction": "ltr",
+      "script": "Latin"
+    },
+    {
+      "code": "ru",
+      "name": "Russian",
+      "nativeName": "Русский",
+      "direction": "ltr",
+      "script": "Cyrillic"
+    },
+    {
+      "code": "it",
+      "name": "Italian",
+      "nativeName": "Italiano",
+      "direction": "ltr",
+      "script": "Latin"
+    },
+    {
+      "code": "pt",
+      "name": "Portuguese",
+      "nativeName": "Português",
+      "direction": "ltr",
+      "script": "Latin"
+    },
+    {
+      "code": "es",
+      "name": "Spanish",
+      "nativeName": "Español",
+      "direction": "ltr",
+      "script": "Latin"
+    },
+    {
+      "code": "fr",
+      "name": "French",
+      "nativeName": "Français",
+      "direction": "ltr",
+      "script": "Latin"
+    }
+  ],
+  "books": {
+    "ananda-marga-karma-sannyasa-in-a-nutshell": {
+      "packs": {
+        "hi": {
+          "status": "official_approved",
+          "partial": false,
+          "language": "hi",
+          "nativeName": "हिन्दी",
+          "direction": "ltr",
+          "relativePath": "data/language-packs/ananda-marga-karma-sannyasa-in-a-nutshell/hi/latest.json",
+          "checksum": "sha256:b5904f2cb0379462f11b90b5d373a14d3b26667efde29b306ed61440ce6e1621",
+          "metadata": {
+            "title": "आनन्द मार्ग कर्म-संन्यास",
+            "sourceTitle": "Ananda Marga Karma Sannyása in a Nutshell",
+            "language": "hi"
+          },
+          "counts": {
+            "chapterTitles": 11,
+            "paragraphs": 218,
+            "footnotes": 7,
+            "total": 236,
+            "explicitSanskritUnits": 24,
+            "embeddedSanskritUnits": 1,
+            "sanskritUnits": 25,
+            "quotationBlocks": 38,
+            "chapterEndMetadata": 10
+          }
+        }
+      },
+      "title": "Ananda Marga Karma Sannyása in a Nutshell"
+    },
+    "subhasita-samgraha-16": {
+      "packs": {
+        "hi": {
+          "language": "hi",
+          "languageName": "Hindi",
+          "nativeName": "हिन्दी",
+          "status": "official_approved",
+          "partial": false,
+          "editionMode": "translation_only",
+          "relativePath": "data/language-packs/subhasita-samgraha-16/hi/latest.json"
+        }
+      }
+    }
+  },
+  "mappingDecisions": {
+    "Phillippine": "fil",
+    "Police": "pl",
+    "_note": "Phillippine→Filipino (fil); Police→Polish (pl) only after explicit confirmation in Phase Q."
+  },
+  "notes": "Phillippine→Filipino (fil) and Police→Polish (pl) only after explicit configuration confirmation.",
+  "instantTranslation": {
+    "enabledByDefault": false,
+    "envFlag": "READER_INSTANT_TRANSLATION_ENABLED"
+  }
+}

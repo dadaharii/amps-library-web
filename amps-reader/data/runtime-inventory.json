@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-06T01:37:24.385Z",
+  "releaseId": "2026.09.06-10",
+  "catalogSha256": "57d78ead9ec7eceb7c8e466b2a7a0de079029ebf73c6c4b8ff44be7ca812cee7",
+  "bookCount": 184,
+  "totalChapters": 2624,
+  "searchShardCount": 184,
+  "glossaryCount": 560,
+  "glossarySha256": "8290ebd0c2e1391770a0abc5151b1bcef13354a44ba4485ca6b358c09e3f002e",
+  "shlokaCount": 383,
+  "shlokaCorpusSha256": "1062c7484c7f011b65e91aeba2a12bd58caf5b3c0d65bfdf1b01514fd477831f",
+  "shlokaHighestStableId": "ch-verses-p564",
+  "shlokaSourceIndexSha256": "c398559faa79365d193b3cda40c08c39e034f3fbd4b4eb68e008571c123eced7",
+  "approvedAudioCount": 15,
+  "draftAudioCount": 41,
+  "audioManifestSha256": "d75f8cc11d2f2a4b4bf8472bc06af525a91c536b862d79a914a11e0ec9070a75",
+  "publicAssetHashes": {
+    "index.html": "71763f7851a01b403fa42d648ef569c3b056c34b4a7c4516b48cd2fd3db16460",
+    "amps-reader.html": "a3bef76099c39e52597221607b79134463f7995cd42be385195b3fe9864d8fcc",
+    "amps-reader-app.js": "a3e2cc566b55c2625c83901311914201911456be0bccb09a0d3bf3039a7788d3"
+  },
+  "runtimeFileCount": 518,
+  "runtimeTotalBytes": 380322748,
+  "releaseManifestSha256": "c47549c845436b631f968db257303878915193704fac06c6d3c9bfcb43e74557",
+  "inventoryContentSha256": "8545fd229c0eb2bb1195d99c1ef8438e81c43799e488142e570334aff83bd9f5"
+}

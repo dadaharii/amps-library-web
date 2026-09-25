@@ -1,0 +1,2419 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><title>Machine pilot review</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:2rem}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #ccc;padding:.4rem;font-size:.85rem;vertical-align:top}
+th{background:#f4f1ea}
+input[type=number]{width:3.2rem}
+audio{width:220px;display:block}
+textarea{min-width:12rem;min-height:4rem}
+</style></head><body><p><a href="amps-reader.html#shloka-recorder">← Back to Shloka Studio</a></p>
+<h1>Shloka machine-engine pilot review</h1>
+<p>XTTS vs say/espeak — all drafts. A technically clean file with incorrect Sanskrit pronunciation must fail. Fill every field after listening in browser and Android.</p>
+<button id="download">Download completed review JSON</button>
+<table>
+<thead><tr>
+<th>Verse</th><th>Engine</th><th>Audio / technical</th><th>Identity</th>
+<th>Vowels</th><th>Aspirates</th><th>Retroflex</th><th>Anusvāra / visarga</th>
+<th>Phrasing</th><th>Line pauses</th><th>Stability</th><th>Pronunciation overall</th>
+<th>Naturalness</th><th>Pause overall</th><th>Audio quality</th><th>Learning clarity</th>
+<th>Overall acceptable</th><th>No artefacts</th><th>Browser</th><th>Android</th>
+<th>Headphones</th><th>Device speaker</th><th>Decision</th><th>Reviewer</th><th>Notes</th>
+</tr></thead>
+<tbody><tr>
+      <td><strong>ch-verses-p30</strong><br/>
+        <small>Asato má sadgamaya tamaso má jyotirgamaya<br/>Mrtyormámrtaḿgamaya ávirávirmayaedhi</small><br/>
+        <small>असतो मा सद्गमय तमसो मा ज्योतिर्गमय।<br/>मृत्योर्मामृतंगमय आविराविर्मयैधि॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p30.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p30.mp3<br/>251181 bytes</small>
+      </td>
+      <td><select data-index="0" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="0" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="0" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="0" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="0" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="0" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="0" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="0" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="0" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="0" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p30</strong><br/>
+        <small>Asato má sadgamaya tamaso má jyotirgamaya<br/>Mrtyormámrtaḿgamaya ávirávirmayaedhi</small><br/>
+        <small>असतो मा सद्गमय तमसो मा ज्योतिर्गमय।<br/>मृत्योर्मामृतंगमय आविराविर्मयैधि॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p30.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p30.mp3<br/>217005 bytes</small>
+      </td>
+      <td><select data-index="1" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="1" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="1" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="1" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="1" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="1" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="1" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="1" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="1" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="1" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p2</strong><br/>
+        <small>Akhańd́amańd́alákáraḿ vyáptaḿ yena carácaram<br/>Tatpadaḿ darshitaḿ yena tasmae Shrii Gurave namah<br/>Ajiṋána timirándhasya jiṋánáiṋjana shalákayá<br/>Cakśurunmiilitaḿ yena tasmae Shrii Gurave namah<br/>Gurur Brahmá Gurur Viśńu Gurur Devo Maheshvarah<br/>Gurureva Paramah Brahma tasmae Shrii Gurave namah</small><br/>
+        <small>अखण्ड-मण्डलाकारं व्याप्तं येन चराचरम्।<br/>तत्पदं दर्शितं येन तस्मै श्री गुरवे नमः॥१॥<br/>अज्ञान-तिमिरान्धस्य ज्ञानाञ्जन-शलाकया।<br/>चक्षुरुन्मीलितं येन तस्मै श्री गुरवे नमः ॥२॥<br/>गुरुर्ब्रह्मा गुरुर्विष्णुः गुरुर्देवो महेश्वरः ।<br/>गुरुरेव परं ब्रह्म तस्मै श्री गुरवे नमः॥३॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p2.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p2.mp3<br/>749229 bytes</small>
+      </td>
+      <td><select data-index="2" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="2" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="2" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="2" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="2" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="2" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="2" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="2" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="2" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="2" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p2</strong><br/>
+        <small>Akhańd́amańd́alákáraḿ vyáptaḿ yena carácaram<br/>Tatpadaḿ darshitaḿ yena tasmae Shrii Gurave namah<br/>Ajiṋána timirándhasya jiṋánáiṋjana shalákayá<br/>Cakśurunmiilitaḿ yena tasmae Shrii Gurave namah<br/>Gurur Brahmá Gurur Viśńu Gurur Devo Maheshvarah<br/>Gurureva Paramah Brahma tasmae Shrii Gurave namah</small><br/>
+        <small>अखण्ड-मण्डलाकारं व्याप्तं येन चराचरम्।<br/>तत्पदं दर्शितं येन तस्मै श्री गुरवे नमः॥१॥<br/>अज्ञान-तिमिरान्धस्य ज्ञानाञ्जन-शलाकया।<br/>चक्षुरुन्मीलितं येन तस्मै श्री गुरवे नमः ॥२॥<br/>गुरुर्ब्रह्मा गुरुर्विष्णुः गुरुर्देवो महेश्वरः ।<br/>गुरुरेव परं ब्रह्म तस्मै श्री गुरवे नमः॥३॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p2.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p2.mp3<br/>581421 bytes</small>
+      </td>
+      <td><select data-index="3" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="3" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="3" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="3" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="3" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="3" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="3" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="3" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="3" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="3" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p20</strong><br/>
+        <small>Api cet suduŕácáro bhajate mámananyabhák<br/>So'pi pápavinirmuktah mucyate bhavabandhanát</small><br/>
+        <small>अपि चेत् सुदुराचारो भजते मामनन्यभाक्।<br/>सोऽपि  पापविनिर्मुक्तः मुच्यते भवबन्धनात्॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p20.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p20.mp3<br/>280749 bytes</small>
+      </td>
+      <td><select data-index="4" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="4" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="4" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="4" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="4" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="4" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="4" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="4" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="4" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="4" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p20</strong><br/>
+        <small>Api cet suduŕácáro bhajate mámananyabhák<br/>So'pi pápavinirmuktah mucyate bhavabandhanát</small><br/>
+        <small>अपि चेत् सुदुराचारो भजते मामनन्यभाक्।<br/>सोऽपि  पापविनिर्मुक्तः मुच्यते भवबन्धनात्॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p20.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p20.mp3<br/>226221 bytes</small>
+      </td>
+      <td><select data-index="5" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="5" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="5" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="5" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="5" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="5" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="5" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="5" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="5" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="5" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p13</strong><br/>
+        <small>Anubhútiḿ biná múd́ha vrthá Brahmańi modate<br/>Pratibimbitashákhágraphalásvádanamodavat</small><br/>
+        <small>अनुभूतिं बिना मूढ वृथा ब्रह्मणि मोदते।<br/>प्रतिबिम्बितशाखाग्रफलास्वादनमोदवत्॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p13.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p13.mp3<br/>253485 bytes</small>
+      </td>
+      <td><select data-index="6" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="6" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="6" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="6" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="6" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="6" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="6" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="6" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="6" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="6" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p13</strong><br/>
+        <small>Anubhútiḿ biná múd́ha vrthá Brahmańi modate<br/>Pratibimbitashákhágraphalásvádanamodavat</small><br/>
+        <small>अनुभूतिं बिना मूढ वृथा ब्रह्मणि मोदते।<br/>प्रतिबिम्बितशाखाग्रफलास्वादनमोदवत्॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p13.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p13.mp3<br/>221997 bytes</small>
+      </td>
+      <td><select data-index="7" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="7" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="7" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="7" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="7" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="7" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="7" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="7" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="7" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="7" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p19</strong><br/>
+        <small>Anyatra dharmádanyatrádharmádanyatrásmátkrtákrtát<br/>Anyatra bhútácca bhavyácca yattatpashyasi tadvada</small><br/>
+        <small>अन्यत्र धर्मादन्यत्राधर्मदन्यत्रास्मात् कृताकृतात्।<br/>अन्यत्र भूताच्च भव्याच्च यत्तत् पश्यसि तद्वद॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p19.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p19.mp3<br/>256557 bytes</small>
+      </td>
+      <td><select data-index="8" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="8" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="8" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="8" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="8" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="8" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="8" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="8" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="8" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="8" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p19</strong><br/>
+        <small>Anyatra dharmádanyatrádharmádanyatrásmátkrtákrtát<br/>Anyatra bhútácca bhavyácca yattatpashyasi tadvada</small><br/>
+        <small>अन्यत्र धर्मादन्यत्राधर्मदन्यत्रास्मात् कृताकृतात्।<br/>अन्यत्र भूताच्च भव्याच्च यत्तत् पश्यसि तद्वद॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p19.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p19.mp3<br/>226221 bytes</small>
+      </td>
+      <td><select data-index="9" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="9" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="9" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="9" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="9" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="9" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="9" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="9" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="9" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="9" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p21</strong><br/>
+        <small>Abhimánaḿ surápánaḿ Gaoravaḿ raoravaḿ dhruvam<br/>Pratiśt́há shúkariiviśt́há Trayaḿ tyaktvá Hariḿ bhajet</small><br/>
+        <small>अभिमानं सुरापानं गौरवं रौरवं ध्रुवम्।<br/>प्रतिष्ठा शूकरीविष्ठा त्रयं त्यक्त्वा हरिं भजेत्॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p21.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p21.mp3<br/>294573 bytes</small>
+      </td>
+      <td><select data-index="10" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="10" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="10" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="10" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="10" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="10" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="10" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="10" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="10" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="10" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p21</strong><br/>
+        <small>Abhimánaḿ surápánaḿ Gaoravaḿ raoravaḿ dhruvam<br/>Pratiśt́há shúkariiviśt́há Trayaḿ tyaktvá Hariḿ bhajet</small><br/>
+        <small>अभिमानं सुरापानं गौरवं रौरवं ध्रुवम्।<br/>प्रतिष्ठा शूकरीविष्ठा त्रयं त्यक्त्वा हरिं भजेत्॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p21.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p21.mp3<br/>255021 bytes</small>
+      </td>
+      <td><select data-index="11" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="11" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="11" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="11" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="11" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="11" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="11" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="11" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="11" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="11" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p25</strong><br/>
+        <small>Ashariiraḿ shariireśvanavastheśvavasthitam|<br/>Mahántaḿ vibhumátmánaḿ matvá dhiiro na shocati||</small><br/>
+        <small>अशरीरं शरीरेष्वनवस्थेष्ववस्थितम्।<br/>महान्तं विभुमात्मानं मत्वा धीरो न शोचति ॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p25.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p25.mp3<br/>257325 bytes</small>
+      </td>
+      <td><select data-index="12" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="12" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="12" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="12" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="12" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="12" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="12" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="12" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="12" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="12" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p25</strong><br/>
+        <small>Ashariiraḿ shariireśvanavastheśvavasthitam|<br/>Mahántaḿ vibhumátmánaḿ matvá dhiiro na shocati||</small><br/>
+        <small>अशरीरं शरीरेष्वनवस्थेष्ववस्थितम्।<br/>महान्तं विभुमात्मानं मत्वा धीरो न शोचति ॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p25.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p25.mp3<br/>241581 bytes</small>
+      </td>
+      <td><select data-index="13" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="13" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="13" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="13" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="13" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="13" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="13" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="13" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="13" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="13" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p6</strong><br/>
+        <small>Ańorańiiyánmahato mahiiyánátmásya jantornihito guháyám<br/>Tamakratuh pashyati biitashoko dhátuprasádánmahimánamátmanah</small><br/>
+        <small>अणोरणीयान्महतो महीयानात्मास्य जन्तोर्निहितो गुहायाम्।<br/>तमक्रतुः पश्यति बीतशोको धातुप्रसादान्महिमानमात्मनः॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p6.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p6.mp3<br/>301101 bytes</small>
+      </td>
+      <td><select data-index="14" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="14" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="14" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="14" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="14" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="14" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="14" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="14" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="14" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="14" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p6</strong><br/>
+        <small>Ańorańiiyánmahato mahiiyánátmásya jantornihito guháyám<br/>Tamakratuh pashyati biitashoko dhátuprasádánmahimánamátmanah</small><br/>
+        <small>अणोरणीयान्महतो महीयानात्मास्य जन्तोर्निहितो गुहायाम्।<br/>तमक्रतुः पश्यति बीतशोको धातुप्रसादान्महिमानमात्मनः॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p6.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p6.mp3<br/>274605 bytes</small>
+      </td>
+      <td><select data-index="15" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="15" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="15" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="15" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="15" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="15" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="15" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="15" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="15" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="15" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p403</strong><br/>
+        <small>Saḿgacchadhvaḿ saḿvadadhvaḿ saḿvomanáḿsi jánatám<br/>Devábhágaḿ yathápúrve saḿjánáná upásate<br/>Samánii va ákuti samáná hrdayáni vah<br/>Samánamastu vomano yathávah susahásati</small><br/>
+        <small>संगच्छध्वं संवदध्वं संवोमनांसि जानताम्|<br/>देवाभागं यथापूर्वे संजानाना उपासते॥<br/>समानी व आकुति समाना हृदयानि वः|<br/>समानमस्तु वोमनो यथावः सुसहासति॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p403.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p403.mp3<br/>471981 bytes</small>
+      </td>
+      <td><select data-index="16" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="16" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="16" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="16" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="16" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="16" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="16" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="16" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="16" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="16" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p403</strong><br/>
+        <small>Saḿgacchadhvaḿ saḿvadadhvaḿ saḿvomanáḿsi jánatám<br/>Devábhágaḿ yathápúrve saḿjánáná upásate<br/>Samánii va ákuti samáná hrdayáni vah<br/>Samánamastu vomano yathávah susahásati</small><br/>
+        <small>संगच्छध्वं संवदध्वं संवोमनांसि जानताम्|<br/>देवाभागं यथापूर्वे संजानाना उपासते॥<br/>समानी व आकुति समाना हृदयानि वः|<br/>समानमस्तु वोमनो यथावः सुसहासति॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p403.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p403.mp3<br/>420909 bytes</small>
+      </td>
+      <td><select data-index="17" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="17" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="17" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="17" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="17" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="17" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="17" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="17" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="17" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="17" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p402</strong><br/>
+        <small>Saḿgacchadhvaḿ saḿvadadhvaḿ saḿ vo manáḿsi jánatám<br/>Devábhágaḿ yathápúrve saḿjánáná upásate<br/>Samánii va ákútih samáná hrdayánivah<br/>Samánamastu vo mano yathá vah susahásati</small><br/>
+        <small>संगच्छध्वं संवदध्वं सं वो मनांसि जानताम्|<br/>देवाभागं यथापूर्वे संजानाना उपासते॥<br/>समानी व आकूतिः समाना हृदयानिवः|<br/>समानमस्तु वो मनो यथा वः सुसहासति॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p402.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p402.mp3<br/>477357 bytes</small>
+      </td>
+      <td><select data-index="18" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="18" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="18" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="18" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="18" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="18" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="18" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="18" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="18" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="18" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p402</strong><br/>
+        <small>Saḿgacchadhvaḿ saḿvadadhvaḿ saḿ vo manáḿsi jánatám<br/>Devábhágaḿ yathápúrve saḿjánáná upásate<br/>Samánii va ákútih samáná hrdayánivah<br/>Samánamastu vo mano yathá vah susahásati</small><br/>
+        <small>संगच्छध्वं संवदध्वं सं वो मनांसि जानताम्|<br/>देवाभागं यथापूर्वे संजानाना उपासते॥<br/>समानी व आकूतिः समाना हृदयानिवः|<br/>समानमस्तु वो मनो यथा वः सुसहासति॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p402.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p402.mp3<br/>423213 bytes</small>
+      </td>
+      <td><select data-index="19" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="19" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="19" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="19" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="19" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="19" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="19" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="19" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="19" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="19" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p227</strong><br/>
+        <small>Nityánandaḿ paramasukhadaḿ kevalaḿ jiṋánamúrtim<br/>Vishvátiitaḿ gaganasadrshaḿ tatvamasyádilakśyaḿ<br/>Ekaḿ nityaḿ vimalam acalaḿ sarvadhisákśiibhútam<br/>Bhávátiitaḿ triguńarahitaḿ Sadguruḿ Taḿ namámi</small><br/>
+        <small>नित्यानन्दं परमसुखदं केवलं ज्ञानमूर्तिम्।<br/>विश्वातीतं गगनसदृशं तत्वमस्यादिलक्ष्यं॥<br/>एकं नित्यं विमलम् अचलं सर्वधिसाक्षीभूतम्।<br/>भावातीतं त्रिगुणरहितं सद्गुरुं तं नमामि॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p227.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p227.mp3<br/>546861 bytes</small>
+      </td>
+      <td><select data-index="20" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="20" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="20" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="20" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="20" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="20" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="20" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="20" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="20" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="20" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p227</strong><br/>
+        <small>Nityánandaḿ paramasukhadaḿ kevalaḿ jiṋánamúrtim<br/>Vishvátiitaḿ gaganasadrshaḿ tatvamasyádilakśyaḿ<br/>Ekaḿ nityaḿ vimalam acalaḿ sarvadhisákśiibhútam<br/>Bhávátiitaḿ triguńarahitaḿ Sadguruḿ Taḿ namámi</small><br/>
+        <small>नित्यानन्दं परमसुखदं केवलं ज्ञानमूर्तिम्।<br/>विश्वातीतं गगनसदृशं तत्वमस्यादिलक्ष्यं॥<br/>एकं नित्यं विमलम् अचलं सर्वधिसाक्षीभूतम्।<br/>भावातीतं त्रिगुणरहितं सद्गुरुं तं नमामि॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p227.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p227.mp3<br/>468525 bytes</small>
+      </td>
+      <td><select data-index="21" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="21" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="21" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="21" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="21" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="21" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="21" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="21" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="21" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="21" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p77</strong><br/>
+        <small>Ekaḿ nityaḿ vimalam acalaḿ sarvadhiisákśiibhútam<br/>Bhávátiitaḿ triguńarahitaḿ Sadguruḿ Taḿ namámi</small><br/>
+        <small>एकं नित्यं विमलम् अचलं सर्वधीसाक्षीभूतम्।<br/>भावातीतं त्रिगुणरहितं सद्गुरुं तं नमामि॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p77.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p77.mp3<br/>284205 bytes</small>
+      </td>
+      <td><select data-index="22" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="22" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="22" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="22" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="22" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="22" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="22" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="22" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="22" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="22" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p77</strong><br/>
+        <small>Ekaḿ nityaḿ vimalam acalaḿ sarvadhiisákśiibhútam<br/>Bhávátiitaḿ triguńarahitaḿ Sadguruḿ Taḿ namámi</small><br/>
+        <small>एकं नित्यं विमलम् अचलं सर्वधीसाक्षीभूतम्।<br/>भावातीतं त्रिगुणरहितं सद्गुरुं तं नमामि॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p77.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p77.mp3<br/>254637 bytes</small>
+      </td>
+      <td><select data-index="23" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="23" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="23" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="23" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="23" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="23" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="23" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="23" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="23" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="23" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p169</strong><br/>
+        <small>Tava tattvaḿ na jánámi kiidrsho'si Maheshvara<br/>Yádrsho'si Mahádeva tadrsháya namo namah</small><br/>
+        <small>तव तत्त्वं न जानामि कीदृशोऽसि महेश्वर।<br/>यादृशोऽसि महादेव तदृशाय नमो नमः॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p169.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p169.mp3<br/>256557 bytes</small>
+      </td>
+      <td><select data-index="24" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="24" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="24" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="24" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="24" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="24" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="24" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="24" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="24" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="24" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p169</strong><br/>
+        <small>Tava tattvaḿ na jánámi kiidrsho'si Maheshvara<br/>Yádrsho'si Mahádeva tadrsháya namo namah</small><br/>
+        <small>तव तत्त्वं न जानामि कीदृशोऽसि महेश्वर।<br/>यादृशोऽसि महादेव तदृशाय नमो नमः॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p169.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p169.mp3<br/>201645 bytes</small>
+      </td>
+      <td><select data-index="25" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="25" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="25" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="25" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="25" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="25" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="25" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="25" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="25" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="25" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p188</strong><br/>
+        <small>Daevii hyeśá guńamayii mama Máyá duratyayá<br/>Mámeva ye prapadyante Máyámetáḿ taranti te</small><br/>
+        <small>दैवी ह्येषा गुणमयी मम माया दुरत्यया।<br/>मामेव ये प्रपद्यन्ते मायामेतां तरन्ति ते॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p188.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p188.mp3<br/>249645 bytes</small>
+      </td>
+      <td><select data-index="26" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="26" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="26" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="26" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="26" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="26" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="26" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="26" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="26" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="26" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p188</strong><br/>
+        <small>Daevii hyeśá guńamayii mama Máyá duratyayá<br/>Mámeva ye prapadyante Máyámetáḿ taranti te</small><br/>
+        <small>दैवी ह्येषा गुणमयी मम माया दुरत्यया।<br/>मामेव ये प्रपद्यन्ते मायामेतां तरन्ति ते॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p188.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p188.mp3<br/>220845 bytes</small>
+      </td>
+      <td><select data-index="27" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="27" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="27" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="27" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="27" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="27" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="27" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="27" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="27" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="27" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p199</strong><br/>
+        <small>Dharmakśetre Kurukśetre samavetáh yuyutsavah<br/>Mámakáh Páńd́avashcaeva kim akurvata Saiṋjaya</small><br/>
+        <small>धर्मक्षेत्रे कुरुक्षेत्रे समवेताः युयुत्सवः।<br/>मामकाः पाण्डवश्चैव किम् अकुर्वत सञ्जय॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p199.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p199.mp3<br/>265773 bytes</small>
+      </td>
+      <td><select data-index="28" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="28" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="28" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="28" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="28" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="28" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="28" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="28" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="28" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="28" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p199</strong><br/>
+        <small>Dharmakśetre Kurukśetre samavetáh yuyutsavah<br/>Mámakáh Páńd́avashcaeva kim akurvata Saiṋjaya</small><br/>
+        <small>धर्मक्षेत्रे कुरुक्षेत्रे समवेताः युयुत्सवः।<br/>मामकाः पाण्डवश्चैव किम् अकुर्वत सञ्जय॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p199.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p199.mp3<br/>216237 bytes</small>
+      </td>
+      <td><select data-index="29" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="29" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="29" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="29" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="29" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="29" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="29" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="29" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="29" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="29" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p239</strong><br/>
+        <small>Paritráńáya sádhúnáḿ vinásháya ca duśkrtám<br/>Dharmasaḿsthápanártháya sambhavámi yuge yuge</small><br/>
+        <small>परित्राणाय साधूनां विनाशाय च दुष्कृताम्।<br/>धर्मसंस्थापनार्थाय सम्भवामि युगे युगे॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p239.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p239.mp3<br/>274989 bytes</small>
+      </td>
+      <td><select data-index="30" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="30" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="30" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="30" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="30" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="30" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="30" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="30" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="30" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="30" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p239</strong><br/>
+        <small>Paritráńáya sádhúnáḿ vinásháya ca duśkrtám<br/>Dharmasaḿsthápanártháya sambhavámi yuge yuge</small><br/>
+        <small>परित्राणाय साधूनां विनाशाय च दुष्कृताम्।<br/>धर्मसंस्थापनार्थाय सम्भवामि युगे युगे॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p239.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p239.mp3<br/>225837 bytes</small>
+      </td>
+      <td><select data-index="31" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="31" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="31" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="31" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="31" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="31" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="31" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="31" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="31" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="31" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p246</strong><br/>
+        <small>Puruśa evedaḿ sarvaḿ yadbhútaḿ yacca bhavyam<br/>Utámrtatvasyesháno yadannenátirohati</small><br/>
+        <small>पुरुष एवेदं सर्वं यद्भूतं यच्च भव्यम्।<br/>उतामृतत्वस्येशानो यदन्नेनातिरोहति॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p246.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p246.mp3<br/>282285 bytes</small>
+      </td>
+      <td><select data-index="32" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="32" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="32" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="32" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="32" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="32" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="32" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="32" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="32" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="32" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p246</strong><br/>
+        <small>Puruśa evedaḿ sarvaḿ yadbhútaḿ yacca bhavyam<br/>Utámrtatvasyesháno yadannenátirohati</small><br/>
+        <small>पुरुष एवेदं सर्वं यद्भूतं यच्च भव्यम्।<br/>उतामृतत्वस्येशानो यदन्नेनातिरोहति॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p246.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p246.mp3<br/>219309 bytes</small>
+      </td>
+      <td><select data-index="33" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="33" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="33" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="33" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="33" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="33" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="33" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="33" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="33" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="33" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p256</strong><br/>
+        <small>Práńáh yathátmano'bhiiśt́áh bhútánám api te tathá<br/>Atmaopamyena bhútánám dayáḿ kurvanti sádhavah</small><br/>
+        <small>प्राणाः यथात्मनोऽभीष्टाः भूतानाम् अपि ते तथा।<br/>अत्मौपम्येन भूतानाम् दयां कुर्वन्ति साधवः॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p256.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p256.mp3<br/>258477 bytes</small>
+      </td>
+      <td><select data-index="34" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="34" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="34" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="34" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="34" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="34" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="34" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="34" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="34" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="34" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p256</strong><br/>
+        <small>Práńáh yathátmano'bhiiśt́áh bhútánám api te tathá<br/>Atmaopamyena bhútánám dayáḿ kurvanti sádhavah</small><br/>
+        <small>प्राणाः यथात्मनोऽभीष्टाः भूतानाम् अपि ते तथा।<br/>अत्मौपम्येन भूतानाम् दयां कुर्वन्ति साधवः॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p256.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p256.mp3<br/>233133 bytes</small>
+      </td>
+      <td><select data-index="35" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="35" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="35" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="35" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="35" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="35" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="35" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="35" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="35" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="35" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p320</strong><br/>
+        <small>Yacchedváuṋmanasii prájiṋastadyacchejjiṋána átmani<br/>Jiṋánamátmani mahati niyacchettadyacchecchánta átmani</small><br/>
+        <small>यच्छेद्वाङ्मनसी प्राज्ञस्तद्यच्छेज्ज्ञान आत्मनि।<br/>ज्ञानमात्मनि महति नियच्छेत्तद्यच्छेच्छान्त आत्मनि॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p320.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p320.mp3<br/>279981 bytes</small>
+      </td>
+      <td><select data-index="36" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="36" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="36" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="36" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="36" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="36" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="36" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="36" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="36" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="36" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p320</strong><br/>
+        <small>Yacchedváuṋmanasii prájiṋastadyacchejjiṋána átmani<br/>Jiṋánamátmani mahati niyacchettadyacchecchánta átmani</small><br/>
+        <small>यच्छेद्वाङ्मनसी प्राज्ञस्तद्यच्छेज्ज्ञान आत्मनि।<br/>ज्ञानमात्मनि महति नियच्छेत्तद्यच्छेच्छान्त आत्मनि॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p320.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p320.mp3<br/>265005 bytes</small>
+      </td>
+      <td><select data-index="37" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="37" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="37" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="37" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="37" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="37" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="37" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="37" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="37" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="37" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p330</strong><br/>
+        <small>Yadá yadá hi dharmasya glánirbhavati Bhárata<br/>Cábhyutthánamadharmasya tadátmánaḿ srjámyáham</small><br/>
+        <small>यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।<br/>चाभ्युत्थानमधर्मस्य तदात्मानं सृजाम्याहम्॥</small>
+      </td>
+      <td>xtts</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts/ch-verses-p330.mp3"></audio>
+        <small>custom/machine/xtts/ch-verses-p330.mp3<br/>252717 bytes</small>
+      </td>
+      <td><select data-index="38" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="38" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="38" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="38" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="38" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="38" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="38" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="38" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="38" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="38" data-field="notes"></textarea></td>
+    </tr>
+<tr>
+      <td><strong>ch-verses-p330</strong><br/>
+        <small>Yadá yadá hi dharmasya glánirbhavati Bhárata<br/>Cábhyutthánamadharmasya tadátmánaḿ srjámyáham</small><br/>
+        <small>यदा यदा हि धर्मस्य ग्लानिर्भवति भारत।<br/>चाभ्युत्थानमधर्मस्य तदात्मानं सृजाम्याहम्॥</small>
+      </td>
+      <td>say</td>
+      <td>technical pass<br/>
+        <audio controls preload="none" src="data/shloka-audio/custom/machine/say/ch-verses-p330.mp3"></audio>
+        <small>custom/machine/say/ch-verses-p330.mp3<br/>237741 bytes</small>
+      </td>
+      <td><select data-index="39" data-field="identity_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="long_short_vowels_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="aspirated_consonants_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="retroflex_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="anusvara_visarga_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="phrase_grouping_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="line_ending_pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="stability_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="pronunciation_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="naturalness_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="pause_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="audio_quality_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="clarity_for_learning_score" value=""/></td>
+      <td><input type="number" min="1" max="5" data-index="39" data-field="overall_acceptability_score" value=""/></td>
+      <td><select data-index="39" data-field="background_artifacts_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="39" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="39" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="39" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="39" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></td>
+      <td><select data-index="39" data-field="review_decision">
+        <option value="unreviewed" selected>unreviewed</option><option value="preferred" >preferred</option><option value="acceptable" >acceptable</option><option value="fallback_only" >fallback_only</option><option value="rejected" >rejected</option>
+      </select></td>
+      <td><input data-index="39" data-field="reviewer" value=""/></td>
+      <td><textarea data-index="39" data-field="notes"></textarea></td>
+    </tr></tbody>
+</table>
+<script>
+const STORAGE_KEY="amps-shloka-machine-pilot-review-v1";
+let reviews=[{"paragraph_id":"ch-verses-p30","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":251181,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p30","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":217005,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p2","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":749229,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p2","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":581421,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p20","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":280749,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p20","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":226221,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p13","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":253485,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p13","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":221997,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p19","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":256557,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p19","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":226221,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p21","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":294573,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p21","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":255021,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p25","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":257325,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p25","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":241581,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p6","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":301101,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p6","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":274605,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p403","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":471981,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p403","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":420909,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p402","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":477357,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p402","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":423213,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p227","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":546861,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p227","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":468525,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p77","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":284205,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p77","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":254637,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p169","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":256557,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p169","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":201645,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p188","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":249645,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p188","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":220845,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p199","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":265773,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p199","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":216237,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p239","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":274989,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p239","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":225837,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p246","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":282285,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p246","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":219309,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p256","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":258477,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p256","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":233133,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p320","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":279981,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p320","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":265005,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p330","engine":"xtts","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":252717,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""},{"paragraph_id":"ch-verses-p330","engine":"say","identity_pass":null,"long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_score":null,"anusvara_visarga_score":null,"phrase_grouping_score":null,"line_ending_pause_score":null,"stability_score":null,"pronunciation_score":null,"naturalness_score":null,"pause_score":null,"audio_quality_score":null,"clarity_for_learning_score":null,"overall_acceptability_score":null,"background_artifacts_pass":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"generation_reliability_pass":true,"file_size_bytes":237741,"technical_quality_pass":true,"review_decision":"unreviewed","reviewer":"","reviewed_at":null,"notes":""}];
+try {
+  const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");
+  if(Array.isArray(saved)){
+    const byKey=new Map(saved.map(r=>[r.paragraph_id+"|"+r.engine,r]));
+    reviews=reviews.map(r=>({...r,...(byKey.get(r.paragraph_id+"|"+r.engine)||{})}));
+  }
+} catch(_) {}
+document.querySelectorAll("[data-index]").forEach(el=>{
+  const value=reviews[Number(el.dataset.index)]?.[el.dataset.field];
+  if(value==null) el.value="";
+  else el.value=String(value);
+});
+document.querySelectorAll("[data-index]").forEach(el=>el.addEventListener("change",()=>{
+  const r=reviews[Number(el.dataset.index)];
+  const f=el.dataset.field;
+  if(el.tagName==="SELECT" && (el.value==="true"||el.value==="false"||el.value==="")){
+    r[f]=el.value===""?null:el.value==="true";
+  } else if(el.type==="number") {
+    r[f]=el.value===""?null:Number(el.value);
+  } else {
+    r[f]=el.value;
+  }
+  r.reviewed_at=new Date().toISOString();
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(reviews));
+}));
+document.getElementById("download").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify({schema_version:1,reviews},null,2)+"\n"],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+  a.download="shloka-machine-pilot-reviews.json";a.click();URL.revokeObjectURL(a.href);
+});
+</script>
+</body></html>

@@ -1,0 +1,9 @@
+{
+  "paragraph_id": "ch-verses-p13",
+  "text_hash": "sha256:f2377d4ca140b665ff478c168cd1ba9d8f46e77a8c7cd497333406d3d4398f2f",
+  "audio_type": "machine_recitation",
+  "engine": "xtts-v2",
+  "audio_hash": "sha256:84828964d39920e006599f1d92504621c427f5457f3d069b5acfe5d746b75b75",
+  "duration_seconds": 0,
+  "written_at": "2026-07-30T11:49:04.983Z"
+}

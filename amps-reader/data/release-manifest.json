@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "2026.09.06-10",
+  "generatedAt": "2026-09-06T01:37:15.387Z",
+  "source": {
+    "catalogSha256": "57d78ead9ec7eceb7c8e466b2a7a0de079029ebf73c6c4b8ff44be7ca812cee7",
+    "bookCount": 184,
+    "seriesCount": 71,
+    "chapterCount": 2624,
+    "bookFileCount": 184,
+    "searchShardCount": 184,
+    "glossaryCount": 560,
+    "shlokaCount": 383,
+    "shlokaHighestStableId": "ch-verses-p564",
+    "shlokaIdGapCount": 181,
+    "shlokaCorpusSha256": "1062c7484c7f011b65e91aeba2a12bd58caf5b3c0d65bfdf1b01514fd477831f",
+    "shlokaSourceIndexSha256": "c398559faa79365d193b3cda40c08c39e034f3fbd4b4eb68e008571c123eced7",
+    "shlokaAudioManifestSha256": "d75f8cc11d2f2a4b4bf8472bc06af525a91c536b862d79a914a11e0ec9070a75"
+  },
+  "quality": {
+    "validateStatus": "pass",
+    "publicLeakageStatus": "pass",
+    "catalogRollbackTestStatus": "pass",
+    "shlokaRegressionStatus": "pass",
+    "knownBlockers": [
+      "Android and iOS data are stale"
+    ]
+  },
+  "build": {
+    "profile": "development",
+    "experimentalPublicFeatures": true
+  }
+}

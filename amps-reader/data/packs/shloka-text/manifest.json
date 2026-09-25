@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "packId": "shloka-text",
+  "version": "1.0.0",
+  "type": "shloka-text",
+  "title": "Samskrta Shloka text corpus",
+  "description": "Active shloka verses, search shard, and source index.",
+  "releaseId": "2026.09.06-10",
+  "compatibleReleaseIds": [
+    "2026.09.06-10"
+  ],
+  "minimumRuntimeSchema": 1,
+  "dependencies": [],
+  "languages": [
+    "sa",
+    "en"
+  ],
+  "status": "public",
+  "fileCount": 4,
+  "sizeBytes": 2787385,
+  "sha256": "b4c33d6b20a43500402149412c52946635999820d38e0c9b5708ba59a0d273dc",
+  "installOrder": 100,
+  "uninstallSafety": {
+    "preservesNotes": true,
+    "preservesBookmarks": true,
+    "preservesReadingHistory": true,
+    "preservesResumePosition": true,
+    "preservesShlokaReviewDecisions": true,
+    "preservesPresentationProjects": true
+  },
+  "approvedAudioStatus": "n/a",
+  "attribution": "Ananda Marga publications — AMPS Library offline pack",
+  "files": [
+    {
+      "path": "books/samskrta-shloka.json",
+      "bytes": 1923712,
+      "sha256": "1062c7484c7f011b65e91aeba2a12bd58caf5b3c0d65bfdf1b01514fd477831f"
+    },
+    {
+      "path": "search/samskrta-shloka.json",
+      "bytes": 661013,
+      "sha256": "b3d17787fb27964cefeea738e0549782dc1d43b1506783fd7277d9e1e5830d49"
+    },
+    {
+      "path": "shloka-id-aliases.json",
+      "bytes": 18635,
+      "sha256": "88fb896418cafd5aedc83a8010d184a202b4a869613d84df7feabb0e82412ac0"
+    },
+    {
+      "path": "shloka-source-index.json",
+      "bytes": 184025,
+      "sha256": "c398559faa79365d193b3cda40c08c39e034f3fbd4b4eb68e008571c123eced7"
+    }
+  ],
+  "payloadMode": "canonical-reference"
+}

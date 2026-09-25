@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/>
+<title>Hariishananda human vs XTTS review</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:1.5rem;max-width:1100px}
+.card{border:1px solid #ccc;padding:1rem;margin:1rem 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.reference-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;background:#f7f5f0;padding:.75rem}
+.machine-review{border:1px solid #bbb;padding:.75rem}
+.scores,.checks{display:grid;grid-template-columns:1fr 1fr;gap:.35rem;margin:.75rem 0}
+label{display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+input[type=number]{width:3rem}
+pre{white-space:pre-wrap;background:#f7f5f0;padding:.75rem}
+audio{width:100%}
+.muted{opacity:.75}
+textarea{width:100%;min-height:4rem}
+@media(max-width:760px){.grid,.reference-grid{grid-template-columns:1fr}}
+</style></head><body>
+<h1>Human vs XTTS experiment review</h1>
+<p>Reciter reference: Acharya Hariishananda Avadhuta. XTTS remains a machine draft even when conditioned on human voice. Technical decode success is not acceptance.</p>
+<p>Default listen order: human → XTTS full verse → XTTS line based → say/espeak. Dry playback only (no bed).</p>
+<p><strong>Gate:</strong> Keep <code>neither_approved</code> until at least 3 of 5 verses have a draft explicitly approved for learning.</p>
+<button id="download">Download completed review JSON</button>
+<section class="card">
+      <h2>ch-verses-p57</h2>
+      <p><strong>Human draft status:</strong> draft · never machine</p>
+      <pre>Indrastvaḿ práńa tejasá rudro'si parirakśitá
+Tvamantariikśe carasi súryastvaḿ jyotiśámpatih
+इन्द्रस्त्वं प्राण तेजसा रुद्रोऽसि परिरक्षिता।
+त्वमन्तरीक्षे चरसि सूर्यस्त्वं ज्योतिषाम्पतिः॥</pre>
+      <div class="reference-grid">
+        <div><h3>Human reference</h3><audio controls preload="none" src="data/shloka-audio/custom/human/hariishananda/ch-verses-p57.mp3"></audio><br/><small>custom/human/hariishananda/ch-verses-p57.mp3</small></div>
+        <div><h3>say/espeak baseline</h3><em>missing</em></div>
+      </div>
+      <div class="grid">
+        <div class="machine-review">
+      <h3>XTTS full verse</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/full_verse/ch-verses-p57.mp3"></audio><br/><small>custom/machine/xtts-experiment/full_verse/ch-verses-p57.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="0" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="0" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="0" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="0" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="0" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="0" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="0" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="0" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="0" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="0" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="0" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="0" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="0" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="0" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="0" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="0" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="0" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+        <div class="machine-review">
+      <h3>XTTS line based</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/line_based/ch-verses-p57.mp3"></audio><br/><small>custom/machine/xtts-experiment/line_based/ch-verses-p57.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="1" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="1" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="1" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="1" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="1" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="1" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="1" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="1" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="1" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="1" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="1" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="1" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="1" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="1" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="1" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="1" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="1" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+      </div>
+    </section>
+<section class="card">
+      <h2>ch-verses-p58</h2>
+      <p><strong>Human draft status:</strong> draft · never machine</p>
+      <pre>Ihásane shuśyatu me shariiram Tvagasthimáḿsaḿ pralayaiṋca yátu Aprápyabodhiḿbahukalpadurlabháḿ Naevásanát káyamatashcalisyate
+इहासने शुष्यतु मे शरीरम् त्वगस्थिमांसं प्रलयञ्च यातु अप्राप्यबोधिंबहुकल्पदुर्लभां नैवासनात् कायमतश्चलिस्यते॥</pre>
+      <div class="reference-grid">
+        <div><h3>Human reference</h3><audio controls preload="none" src="data/shloka-audio/custom/human/hariishananda/ch-verses-p58.mp3"></audio><br/><small>custom/human/hariishananda/ch-verses-p58.mp3</small></div>
+        <div><h3>say/espeak baseline</h3><em>missing</em></div>
+      </div>
+      <div class="grid">
+        <div class="machine-review">
+      <h3>XTTS full verse</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/full_verse/ch-verses-p58.mp3"></audio><br/><small>custom/machine/xtts-experiment/full_verse/ch-verses-p58.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="2" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="2" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="2" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="2" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="2" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="2" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="2" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="2" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="2" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="2" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="2" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="2" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="2" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="2" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="2" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="2" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="2" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+        <div class="machine-review">
+      <h3>XTTS line based</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/line_based/ch-verses-p58.mp3"></audio><br/><small>custom/machine/xtts-experiment/line_based/ch-verses-p58.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="3" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="3" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="3" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="3" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="3" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="3" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="3" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="3" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="3" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="3" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="3" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="3" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="3" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="3" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="3" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="3" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="3" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+      </div>
+    </section>
+<section class="card">
+      <h2>ch-verses-p60</h2>
+      <p><strong>Human draft status:</strong> draft · never machine</p>
+      <pre>Ugraḿ viiraḿ Maháviśńuḿ jvalantaḿ sarvatomukham
+Nrsiḿhaḿ bhiiśańaḿ bhadraḿ mrtyurmrtyuḿ namámyaham
+उग्रं वीरं महाविष्णुं ज्वलन्तं सर्वतोमुखम्।
+नृसिंहं भीषणं भद्रं मृत्युर्मृत्युं नमाम्यहम्॥</pre>
+      <div class="reference-grid">
+        <div><h3>Human reference</h3><audio controls preload="none" src="data/shloka-audio/custom/human/hariishananda/ch-verses-p60.mp3"></audio><br/><small>custom/human/hariishananda/ch-verses-p60.mp3</small></div>
+        <div><h3>say/espeak baseline</h3><em>missing</em></div>
+      </div>
+      <div class="grid">
+        <div class="machine-review">
+      <h3>XTTS full verse</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/full_verse/ch-verses-p60.mp3"></audio><br/><small>custom/machine/xtts-experiment/full_verse/ch-verses-p60.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="4" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="4" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="4" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="4" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="4" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="4" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="4" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="4" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="4" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="4" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="4" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="4" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="4" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="4" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="4" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="4" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="4" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+        <div class="machine-review">
+      <h3>XTTS line based</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/line_based/ch-verses-p60.mp3"></audio><br/><small>custom/machine/xtts-experiment/line_based/ch-verses-p60.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="5" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="5" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="5" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="5" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="5" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="5" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="5" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="5" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="5" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="5" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="5" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="5" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="5" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="5" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="5" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="5" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="5" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+      </div>
+    </section>
+<section class="card">
+      <h2>ch-verses-p64</h2>
+      <p><strong>Human draft status:</strong> draft · never machine</p>
+      <pre>Uttamá sahajávasthá madhyamá dhyánadhárańá
+Japastútih syádhadhamá múrtipújá dhamádhamá
+उत्तमा सहजावस्था मध्यमा ध्यानधारणा।
+जपस्तूतिः स्याधधमा मूर्तिपूजा धमाधमा॥</pre>
+      <div class="reference-grid">
+        <div><h3>Human reference</h3><audio controls preload="none" src="data/shloka-audio/custom/human/hariishananda/ch-verses-p64.mp3"></audio><br/><small>custom/human/hariishananda/ch-verses-p64.mp3</small></div>
+        <div><h3>say/espeak baseline</h3><em>missing</em></div>
+      </div>
+      <div class="grid">
+        <div class="machine-review">
+      <h3>XTTS full verse</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/full_verse/ch-verses-p64.mp3"></audio><br/><small>custom/machine/xtts-experiment/full_verse/ch-verses-p64.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="6" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="6" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="6" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="6" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="6" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="6" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="6" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="6" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="6" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="6" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="6" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="6" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="6" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="6" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="6" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="6" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="6" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+        <div class="machine-review">
+      <h3>XTTS line based</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/line_based/ch-verses-p64.mp3"></audio><br/><small>custom/machine/xtts-experiment/line_based/ch-verses-p64.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="7" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="7" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="7" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="7" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="7" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="7" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="7" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="7" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="7" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="7" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="7" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="7" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="7" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="7" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="7" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="7" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="7" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+      </div>
+    </section>
+<section class="card">
+      <h2>ch-verses-p66</h2>
+      <p><strong>Human draft status:</strong> draft · never machine</p>
+      <pre>Uttamo Brahmasadbhávo madhyamá dhyánadhárańá
+Japastuti syádadhamá múrtipújá dhamádhamá
+उत्तमो ब्रह्मसद्भावो मध्यमा ध्यानधारणा।
+जपस्तुति स्यादधमा मूर्तिपूजा धमाधमा॥</pre>
+      <div class="reference-grid">
+        <div><h3>Human reference</h3><audio controls preload="none" src="data/shloka-audio/custom/human/hariishananda/ch-verses-p66.mp3"></audio><br/><small>custom/human/hariishananda/ch-verses-p66.mp3</small></div>
+        <div><h3>say/espeak baseline</h3><em>missing</em></div>
+      </div>
+      <div class="grid">
+        <div class="machine-review">
+      <h3>XTTS full verse</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/full_verse/ch-verses-p66.mp3"></audio><br/><small>custom/machine/xtts-experiment/full_verse/ch-verses-p66.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="8" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="8" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="8" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="8" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="8" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="8" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="8" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="8" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="8" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="8" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="8" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="8" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="8" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="8" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="8" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="8" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="8" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+        <div class="machine-review">
+      <h3>XTTS line based</h3>
+      <audio controls preload="none" src="data/shloka-audio/custom/machine/xtts-experiment/line_based/ch-verses-p66.mp3"></audio><br/><small>custom/machine/xtts-experiment/line_based/ch-verses-p66.mp3</small>
+      <div class="scores">
+        <label>Long/short vowels<input type="number" min="1" max="5" data-index="9" data-field="long_short_vowels_score" value=""/></label>
+        <label>Aspirates<input type="number" min="1" max="5" data-index="9" data-field="aspirated_consonants_score" value=""/></label>
+        <label>Retroflex<input type="number" min="1" max="5" data-index="9" data-field="retroflex_consonants_score" value=""/></label>
+        <label>Anusvāra/visarga<input type="number" min="1" max="5" data-index="9" data-field="anusvara_visarga_score" value=""/></label>
+        <label>Complete words<input type="number" min="1" max="5" data-index="9" data-field="complete_words_score" value=""/></label>
+        <label>Indian cadence<input type="number" min="1" max="5" data-index="9" data-field="indian_samskrta_cadence_score" value=""/></label>
+        <label>Pāda/ending pauses<input type="number" min="1" max="5" data-index="9" data-field="pada_verse_pause_score" value=""/></label>
+        <label>Naturalness<input type="number" min="1" max="5" data-index="9" data-field="naturalness_score" value=""/></label>
+        <label>Stability<input type="number" min="1" max="5" data-index="9" data-field="stability_score" value=""/></label>
+        <label>Learning clarity<input type="number" min="1" max="5" data-index="9" data-field="learning_clarity_score" value=""/></label>
+      </div>
+      <div class="checks">
+        <label>Browser<select data-index="9" data-field="browser_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Android<select data-index="9" data-field="android_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Headphones<select data-index="9" data-field="headphones_playback_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+        <label>Speaker<select data-index="9" data-field="device_speaker_pass">
+      <option value="" selected>—</option>
+      <option value="true" >Pass</option>
+      <option value="false" >Fail</option>
+    </select></label>
+      </div>
+      <label>Decision
+        <select data-index="9" data-field="decision">
+          <option value="unreviewed" >unreviewed</option><option value="approved_for_learning" >approved for learning</option><option value="needs_revision" >needs revision</option><option value="rejected" selected>rejected</option>
+        </select>
+      </label>
+      <label>Reviewer <input data-index="9" data-field="reviewer" value="project owner"/></label>
+      <textarea data-index="9" data-field="notes" placeholder="Review notes">Technically valid audio, but failed voice and Samskrta recitation similarity.</textarea>
+    </div>
+      </div>
+    </section>
+<script>
+const STORAGE_KEY="amps-hariishananda-xtts-reviews-v1";
+let reviews=[{"paragraph_id":"ch-verses-p57","mode":"full_verse","text_hash":"sha256:07a9a9145dff239cabc68a4e02c42a13dbbc5d8d91bc4d6e7b031d32bbbbcb17","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]},{"paragraph_id":"ch-verses-p57","mode":"line_based","text_hash":"sha256:07a9a9145dff239cabc68a4e02c42a13dbbc5d8d91bc4d6e7b031d32bbbbcb17","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]},{"paragraph_id":"ch-verses-p58","mode":"full_verse","text_hash":"sha256:ff65949ffed034b39b4679f27a1c26b71ecf854726c6785947070b6be0f64194","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]},{"paragraph_id":"ch-verses-p58","mode":"line_based","text_hash":"sha256:ff65949ffed034b39b4679f27a1c26b71ecf854726c6785947070b6be0f64194","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]},{"paragraph_id":"ch-verses-p60","mode":"full_verse","text_hash":"sha256:ac16bc624f3aef1434294a471cea6e582cd09f2dfb9508102aa618b641b0c587","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]},{"paragraph_id":"ch-verses-p60","mode":"line_based","text_hash":"sha256:ac16bc624f3aef1434294a471cea6e582cd09f2dfb9508102aa618b641b0c587","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]},{"paragraph_id":"ch-verses-p64","mode":"full_verse","text_hash":"sha256:b550c24f55d4b1eb86f50916b5a1a8b3f56199859b85009325fe2234f6bdbda9","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]},{"paragraph_id":"ch-verses-p64","mode":"line_based","text_hash":"sha256:b550c24f55d4b1eb86f50916b5a1a8b3f56199859b85009325fe2234f6bdbda9","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]},{"paragraph_id":"ch-verses-p66","mode":"full_verse","text_hash":"sha256:68642d53ad4ff2e344cbab0ec1adfc1532f1c8671bcf10f2e953101e49dfb898","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]},{"paragraph_id":"ch-verses-p66","mode":"line_based","text_hash":"sha256:68642d53ad4ff2e344cbab0ec1adfc1532f1c8671bcf10f2e953101e49dfb898","decision":"rejected","long_short_vowels_score":null,"aspirated_consonants_score":null,"retroflex_consonants_score":null,"anusvara_visarga_score":null,"complete_words_score":null,"indian_samskrta_cadence_score":null,"pada_verse_pause_score":null,"naturalness_score":null,"stability_score":null,"learning_clarity_score":null,"browser_playback_pass":null,"android_playback_pass":null,"headphones_playback_pass":null,"device_speaker_pass":null,"reviewer":"project owner","reviewed_at":"2026-07-30T22:47:58.297Z","notes":"Technically valid audio, but failed voice and Samskrta recitation similarity.","review_decision":"rejected","approved":false,"learning_suitability":false,"rejection_reasons":["insufficient voice similarity","insufficient recitation-style similarity","not suitable as an imitation model for learners"]}];
+try {
+  const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null");
+  if(Array.isArray(saved)){
+    const byKey=new Map(saved.map(r=>[r.paragraph_id+"|"+r.mode,r]));
+    reviews=reviews.map(r=>({...r,...(byKey.get(r.paragraph_id+"|"+r.mode)||{})}));
+  }
+} catch(_) {}
+document.querySelectorAll("[data-index]").forEach(el=>{
+  const value=reviews[Number(el.dataset.index)]?.[el.dataset.field];
+  if(value==null) el.value="";
+  else el.value=String(value);
+  el.addEventListener("change",()=>{
+    const review=reviews[Number(el.dataset.index)];
+    const field=el.dataset.field;
+    if(el.tagName==="SELECT" && ["true","false",""].includes(el.value)){
+      review[field]=el.value===""?null:el.value==="true";
+    } else if(el.type==="number"){
+      review[field]=el.value===""?null:Number(el.value);
+    } else {
+      review[field]=el.value;
+    }
+    review.reviewed_at=new Date().toISOString();
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(reviews));
+  });
+});
+document.getElementById("download").addEventListener("click",()=>{
+  const approvedVerses=new Set(reviews.filter(r=>r.decision==="approved_for_learning").map(r=>r.paragraph_id));
+  const payload={
+    schema_version:1,
+    policy:"neither_approved",
+    approved_verse_count:approvedVerses.size,
+    minimum_required_for_policy_change:3,
+    reviews,
+  };
+  const blob=new Blob([JSON.stringify(payload,null,2)+"\n"],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="shloka-hariishananda-xtts-reviews.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+</script>
+</body></html>

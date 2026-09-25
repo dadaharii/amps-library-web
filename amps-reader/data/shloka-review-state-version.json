@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "shloka_review_state_version",
+  "version": "1.3.0",
+  "previous_version": "1.2.0",
+  "hash": "sha256:a2a07d45bb0db34a23a7b9c87974549897d646a8fcb0316d44c0d41364e22d79",
+  "previous_hash": "sha256:8aabd34e43c9d400ff185a17597ed6dbca96d00185a052f8491d2bab294d8917",
+  "dataset_version": "1.16.2",
+  "dataset_hash": "sha256:632b2d1f1b13b70f1b7569471f77a2d0c2c4e1281dc1dfd9c746974ac2dda273",
+  "revised_at": "2026-07-31T08:22:04.467Z",
+  "revision_reason": "Repair stale Studio reappearance of applied p129/p130 family: exclude resolved alias/applied pairs from active queues; clear batch eligibility; preserve applied canonical correction without a second revision.",
+  "last_operation_id": "p129-p130-stale-candidate-repair",
+  "summary": {
+    "authoritative_revision_id": "decision-ch-verses-p129__ch-verses-p130-10a5",
+    "actual_state": "applied",
+    "stale_candidate_removed": true,
+    "counters_after": {
+      "total_candidates": 34,
+      "unreviewed": 1,
+      "approved_merges": 4,
+      "corrections_required": 30,
+      "keep_both": 4,
+      "postponed": 0,
+      "applied": 15,
+      "not_a_duplicate": 0,
+      "saved": 0,
+      "superseded": 22,
+      "history": 1,
+      "dataset_hash": "sha256:632b2d1f1b13b70f1b7569471f77a2d0c2c4e1281dc1dfd9c746974ac2dda273",
+      "dataset_version": "1.16.2"
+    }
+  }
+}

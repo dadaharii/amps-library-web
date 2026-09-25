@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "packId": "shloka-human-approved",
+  "version": "1.0.0",
+  "type": "shloka-audio-human",
+  "title": "Approved human shloka audio",
+  "description": "Administrator-approved human shloka recordings only.",
+  "releaseId": "2026.09.06-10",
+  "compatibleReleaseIds": [
+    "2026.09.06-10"
+  ],
+  "minimumRuntimeSchema": 1,
+  "dependencies": [
+    "shloka-text"
+  ],
+  "languages": [
+    "sa"
+  ],
+  "status": "public",
+  "fileCount": 16,
+  "sizeBytes": 7838174,
+  "sha256": "2c352a7cc03c44a0ba522024f576a2a5cf28d2d41caebd77302008ede1e13750",
+  "installOrder": 100,
+  "uninstallSafety": {
+    "preservesNotes": true,
+    "preservesBookmarks": true,
+    "preservesReadingHistory": true,
+    "preservesResumePosition": true,
+    "preservesShlokaReviewDecisions": true,
+    "preservesPresentationProjects": true
+  },
+  "approvedAudioStatus": "15_approved",
+  "attribution": "Human recitation: Acharya Hariishananda Avadhuta — AMPS Library approved pilot",
+  "files": [
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p1.mp3",
+      "bytes": 330285,
+      "sha256": "ee04161a8f6e8ed09b57fbf0cfd2ca529a50b86f73fa33b29008a18f82fa27ea"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p12.mp3",
+      "bytes": 410925,
+      "sha256": "91e0b2a63cdad78fded89d6c1aa24baab189b647e3cd2683006491276978920a"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p13.mp3",
+      "bytes": 345645,
+      "sha256": "d354fbfd69fe2936ea08a689bbbc4c92a22cb9dce5a851644efbd8e4e40fd2fa"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p14.mp3",
+      "bytes": 453165,
+      "sha256": "4208d88914a828a26e275da7062dd65968a4ffc5f786f88731d65a71e85e8f35"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p16.mp3",
+      "bytes": 368685,
+      "sha256": "8d0bef9a632be9fcd484e5d104d14c5c376a2054c97a421e0a8906c8f0ebdf40"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p17.mp3",
+      "bytes": 314925,
+      "sha256": "32a0fad760ce5b11cebecf25f49f8bebe4feb4e76e62adf8255aa21c2134c556"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p18.mp3",
+      "bytes": 481197,
+      "sha256": "eda1d222e469331e09b8d44225e6361c0ddf0eb20846bed1ead5ded39110840b"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p19.mp3",
+      "bytes": 435885,
+      "sha256": "605ef754863b5a622fdb039d4139a0049ed67dc8fe44098454d8af77e8ae668e"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p2.mp3",
+      "bytes": 874797,
+      "sha256": "4de71eb644436a92b2ab7ab588a53f058dae90f89077827c914f19a759b4133c"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p3.mp3",
+      "bytes": 437805,
+      "sha256": "1a104d57c48b7d75b9c1cae54e4d714d4ef3b7c5e3482fafbd762bd1cfcb3da0"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p4.mp3",
+      "bytes": 755181,
+      "sha256": "43d5b1cfaaa8c40b2d5745c06305c4af3e50d674ab2fedac846514f7a9d21ba0"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p5.mp3",
+      "bytes": 298797,
+      "sha256": "550dc94241ab80f1875b621ac66fc48cc3043e7586b546f44f8030c81994a0cb"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p6.mp3",
+      "bytes": 472365,
+      "sha256": "d22af6a4b21fd302eaec24191c4c5d43a16cf02cce8b30a9e35e830bf3603fe0"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p8.mp3",
+      "bytes": 337965,
+      "sha256": "d1d12ddb7b95f81c57ffce9ccfe1ef11173bddf2477c58fe6731e796da99bd6f"
+    },
+    {
+      "path": "shloka-audio/approved/human/ch-verses-p9.mp3",
+      "bytes": 373677,
+      "sha256": "37db13d4dc419b8122ab5edb95482e93d065388e1b159536d1d5a4e40b7440c8"
+    },
+    {
+      "path": "shloka-audio/manifest-v2.json",
+      "bytes": 1146875,
+      "sha256": "d75f8cc11d2f2a4b4bf8472bc06af525a91c536b862d79a914a11e0ec9070a75"
+    }
+  ],
+  "payloadMode": "canonical-reference"
+}

@@ -1,0 +1,66 @@
+{
+  "note": "Many-to-one from 5 OCR blobs to 15 candidate paras. IDs are not 1:1.",
+  "sourceChapterId": "ch-02",
+  "sourceTitle": "स्वभावगत- अपराध",
+  "candidateTitle": "स्वभावगत-अपराध",
+  "sourceParagraphCount": 5,
+  "candidateParagraphCount": 15,
+  "rows": [
+    {
+      "sourceId": "ch-02-p1",
+      "candidateIds": [
+        "ch-02-p1",
+        "ch-02-p2",
+        "ch-02-p3"
+      ],
+      "order": "intro + (क) + start of (ख) through खून-खराबी"
+    },
+    {
+      "sourceId": "ch-02-p2",
+      "candidateIds": [
+        "ch-02-p3",
+        "ch-02-p4",
+        "ch-02-p5",
+        "ch-02-p6",
+        "ch-02-p7",
+        "ch-02-p8"
+      ],
+      "order": "rest of (ख) through पशुओं के समान जोते हैं (sentence continues into source p3)"
+    },
+    {
+      "sourceId": "ch-02-p3",
+      "candidateIds": [
+        "ch-02-p8"
+      ],
+      "order": "page-break completion of पशुओं के समान ही…फाँसी"
+    },
+    {
+      "sourceId": "ch-02-p4",
+      "candidateIds": [
+        "ch-02-p9"
+      ],
+      "order": "सिर के बदले सिर"
+    },
+    {
+      "sourceId": "ch-02-p5",
+      "candidateIds": [
+        "ch-02-p10",
+        "ch-02-p11",
+        "ch-02-p12",
+        "ch-02-p13",
+        "ch-02-p14",
+        "ch-02-p15"
+      ],
+      "order": "सुसभ्य कर्तव्य through जेलखाने परिवेश"
+    }
+  ],
+  "coverage": {
+    "sourceStart": "जन्मगत कारणों से कुछ स्त्री-पुरुषों में ",
+    "sourceEnd": "वित्र, और मानवोचित बनाने की आवश्यकता है।",
+    "candidateStart": "जन्मगत कारणों से कुछ स्त्री-पुरुषों में ",
+    "candidateEnd": "पवित्र और मानवोचित बनाने की आवश्यकता है।",
+    "nextHeadingExcluded": "अभ्यासगत अपराधी",
+    "eachSourceOnce": true,
+    "orderPreserved": true
+  }
+}

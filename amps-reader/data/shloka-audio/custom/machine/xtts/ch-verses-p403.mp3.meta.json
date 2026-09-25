@@ -1,0 +1,9 @@
+{
+  "paragraph_id": "ch-verses-p403",
+  "text_hash": "sha256:09bd096f8b52c295992095569c80706b22100c0514809603aa07c5bbe056005d",
+  "audio_type": "machine_recitation",
+  "engine": "xtts-v2",
+  "audio_hash": "sha256:08a30de0219b5aca43d55dcb493af6a3d33a9b714904c954fcd99501c9e41c3b",
+  "duration_seconds": 0,
+  "written_at": "2026-07-30T11:54:00.570Z"
+}

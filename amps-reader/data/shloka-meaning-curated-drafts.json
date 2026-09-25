@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "kind": "shloka_meaning_curated_drafts",
+  "note": "Optional administrator-review drafts. Never auto-applied. Labels must remain visible in Studio.",
+  "drafts": {
+    "ch-verses-p1": {
+      "labels": {
+        "englishMeaning": "source-derived",
+        "expanded_english": "source-derived",
+        "hindiMeaning": "administrator-prepared",
+        "wordMeaning": "administrator-prepared",
+        "original_source": "externally verified — review required",
+        "note": "Curated sample for Dhammapada 223 workflow. Do not apply without administrator approval."
+      },
+      "reason_values": [
+        "both_missing",
+        "word_by_word_missing",
+        "meaning_from_bracketed_translation",
+        "meaning_from_amps_explanation",
+        "original_source_added",
+        "pali_identified"
+      ],
+      "englishMeaning": "Overcome anger through non-anger; overcome wickedness through goodness; overcome miserliness through generosity; and overcome falsehood through truth.",
+      "expanded_english": "When another person approaches in anger, one should remain calm and retain rational judgement rather than responding with anger. Dishonest conduct should be defeated through greater honesty, miserliness through generosity, and falsehood through strict truthfulness. The verse teaches the strategy of overcoming a negative tendency by cultivating its opposite positive quality.",
+      "hindiMeaning": "क्रोध को अक्रोध और शान्ति से, दुष्टता को सदाचार से, कृपणता को दान से और असत्य को सत्य से जीतना चाहिए।",
+      "expanded_hindi": "जब कोई व्यक्ति क्रोध में आकर सामना करे, तब स्वयं क्रोधित होने के बजाय मन को शान्त और विवेकपूर्ण रखना चाहिए। बेईमानी का सामना अधिक ईमानदारी से, कृपणता का उदार दान से और झूठ का कठोर सत्यनिष्ठा से करना चाहिए। यह पद नकारात्मक प्रवृत्ति को उसके विपरीत सकारात्मक गुण द्वारा जीतने की नीति सिखाता है।",
+      "wordMeaning": "अक्कोधेन — अक्रोध से, शान्ति से; by non-anger\nजिने — जीते, जीतना चाहिए; one should overcome\nकोधं — क्रोध को; anger\n\nअसाधुं — दुष्टता या बुराई को; wickedness, evil\nसाधुना — अच्छाई या सदाचार से; by goodness, virtue\nजिने — जीतना चाहिए; one should overcome\n\nकदरियं — कृपणता या कंजूसी को; stinginess, miserliness\nदानेन — दान या उदारता से; by giving, generosity\n\nसच्चेन — सत्य से; by truth\nअलीकवादिनं — झूठ बोलने वाले या मिथ्यावचन को; the liar, false speech",
+      "editorial_note": "The AMPS discourse preserves a transliterated Pāli verse and supplies practical explanation. Canonical English/Hindi drafts may be derived from that discourse explanation. The original verse is Dhammapada 223 (Kodhavagga). Exact AMPS printed Devanagari and Roman remain preserved in provenance; standard Pāli reading is stored under Original Source Reference.",
+      "source_evidence": "The cited AMPS discourse quotes the verse and explains its clauses (non-anger, honesty/goodness, generosity, truth). Compact translation variants appear across AMPS materials. Complete wording matches Dhammapada 223 in the Pāli Canon. AMPS printed form preserved separately.",
+      "evidence_basis_values": [
+        "bracketed_translation_amps",
+        "explanation_following_verse",
+        "complete_textual_match",
+        "primary_text_edition",
+        "matching_amps_citation"
+      ],
+      "original_source": {
+        "source_category": "pali_canon",
+        "source_title": "Dhammapada",
+        "source_reference": "Dhammapada 223",
+        "source_author_or_tradition": "Buddha / Pāli Canon tradition",
+        "source_text_verified": "verified",
+        "verification_basis": "Primary text edition; Complete verse match; AMPS explanatory context",
+        "verification_basis_values": [
+          "primary_text_edition",
+          "complete_verse_match",
+          "amps_bracketed_translation",
+          "amps_explanatory_context"
+        ],
+        "recension_or_edition_note": "Verse numbering is consistent across consulted editions.",
+        "quotation_type": "complete_verse",
+        "source_locator": {
+          "vagga": "Kodhavagga",
+          "chapter": "Kodhavagga — Chapter on Anger",
+          "verse": "223"
+        },
+        "language": "pali",
+        "canonical_collection": "Khuddaka Nikāya, Sutta Piṭaka, Pāli Tipiṭaka",
+        "verified_source_text": {
+          "devanagari": "",
+          "roman": "Akkodhena jine kodhaṁ,\nasādhuṁ sādhunā jine;\njine kadariyaṁ dānena,\nsaccenālikavādinaṁ."
+        },
+        "textual_comparison": {
+          "amps_differs_from_verified_source": true,
+          "difference_note": "The AMPS form is a Devanagari and Roman transcription of the Pāli verse. Differences mainly concern spelling, vowel length, word division and transliteration. Exact AMPS printed form preserved unchanged in provenance."
+        },
+        "source_evidence": "Complete wording matches Dhammapada 223; AMPS discourse explains each clause; AMPS quotation preserved separately."
+      },
+      "difference_tags": [
+        "transliteration",
+        "vowel_length",
+        "spacing",
+        "compound_boundary"
+      ]
+    },
+    "ch-verses-p3": {
+      "labels": {
+        "englishMeaning": "source-derived summary",
+        "expanded_english": "source-derived summary",
+        "hindiMeaning": "source-derived summary",
+        "wordMeaning": "source-derived summary",
+        "note": "Pilot curated draft from SS-2 ch4 prose explanation. Not a direct quotation. Review before apply."
+      },
+      "reason_values": [
+        "both_missing",
+        "word_by_word_missing",
+        "meaning_from_amps_explanation"
+      ],
+      "englishMeaning": "He is inconceivable, unmanifest and of infinite forms; auspicious, supremely peaceful, immortal and the source of Brahma. He is the one all-pervading Consciousness-Bliss, wondrous and without beginning, middle or end.",
+      "expanded_english": "The Supreme is beyond imagination and sense perception, yet manifests through countless forms. He is auspicious, supremely peaceful, immortal, the source of all creation, and the one all-pervading embodiment of Consciousness and Bliss, without beginning, middle or end.",
+      "hindiMeaning": "वह परम सत्ता चिन्तन से परे, अव्यक्त और अनन्त रूपों वाली है। वह कल्याणमय, परम शान्त, अमर, ब्रह्म की मूल योनि तथा आदि, मध्य और अन्त से रहित एकमात्र सर्वव्यापी चैतन्य और आनन्दस्वरूप अद्भुत सत्ता है।",
+      "wordMeaning": "अचिन्त्यम् — चिन्तन से परे; inconceivable\nअव्यक्तम् — अव्यक्त; unmanifest\nअनन्तरूपम् — अनन्त रूप; infinite forms\nशिवम् — कल्याणमय; auspicious\nप्रशान्तम् — परम शान्त; supremely peaceful\nअमृतम् — अमर; immortal\nब्रह्मयोनिम् — ब्रह्म की योनि; source of Brahma\nआदिमध्यान्तविहीनम् — आदि-मध्य-अन्त रहित; without beginning, middle or end\nएकम् — एक; one\nविभुम् — सर्वव्यापी; all-pervading\nचिदानन्दम् — चैतन्य-आनन्द; Consciousness-Bliss\nअद्भूतम् — अद्भुत; wondrous",
+      "source_evidence": "Subháśita Saḿgraha Part 2, The Intuitional Science of the Vedas – 4, explains the verse clause-by-clause across following paragraphs (unimaginable/unmanifest, Shiva/benevolent, Brahma, beginningless, Consciousness-Bliss, formless/wondrous). No bracketed translation immediately after the verse. Concise meaning is a source-derived summary, not a direct quotation.",
+      "evidence_basis_values": [
+        "explanation_following_verse",
+        "multiple_line_match",
+        "matching_amps_citation"
+      ]
+    }
+  }
+}

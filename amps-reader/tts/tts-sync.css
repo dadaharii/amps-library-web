@@ -1,0 +1,27 @@
+/* TTS sync highlight — non-destructive session-driven classes */
+.is-tts-paragraph-active {
+  outline: 2px solid color-mix(in srgb, currentColor 28%, transparent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+mark.is-tts-phrase-active,
+.is-tts-phrase-active {
+  background: color-mix(in srgb, #c4a35a 35%, transparent);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 0.05em;
+}
+.is-tts-word-active,
+.tts-word-active {
+  background: color-mix(in srgb, #c4a35a 55%, transparent);
+  border-radius: 2px;
+}
+.is-tts-paused {
+  opacity: 0.92;
+}
+.is-tts-retrying {
+  outline-style: dashed;
+}
+.is-tts-completed {
+  outline: none;
+}

@@ -1,0 +1,9 @@
+{
+  "paragraph_id": "ch-verses-p66",
+  "text_hash": "sha256:68642d53ad4ff2e344cbab0ec1adfc1532f1c8671bcf10f2e953101e49dfb898",
+  "audio_type": "machine_recitation",
+  "engine": "xtts-v2",
+  "audio_hash": "sha256:309bd14a8a44012110cf49264f74f21c21bb0bee0c7b398a9356dfe4e2f2f580",
+  "duration_seconds": 0,
+  "written_at": "2026-07-30T22:33:27.514Z"
+}

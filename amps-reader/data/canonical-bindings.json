@@ -1,0 +1,330 @@
+{
+  "schemaVersion": "amps-canonical-bindings/2",
+  "description": "Reviewed canonical bindings for source-occurrence navigation. approval and relationship are separate. Only approval=APPROVED enables Saḿskrta Shloka navigation. shloka-source-index is not authoritative.",
+  "reviewedAt": "2026-08-13T08:34:00.000Z",
+  "bindings": [
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch1",
+      "paragraphId": "ch1-p2",
+      "sourceParagraphIds": [
+        "ch1-p2",
+        "ch1-p3"
+      ],
+      "canonicalShlokaId": "ch-verses-p314",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same Shvetashvatara/Katha eko'varno verse (full unit). SS16 omits initial य, uses tighter sandhi (e.g. बहुधाशक्ति, वर्णानेकान्निहितार्थोदधाति), विचैति vs वि चैति, and देव स: vs स देवः. Lexical content unchanged; orthographic/transmission variant only."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch4",
+      "paragraphId": "ch4-p2",
+      "sourceParagraphIds": [
+        "ch4-p2",
+        "ch4-p3"
+      ],
+      "canonicalShlokaId": "ch-verses-p6",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same Katha Upanishad anor-aniyan verse (full unit). Differences are sandhi/spacing, avagraha vs sandhi (आत्माऽस्य/आत्मास्य), visarga presentation (तमक्रतु:/तमक्रतुः), and वीतशोको vs बीतशोको orthography. No change of verse identity."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch6",
+      "paragraphId": "ch6-p10",
+      "sourceParagraphIds": [
+        "ch6-p10"
+      ],
+      "canonicalShlokaId": "ch-verses-p131",
+      "approval": "APPROVED",
+      "relationship": "FRAGMENT_OF_CANONICAL",
+      "reviewed": true,
+      "reviewNote": "SS16 cites only the second pada of canonical two-line ch-verses-p131. Navigation to full canonical record allowed; full canonical Roman must not display under this partial occurrence unless fragment-aligned."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch9",
+      "paragraphId": "ch9-p8",
+      "sourceParagraphIds": [
+        "ch9-p8",
+        "ch9-p9"
+      ],
+      "canonicalShlokaId": "ch-verses-p8",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same friendship-qualities verse (full unit). Differences include compound spacing, visarga/colon presentation, anusvara (भवेन्मित्रम्/भवेन्मित्रं), and sandhi — textual/orthographic variant, not format-only."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch1",
+      "paragraphId": "ch1-p6",
+      "sourceParagraphIds": [
+        "ch1-p6",
+        "ch1-p7"
+      ],
+      "canonicalShlokaId": "ch-verses-p78",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same Svetasvatara eko devah two-line verse (full unit). Differences are visarga/colon presentation (देव:/देवः, गूढ़:/गूढः, कर्माध्यक्ष:/कर्माध्यक्षः), nukta in गूढ़, and punctuation — orthographic/transmission variant only; verse identity unchanged."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch1",
+      "paragraphId": "ch1-p17",
+      "sourceParagraphIds": [
+        "ch1-p17",
+        "ch1-p18"
+      ],
+      "canonicalShlokaId": "ch-verses-p415",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same Gita 18.66 sarva-dharma verse (full unit). Key lexical difference: SS16 मोक्षयिस्यामि vs canonical मोक्षयिष्यामि (future -iṣyāmi spelling); plus visarga/colon and comma spacing. Same verse identity — VARIANT, not strict EXACT."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch3",
+      "paragraphId": "ch3-p7",
+      "sourceParagraphIds": [
+        "ch3-p7"
+      ],
+      "canonicalShlokaId": "ch-verses-p318",
+      "approval": "APPROVED",
+      "relationship": "FRAGMENT_OF_CANONICAL",
+      "reviewed": true,
+      "reviewNote": "SS16 cites only the second line/pada of canonical two-line ch-verses-p318. Includes नियछेद् vs canonical नियच्छेद् orthography within the cited portion. Navigation to full p318; fragment-aligned Roman only."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch3",
+      "paragraphId": "ch3-p2",
+      "sourceParagraphIds": [
+        "ch3-p2",
+        "ch3-p3"
+      ],
+      "canonicalShlokaId": "ch-verses-p320",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Full यच्छेद् वाङ्मनसि प्राज्ञ… ज्ञानमात्मनि महति… two-line verse (complete unit). Same canonical identity as ch-verses-p320. Differences are sandhi/orthography/presentation (e.g. वाङ्गमनसि vs वाङ्मनसी, नियछेद् vs नियच्छेत्, spacing). ch-verses-p318 and ch-verses-p513 are partial/overlapping evidence only — p320 is the authoritative full-record target. SS16 Devanagari unchanged."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch3",
+      "paragraphId": "ch3-p9",
+      "sourceParagraphIds": [
+        "ch3-p9",
+        "ch3-p10"
+      ],
+      "canonicalShlokaId": "ch-verses-p537",
+      "approval": "APPROVED",
+      "relationship": "EXACT",
+      "reviewed": true,
+      "reviewNote": "Human-approved textual corrections (प्राणाः, यथात्मनोऽभीष्टः, भूतानाम्) brought occurrence to strictExact. Full two-line verse; canonical Roman enrichment permitted."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch5",
+      "paragraphId": "ch5-p2",
+      "sourceParagraphIds": [
+        "ch5-p2",
+        "ch5-p3"
+      ],
+      "canonicalShlokaId": "ch-verses-p549",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same sukhaṃ vāñchati / dharmasya verse (full unit). Human-approved वाञ्छति + समुद्भूतः applied. Remaining diffs: सर्वोहि/सर्वो हि, तस्मात् धर्म:/तस्माद्धर्म, sandhi/colon presentation. SS16 Devanagari preserved; canonical Roman may mismatch displayed reading."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch7",
+      "paragraphId": "ch7-p10",
+      "sourceParagraphIds": [
+        "ch7-p10",
+        "ch7-p11"
+      ],
+      "canonicalShlokaId": "ch-verses-p195",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same dyotate krīḍate / devaḥ verse (full unit). Human-approved क्रीडते applied. Remaining diffs: तस्मत्/तस्माद्, visarga/colon, सर्व देवतैः/सर्वदेवतैः. SS16 Devanagari preserved; canonical Roman may mismatch displayed reading."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch4",
+      "paragraphId": "ch4-p6",
+      "sourceParagraphIds": [
+        "ch4-p6"
+      ],
+      "canonicalShlokaId": "ch-verses-p6",
+      "approval": "APPROVED",
+      "relationship": "FRAGMENT_OF_CANONICAL",
+      "reviewed": true,
+      "reviewNote": "SS16 cites only the embedded line आत्माऽस्य जन्तोर्निहितो गुहायाम् from Katha Upanishad ch-verses-p6 (cf. ch4-p2 full-unit VARIANT binding). Avagraha vs sandhi presentation; partial occurrence only."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch5",
+      "paragraphId": "ch5-p9",
+      "sourceParagraphIds": [
+        "ch5-p9"
+      ],
+      "canonicalShlokaId": "ch-verses-p394",
+      "approval": "APPROVED",
+      "relationship": "FRAGMENT_OF_CANONICAL",
+      "reviewed": true,
+      "reviewNote": "SS16 cites only the second half (धर्मस्य तत्त्वं… महाजनो…) of full four-line canonical ch-verses-p394 (श्रुतयो विभिन्नाः… + धर्मस्य…). Verified p394 is the complete canonical record; partial records p201/p579 are supporting duplicates only."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch6",
+      "paragraphId": "ch6-p5",
+      "sourceParagraphIds": [
+        "ch6-p5",
+        "ch6-p6"
+      ],
+      "canonicalShlokaId": "ch-verses-p131",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same Mundaka ksaram/pradhana two-line verse (full unit). Differences: spacing/anusvara (प्रधानं/प्रधानम, हर:/हरः), क्षरात्मानं/क्षरात्मनाव, visarga/colon, and compound split विश्वमाया निवृत्ति/विश्वमायानिवृत्तिः. Same complete shloka as p131; distinct from ch6-p10 which cites second pada only."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch5",
+      "paragraphId": "ch5-p6",
+      "sourceParagraphIds": [
+        "ch5-p6",
+        "ch5-p7"
+      ],
+      "canonicalShlokaId": "ch-verses-p394",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "meaningApplicability": "APPROVED_FULL",
+      "reviewed": true,
+      "reviewNote": "Same full four-line śrutayo vibhinnāḥ / dharmasya tattvam hymn (full unit). p394 is the complete canonical record. Differences are sandhi/spacing (श्रुतियोर्विभिन्ना/श्रुतयो विभिन्नाः), visarga/colon, and येनगता:/येन गतः — transmission variant only; cf. ch5-p9 which cites second half as FRAGMENT. Canonical Hindi meaning (BABA_EXPLICIT_TRANSLATION) approved for full-unit reuse."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch8",
+      "paragraphId": "ch8-p7",
+      "sourceParagraphIds": [
+        "ch8-p7",
+        "ch8-p8",
+        "ch8-p9",
+        "ch8-p10"
+      ],
+      "canonicalShlokaId": "ch-verses-p117",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same Gita 13.30 kāla/svabhāva verse (full unit). Differences are line-break layout, visarga/colon (काल:/कालः), sandhi spacing (पुरुषेति/पुरुष इति, त्वात्म भावाद/त्वात्मभावाद्), and compound split सुख दु:ख हेतौ:/सुखदुह्खहेतोः — orthographic/layout variant; verse identity unchanged."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch9",
+      "paragraphId": "ch9-p13",
+      "sourceParagraphIds": [
+        "ch9-p13",
+        "ch9-p14",
+        "ch9-p15",
+        "ch9-p16"
+      ],
+      "canonicalShlokaId": "ch-verses-p272",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same full Mundaka/Katha-style verse (4-line unit). Human-approved: वृहत्/बृहत्, compound splitting, तादिहान्तिके/तदिहान्तिके — textual/orthographic differences only; canonical identity clear. SS16 Devanagari unchanged. p270/p271 are partial/overlap evidence only."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch7",
+      "paragraphId": "ch7-p4",
+      "sourceParagraphIds": [
+        "ch7-p4",
+        "ch7-p5"
+      ],
+      "canonicalShlokaId": "ch-verses-p88",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same Bhag-definition verse (2-line unit). SS16 omits canonical समग्रं; substantive differences include तू षण्णम् vs षणां. Canonical identity clear — VARIANT not EXACT. SS16 source Devanagari preserved unchanged."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch5",
+      "paragraphId": "ch5-p11",
+      "sourceParagraphIds": [
+        "ch5-p11",
+        "ch5-p12",
+        "ch5-p13",
+        "ch5-p14"
+      ],
+      "canonicalShlokaId": "ch-verses-p361",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Same full four-pada stotra confession hymn (100% structural coverage). Lexical differences include कल्पितं/वर्णितम् and especially यापित्वञ्च/व्यापित्वं च — VARIANT not EXACT. SS16 Devanagari unchanged; occurrence-specific Roman; canonical Hindi meaning not auto-reused without meaningApplicability approval."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch8",
+      "paragraphId": "ch8-p17",
+      "sourceParagraphIds": [
+        "ch8-p17",
+        "ch8-p18"
+      ],
+      "canonicalShlokaId": "ch-verses-p292",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "p292 is preferred over p293 because it preserves भूत्वा and the पातकैः textual pattern closer to the SS16 occurrence. p293 remains alternate evidence only (बुद्धया vs भूत्वा is a substantive lexical fork). SS16 Devanagari unchanged; occurrence-specific Roman."
+    },
+    {
+      "bookId": "subhasita-samgraha-16",
+      "chapterId": "ch8",
+      "paragraphId": "ch8-p24",
+      "sourceParagraphIds": [
+        "ch8-p24",
+        "ch8-p25"
+      ],
+      "canonicalShlokaId": "ch-verses-p183",
+      "approval": "APPROVED",
+      "relationship": "VARIANT",
+      "reviewed": true,
+      "reviewNote": "Full passage preserved in compressed/rearranged 2-line form with यथा…तथा… frame; not FRAGMENT. p327 is an alternate yathā/tathā witness, not the authoritative navigation target. p183 is cleaner complete canonical record. SS16 Devanagari unchanged; occurrence-specific Roman."
+    },
+    {
+      "bookId": "prout-in-a-nutshell-10",
+      "chapterId": "ch6",
+      "paragraphId": "ch6-p1",
+      "sourceParagraphIds": [
+        "ch6-p1"
+      ],
+      "canonicalShlokaId": "ch-verses-p210",
+      "approval": "APPROVED",
+      "relationship": "EXACT",
+      "reviewed": true,
+      "reviewNote": "English Part 10 opening of Shiva's Teachings – 2 is the published source of ch-verses-p210."
+    },
+    {
+      "bookId": "prout-in-a-nutshell-10-hi",
+      "chapterId": "ch-06",
+      "paragraphId": "ch-06-p1",
+      "sourceParagraphIds": [
+        "ch-06-p1"
+      ],
+      "canonicalShlokaId": "ch-verses-p210",
+      "approval": "APPROVED",
+      "relationship": "EXACT",
+      "reviewed": true,
+      "reviewNote": "Hindi दशम खण्ड · शिवोपदेश opening verse is the same Na muktih shástravyákhyáne unit as EN Part 10 ch6-p1 / Namah Shiváya Shántáya ch17-p1."
+    }
+  ]
+}
