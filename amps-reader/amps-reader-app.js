@@ -6773,7 +6773,7 @@
         <div class="pravachan-panel">
           <label>Reader audio mode
             <select id="setTtsReadingStyle">
-              <option value="human" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "human" ? "selected" : ""}>Human discourse (recommended)</option>
+              <option value="human" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "human" ? "selected" : ""}>Podcast narration (recommended)</option>
               <option value="normal" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "normal" ? "selected" : ""}>Normal Reading</option>
               <option value="pravachan" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "pravachan" ? "selected" : ""}>Pravachan-style Reading</option>
             </select>

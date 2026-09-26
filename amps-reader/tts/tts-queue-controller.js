@@ -55,7 +55,7 @@
    * Speak engine adapter — injected or AmpsAudio low-level.
    * Must return { ok, endReason, error? }.
    */
-  async function speakChunkEngine(chunk, session, request) {
+  async function speakChunkEngine(chunk, session, request, position) {
     const token = `utt-${++utteranceSeq}`;
     Session().beginChunk(session, chunk, token);
     const gen = session.cancellationGeneration;
@@ -97,6 +97,10 @@
         language: chunk.language,
         voicePreset: request?.voicePreset,
         rate: request?.rate,
+        expectedPause: chunk.expectedPause,
+        chunkIndex: position?.index ?? 0,
+        chunkCount: position?.count ?? 1,
+        paragraphIndex: session.paragraphIndex,
         sessionId: session.sessionId,
         chunkId: chunk.chunkId,
         utteranceToken: token,
@@ -192,7 +196,7 @@
           log("retry", { chunkId: chunk.chunkId, status: "retrying" });
           request?.onRecovery?.("Resuming this paragraph…");
         }
-        const result = await speakChunkEngine(chunk, session, request);
+        const result = await speakChunkEngine(chunk, session, request, { index: i, count: chunks.length });
         Highlight()?.setRetrying?.(session, false);
         if (result.ok) {
           done = true;
@@ -258,6 +262,7 @@
         language: request?.language,
         platformHints,
         maxChunkChars: request?.maxChunkChars,
+        sentenceChunks: !!request?.sentenceChunks,
         element: request?.element,
       }
     );

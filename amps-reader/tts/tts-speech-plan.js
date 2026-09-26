@@ -102,6 +102,35 @@
   }
 
   /**
+   * Split text at sentence ends (., !, ?, ।, ॥), merging very short pieces
+   * into the next so a lone "Yes." is not spoken as its own utterance.
+   */
+  function splitSentences(text, minChars) {
+    const s = String(text || "");
+    const min = Math.max(0, Number(minChars) || 24);
+    const pieces = [];
+    const re = /[.!?।॥]+["')\]’”]*\s+/g;
+    let start = 0;
+    let m;
+    while ((m = re.exec(s)) !== null) {
+      const end = m.index + m[0].length;
+      if (end - start >= min) {
+        pieces.push({ text: s.slice(start, end), offset: start });
+        start = end;
+      }
+    }
+    if (start < s.length) {
+      const tail = s.slice(start);
+      if (pieces.length && tail.trim().length < min) {
+        pieces[pieces.length - 1].text += tail;
+      } else {
+        pieces.push({ text: tail, offset: start });
+      }
+    }
+    return pieces;
+  }
+
+  /**
    * Build a deterministic speech plan for one paragraph.
    */
   function buildSpeechPlan(paragraph, context) {
@@ -149,7 +178,10 @@
         ? "en"
         : ls.language;
       const segmentId = nextId("seg");
-      const rawChunks = splitIntoSafeChunks(text, maxChars, start, language, segmentId, paragraphId);
+      const rawChunks = ctx.sentenceChunks
+        ? splitSentences(text).flatMap(piece =>
+          splitIntoSafeChunks(piece.text, maxChars, start + piece.offset, language, segmentId, paragraphId))
+        : splitIntoSafeChunks(text, maxChars, start, language, segmentId, paragraphId);
       const chunks = rawChunks.map(ch => {
         const map = TextMap?.identityMap?.(ch.visibleText, ch.processedText) || {
           canonicalText: ch.visibleText,
@@ -192,5 +224,6 @@
     findSafeSplit,
     isPunctuationOnly,
     splitIntoSafeChunks,
+    splitSentences,
   };
 });

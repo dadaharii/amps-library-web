@@ -1345,6 +1345,42 @@
     }));
   }
 
+  // Narrator shaping for one sentence chunk: ease in at a paragraph start, lift
+  // questions, settle at the paragraph end, slow down for verses, and breathe
+  // between sentences. Small deterministic rate drift avoids a metronome feel.
+  function podcastProsody(req, style, pauses, hindi) {
+    const text = String(req?.text || "").trim();
+    const index = Number(req?.chunkIndex) || 0;
+    const count = Math.max(1, Number(req?.chunkCount) || 1);
+    const last = index >= count - 1;
+    let rate = hindi ? 1 : 0.97;
+    let pitch = 1;
+    const verse = /^sa/i.test(String(req?.language || "")) || /॥|\n/.test(text);
+    if (verse) {
+      rate *= 0.9;
+      pitch = 0.97;
+    } else if (/[?？]["')\]’”]*$/.test(text)) {
+      pitch = 1.06;
+    } else if (/[!！]["')\]’”]*$/.test(text)) {
+      pitch = 1.04;
+      rate *= 1.02;
+    } else if (last && count > 1) {
+      pitch = 0.97;
+    }
+    if (index === 0) rate *= 0.96;
+    rate *= 1 + (((index * 7 + (Number(req?.paragraphIndex) || 0) * 3) % 5) - 2) * 0.01;
+    if (style === "pravachan") {
+      rate *= 0.92;
+      pitch *= 0.95;
+    }
+    const pauseAfter = last ? 0
+      : req?.expectedPause === "sentence" ? pauses.sentence + 180
+      : req?.expectedPause === "clause" ? Math.round(pauses.comma * 1.4)
+      : req?.expectedPause === "comma" ? pauses.comma
+      : 60;
+    return { rateMultiplier: rate, pitch, pauseAfter };
+  }
+
   function timedSegmentsForText(text, pauseOpts, style, options) {
     if (options?.chanda && window.AmpsShlokaTts?.chandaReadingSegments) {
       return window.AmpsShlokaTts.chandaReadingSegments(text, pauseOpts);
@@ -2000,7 +2036,12 @@
         this._wordFallbackTimer = null;
       }
       if (this.timer) { clearTimeout(this.timer); this.timer = null; }
-      if (this.onHighlight) this.onHighlight(-1);
+      // A replacing session installs its own handler; telling the old one that
+      // reading ended would switch the reader's audio controls off mid-playback.
+      const endedHandler = this.onHighlight;
+      this.onHighlight = null;
+      const replaced = this._utteranceEndReason === (window.TtsPlaybackSession?.END_REASON?.replacement || "replacement");
+      if (endedHandler && !replaced) endedHandler(-1);
       this.onWord = null;
       try { window.TtsHighlightController?.clearAll?.(); } catch (_) { /* */ }
     },
@@ -2737,6 +2778,8 @@
           });
         }
         const self = this;
+        const narrate = this.readingStyle !== "normal";
+        const pauses = pauseSettings(this.pauseSettings);
         const results = await window.TtsQueueController.playParagraphList(list, {
           origin: options?.origin || "reader",
           bookId: options?.bookId,
@@ -2746,7 +2789,8 @@
           pronunciationMode: this.pronunciationMode,
           corpusLanguage: sessionCorpusLanguage,
           platformHints: this._platformHints,
-          paragraphPauseMs: pauseSettings(this.pauseSettings).paragraph,
+          sentenceChunks: narrate,
+          paragraphPauseMs: narrate ? Math.max(pauses.paragraph, 850) : pauses.paragraph,
           getElement: (id) => (typeof document !== "undefined" ? document.getElementById(id) : null),
           onParagraphStart: (localIdx, id, text) => {
             const realIdx = (this.idx || 0) + localIdx;
@@ -2777,13 +2821,21 @@
               contentLanguage: req.language,
               forceEnglishVoice: req.language === "en",
             });
+            const prosody = narrate
+              ? podcastProsody(req, self.readingStyle, pauses, isHindiCorpus(sessionCorpusLanguage))
+              : null;
+            const breathe = async () => {
+              if (prosody?.pauseAfter && self.playing) await delay(prosody.pauseAfter);
+            };
             if (self.useNative()) {
-              const ok = await self.speakNative(req.processedText || req.text, req.rate || self.rate, preset, null, {
+              const ok = await self.speakNative(req.processedText || req.text, (req.rate || self.rate) * (prosody?.rateMultiplier || 1), preset, null, {
                 allowChunks: false,
                 lockVoice: true,
+                pitch: prosody?.pitch,
                 contentLanguage: req.language,
                 forceEnglishLang: req.language === "en",
               });
+              if (ok) await breathe();
               // Native path: treat false as cancel/error; true as natural_end when still playing
               if (!ok) {
                 return {
@@ -2807,7 +2859,10 @@
               chunkId: req.chunkId,
               resolveDetailed: true,
               onBoundary: req.onBoundary,
+              rateMultiplier: prosody?.rateMultiplier,
+              pitch: prosody?.pitch,
             });
+            if (detailed === true || detailed?.ok) await breathe();
             if (detailed && typeof detailed === "object") return detailed;
             return {
               ok: !!detailed,

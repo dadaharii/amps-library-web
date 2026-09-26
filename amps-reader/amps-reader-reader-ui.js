@@ -169,7 +169,7 @@
         </label>
       </div>
       <div class="reader-sheet-list">
-        <button type="button" class="reader-sheet-row" data-sheet-act="tts-human"><span>🎙</span> Human discourse</button>
+        <button type="button" class="reader-sheet-row" data-sheet-act="tts-human"><span>🎙</span> Podcast narration</button>
         <button type="button" class="reader-sheet-row" data-sheet-act="tts-normal"><span>🔊</span> Normal reading</button>
         <button type="button" class="reader-sheet-row" data-sheet-act="tts-pravachan"><span>🎙</span> Pravachan style</button>
         <button type="button" class="reader-sheet-row" data-sheet-act="tts-download-chapter"><span>⬇</span> Download chapter MP3</button>
