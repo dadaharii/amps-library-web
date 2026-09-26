@@ -6,7 +6,7 @@
   const RELEASES_API = "https://api.github.com/repos/dadaharii/amps-library-app/releases/latest";
   const DOWNLOAD_PAGE = "https://amps-ebook-api.onrender.com/download/";
   const STORE_KEY = "amps-update-check";
-  const CHECK_EVERY_MS = 6 * 60 * 60 * 1000;
+  const CHECK_EVERY_MS = 30 * 60 * 1000;
   const SNOOZE_MS = 24 * 60 * 60 * 1000;
 
   function currentVersion() {
@@ -119,26 +119,52 @@
     document.getElementById("ampsUpdateGet").addEventListener("click", () => el.remove());
   }
 
-  /** Returns the latest release info when an update is available, else null. */
+  function showStatus(title, text) {
+    document.getElementById("ampsUpdateBanner")?.remove();
+    injectStyles();
+    const el = document.createElement("div");
+    el.id = "ampsUpdateBanner";
+    el.className = "amps-update-banner";
+    el.setAttribute("role", "status");
+    el.innerHTML = `
+      <h4>${esc(title)}</h4>
+      <p>${esc(text)}</p>
+      <div class="amps-update-actions">
+        <button type="button" class="btn btn-gold btn-sm" id="ampsUpdateOk">OK</button>
+      </div>`;
+    document.body.appendChild(el);
+    document.getElementById("ampsUpdateOk").addEventListener("click", () => el.remove());
+  }
+
+  /**
+   * Returns the latest release info when an update is available, else null.
+   * opts.launch skips the resume throttle; opts.manual always reports a result.
+   */
   async function check(opts = {}) {
     const current = currentVersion();
-    if (!opts.force && (!isAndroidApp() || !current)) return null;
+    const manual = !!opts.manual;
+    if (!opts.force && !manual && (!isAndroidApp() || !current)) return null;
     const s = loadStore();
     const now = Date.now();
-    if (!opts.force && s.lastChecked && now - s.lastChecked < CHECK_EVERY_MS && !s.pendingVersion) return null;
+    const throttled = s.lastChecked && now - s.lastChecked < CHECK_EVERY_MS && !s.pendingVersion;
+    if (!opts.force && !manual && !opts.launch && throttled) return null;
 
     let latest;
     try {
       latest = await fetchLatest();
     } catch (_) {
+      if (manual) showStatus("Could not check for updates", "Check your internet connection and try again.");
       return null;
     }
     s.lastChecked = now;
     s.pendingVersion = isNewer(latest.version, current) ? latest.version : null;
     saveStore(s);
-    if (!s.pendingVersion) return null;
+    if (!s.pendingVersion) {
+      if (manual) showStatus("You have the latest version", `AMPS Library ${current || latest.version} is up to date.`);
+      return null;
+    }
     const snoozed = s.snoozedVersion === latest.version && now < (s.snoozedUntil || 0);
-    if (!snoozed || opts.force) showBanner(latest, current || "unknown");
+    if (!snoozed || opts.force || manual) showBanner(latest, current || "unknown");
     return latest;
   }
 
@@ -194,7 +220,7 @@
   }
 
   function start() {
-    setTimeout(() => check(), 4000);
+    setTimeout(() => check({ launch: true }), 4000);
     setTimeout(() => showInstallHint(), 6000);
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "visible") check();
@@ -204,5 +230,5 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();
 
-  window.AmpsUpdateCheck = { check, isNewer, currentVersion, showInstallHint };
+  window.AmpsUpdateCheck = { check, isNewer, currentVersion, showInstallHint, isAndroidApp };
 })();

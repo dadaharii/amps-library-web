@@ -8207,6 +8207,7 @@
         <a href="#backup" class="more-item"><span>B</span><strong>Backup</strong><small>Export, restore, cloud endpoint</small></a>
         <a href="#validation-report" class="more-item"><span>V</span><strong>Content Report</strong><small>Library validation summary</small></a>
         <a href="#offline" class="more-item"><span>✓</span><strong>Offline &amp; Downloads</strong><small>Shell status, packs, storage</small></a>
+        ${window.AmpsUpdateCheck?.isAndroidApp?.() ? `<button type="button" class="more-item" id="btnCheckAppUpdate"><span>⟳</span><strong>Check for updates</strong><small>Installed version ${esc(window.AmpsUpdateCheck.currentVersion() || "?")}</small></button>` : ""}
         <a href="#about" class="more-item"><span>i</span><strong>About & Privacy</strong><small>Publisher, policy, attribution</small></a>
         <a href="#privacy-data" class="more-item"><span>⚿</span><strong>Privacy &amp; local data</strong><small>Export or delete on-device data</small></a>
         <a href="legal/support.html" class="more-item"><span>?</span><strong>Support</strong><small>Contact and help links</small></a>
@@ -8224,6 +8225,9 @@
           a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
           a.download = "amps-reader-backup.json";
           a.click();
+        });
+        document.getElementById("btnCheckAppUpdate")?.addEventListener("click", () => {
+          window.AmpsUpdateCheck?.check({ manual: true });
         });
       },
     });
