@@ -1943,6 +1943,61 @@
     else scroller.scrollTo(opts);
   }
 
+  function wordCountIn(text) {
+    const m = plainSpeakText(text).match(/\S+/g);
+    return m ? m.length : 0;
+  }
+
+  /** Word-span index range [first, end) covered by text.slice(start, stop). */
+  function wordRangeForSlice(text, start, stop) {
+    const s = String(text || "");
+    const a = Math.max(0, Math.min(s.length, Number(start) || 0));
+    const b = Math.max(a, Math.min(s.length, Number(stop) || 0));
+    let first = wordCountIn(s.slice(0, a));
+    if (a > 0 && /\S/.test(s[a - 1]) && /\S/.test(s[a] || "")) first = Math.max(0, first - 1);
+    return { first, end: first + Math.max(1, wordCountIn(s.slice(a, b))) };
+  }
+
+  /** Widen [start, stop) to the enclosing sentence(s) of text. */
+  function sentenceBounds(text, start, stop) {
+    const s = String(text || "");
+    const re = /[.!?।॥]+["')\]’”]*(?:\s+|$)/g;
+    let a = 0;
+    let b = s.length;
+    let m;
+    while ((m = re.exec(s)) !== null) {
+      const end = m.index + m[0].length;
+      if (end <= start) a = end;
+      else if (end >= stop) {
+        b = end;
+        break;
+      }
+    }
+    return [a, b];
+  }
+
+  /** Wrap word spans [first, end) in one band so the highlight also covers the spaces. */
+  function highlightSentenceIn(container, first, end) {
+    if (typeof document === "undefined") return;
+    document.querySelectorAll(".tts-sentence-active").forEach(band => band.replaceWith(...band.childNodes));
+    if (!container || !(end > first)) return;
+    const startEl = container.querySelector(`.tts-word[data-wi="${first}"]`);
+    let lastEl = null;
+    for (let wi = end - 1; wi >= first && !lastEl; wi -= 1) {
+      lastEl = container.querySelector(`.tts-word[data-wi="${wi}"]`);
+    }
+    if (!startEl || !lastEl || startEl.parentNode !== lastEl.parentNode) return;
+    try {
+      const range = document.createRange();
+      range.setStartBefore(startEl);
+      range.setEndAfter(lastEl);
+      const band = document.createElement("span");
+      band.className = "tts-sentence-active";
+      band.appendChild(range.extractContents());
+      range.insertNode(band);
+    } catch (_) { /* leave the word highlight only */ }
+  }
+
   function highlightWordIn(container, wordIndex) {
     if (!container) return;
     container.querySelector(".tts-word-active")?.classList.remove("tts-word-active");
@@ -2043,6 +2098,8 @@
       const replaced = this._utteranceEndReason === (window.TtsPlaybackSession?.END_REASON?.replacement || "replacement");
       if (endedHandler && !replaced) endedHandler(-1);
       this.onWord = null;
+      this._sentenceToken = (this._sentenceToken || 0) + 1;
+      highlightSentenceIn(null, 0, 0);
       try { window.TtsHighlightController?.clearAll?.(); } catch (_) { /* */ }
     },
 
@@ -2109,6 +2166,47 @@
         this._wordFallbackTimer = setTimeout(step, ms);
       };
       this._wordFallbackTimer = setTimeout(step, 70);
+    },
+
+    /**
+     * Highlight the sentence containing a queue chunk and return a mapper from
+     * engine char positions (in the spoken chunk) to paragraph word spans.
+     */
+    _followChunk(req) {
+      const localIdx = Number(req?.paragraphIndex) || 0;
+      const pi = (this.startIdx || 0) + localIdx;
+      const paraText = String(this.paragraphs?.[pi] || "");
+      const base = localIdx === 0 ? Math.min(this.startOffset || 0, paraText.length) : 0;
+      const visible = String(req?.text || "");
+      const chunkStart = base + (Number(req?.canonicalStart) || 0);
+      const chunkEnd = Number.isFinite(req?.canonicalEnd) ? base + req.canonicalEnd : chunkStart + visible.length;
+      const range = wordRangeForSlice(paraText, chunkStart, chunkEnd);
+      const [sentStart, sentEnd] = sentenceBounds(paraText, chunkStart, chunkEnd);
+      const sentence = wordRangeForSlice(paraText, sentStart, sentEnd);
+      const token = (this._sentenceToken = (this._sentenceToken || 0) + 1);
+      const id = this.paraIds?.[pi];
+      const mark = (tries) => {
+        if (!this.playing || token !== this._sentenceToken || typeof document === "undefined") return;
+        const el = id ? document.getElementById(id) : null;
+        const block = el?.querySelector(".para-text") || el;
+        if (block?.querySelector(".tts-word")) {
+          highlightSentenceIn(block, sentence.first, sentence.end);
+          return;
+        }
+        // Word spans appear once the reader renders the paragraph (page mode renders late).
+        if (tries > 0) setTimeout(() => mark(tries - 1), 150);
+      };
+      mark(8);
+      const spoken = String(req?.processedText || visible);
+      const spokenWords = Math.max(1, wordCountIn(spoken));
+      const visibleWords = range.end - range.first;
+      return (charIndex) => {
+        if (!this.playing || token !== this._sentenceToken || !this.onWord) return;
+        const local = charIndexToWordIndex(spoken, Number(charIndex) || 0);
+        const scaled = spokenWords === visibleWords ? local : Math.floor((local * visibleWords) / spokenWords);
+        const wi = Math.min(range.end - 1, range.first + Math.max(0, scaled));
+        this.onWord(chunkStart, pi, wi);
+      };
     },
 
     _startSegmentWordFallback(seg, rate, onWord) {
@@ -2793,7 +2891,7 @@
           paragraphPauseMs: narrate ? Math.max(pauses.paragraph, 850) : pauses.paragraph,
           getElement: (id) => (typeof document !== "undefined" ? document.getElementById(id) : null),
           onParagraphStart: (localIdx, id, text) => {
-            const realIdx = (this.idx || 0) + localIdx;
+            const realIdx = (this.startIdx || 0) + localIdx;
             self.idx = realIdx;
             if (onHighlight) onHighlight(realIdx, id, text);
           },
@@ -2827,8 +2925,9 @@
             const breathe = async () => {
               if (prosody?.pauseAfter && self.playing) await delay(prosody.pauseAfter);
             };
+            const emitWord = self._followChunk(req);
             if (self.useNative()) {
-              const ok = await self.speakNative(req.processedText || req.text, (req.rate || self.rate) * (prosody?.rateMultiplier || 1), preset, null, {
+              const ok = await self.speakNative(req.processedText || req.text, (req.rate || self.rate) * (prosody?.rateMultiplier || 1), preset, (start) => emitWord(start), {
                 allowChunks: false,
                 lockVoice: true,
                 pitch: prosody?.pitch,
@@ -2858,7 +2957,10 @@
               sessionId: req.sessionId,
               chunkId: req.chunkId,
               resolveDetailed: true,
-              onBoundary: req.onBoundary,
+              onBoundary: (charIndex) => {
+                req.onBoundary?.(charIndex);
+                emitWord(charIndex);
+              },
               rateMultiplier: prosody?.rateMultiplier,
               pitch: prosody?.pitch,
             });
@@ -2873,6 +2975,7 @@
           },
         });
         this.playing = false;
+        highlightSentenceIn(null, 0, 0);
         if (onHighlight) onHighlight(-1);
         const failed = results.find(r => !r.ok && !r.empty);
         return !failed;

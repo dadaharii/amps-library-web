@@ -4,16 +4,22 @@
   outline-offset: 4px;
   border-radius: 4px;
 }
-mark.is-tts-phrase-active,
-.is-tts-phrase-active {
+mark.is-tts-phrase-active {
   background: color-mix(in srgb, #c4a35a 35%, transparent);
   color: inherit;
   border-radius: 2px;
   padding: 0 0.05em;
 }
+/* Sentence being spoken */
+.tts-sentence-active {
+  background: color-mix(in srgb, #c4a35a 24%, transparent);
+  border-radius: 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
 .is-tts-word-active,
 .tts-word-active {
-  background: color-mix(in srgb, #c4a35a 55%, transparent);
+  background: color-mix(in srgb, #c4a35a 60%, transparent);
   border-radius: 2px;
 }
 .is-tts-paused {

@@ -100,6 +100,8 @@
         expectedPause: chunk.expectedPause,
         chunkIndex: position?.index ?? 0,
         chunkCount: position?.count ?? 1,
+        canonicalStart: chunk.canonicalStart,
+        canonicalEnd: chunk.canonicalEnd,
         paragraphIndex: session.paragraphIndex,
         sessionId: session.sessionId,
         chunkId: chunk.chunkId,
