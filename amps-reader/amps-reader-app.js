@@ -3164,6 +3164,16 @@
       : `Chapter audio generated: ${generated} paragraphs.`);
   }
 
+  function speechCorpusLanguage(bookId, book, speakTexts) {
+    const lang = String(book?.editionLanguage || book?.language || "").toLowerCase();
+    if (lang === "hi" || lang.startsWith("hi-") || /-(hi|hindi)$/.test(String(bookId || ""))) return "hi-Deva";
+    if (bookLanguage() !== "hi") return "en";
+    const sample = (speakTexts || []).join(" ");
+    const dev = (sample.match(/[\u0900-\u097F]/g) || []).length;
+    const latin = (sample.match(/[A-Za-z]/g) || []).length;
+    return dev > latin ? "hi-Deva" : "en";
+  }
+
   async function startReaderAudio(readingStyle, continueLast, startParaId, startOffset) {
     const bookId = state.params.parts[1];
     const chapterId = state.params.parts[2];
@@ -3186,10 +3196,14 @@
     state.settings.ttsReadingStyle = style;
     if (style === "pravachan") enableSanskritPronunciationIfOff();
     const apiTts = activeApiTtsConfig();
-    const voicePreset = window.AmpsAudio?.effectiveVoicePreset?.(
-      normalizeTtsVoice(state.settings.ttsVoice),
-      style
-    ) || normalizeTtsVoice(state.settings.ttsVoice);
+    const { speakTexts, paragraphChanda } = buildParagraphSpeakPlan(bookId, ch);
+    const corpusLanguage = speechCorpusLanguage(bookId, book, speakTexts);
+    const voicePreset = corpusLanguage === "hi-Deva"
+      ? normalizeTtsVoice(state.settings.ttsVoice)
+      : window.AmpsAudio?.effectiveVoicePreset?.(
+        normalizeTtsVoice(state.settings.ttsVoice),
+        style
+      ) || normalizeTtsVoice(state.settings.ttsVoice);
     const requestedIdx = startParaId ? ch.paragraphs.findIndex(p => p.id === startParaId) : -1;
     const visibleIdx = ch.paragraphs.findIndex(p => p.id === visibleReaderParaId());
     const rec = state.audioProgress[audioProgressKey(bookId, ch.id)];
@@ -3205,7 +3219,6 @@
         : 0;
     const rate = effectiveSpeechRate(style, apiTts);
     const pauseSettings = chapterAudioPauseSettings();
-    const { speakTexts, paragraphChanda } = buildParagraphSpeakPlan(bookId, ch);
     state.ui.audioPaused = false;
     saveState();
     setTtsToolbarState(true, style);
@@ -3334,6 +3347,7 @@
               pauseSettings,
               paragraphChanda: [paragraphChanda[i]],
               apiTts,
+              corpusLanguage,
             }
           );
           return ok !== false;
@@ -3356,6 +3370,7 @@
         pauseSettings,
         paragraphChanda,
         apiTts,
+        corpusLanguage,
       }
     );
     if (ok === false) {
@@ -8718,7 +8733,8 @@
         normalizeTtsVoice(state.settings.ttsVoice),
         i,
         (charStart) => onPresentWord(charStart),
-        sanskritPronunciationMode()
+        sanskritPronunciationMode(),
+        { corpusLanguage: speechCorpusLanguage(bookId, book, paras.map(p => p.text)) }
       );
     }
 

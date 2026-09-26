@@ -46,6 +46,20 @@
     return /[\u0900-\u097F]/.test(String(text || ""));
   }
 
+  // Corpus language of the paragraphs currently being read ("en" or "hi-Deva").
+  let sessionCorpusLanguage = "en";
+
+  function isHindiCorpus(lang) {
+    const s = String(lang || "").toLowerCase();
+    return s === "hi" || s.startsWith("hi-");
+  }
+
+  function hindiVoicePreset(preset) {
+    const p = normalizePreset(preset);
+    if (isHindiPreset(p)) return p;
+    return genderFromPreset(p) === "male" ? "hi-male" : "hi-female";
+  }
+
   function normalizePronunciationMode(mode) {
     const m = String(mode || "").trim().toLowerCase();
     if (m === "off" || m === "normal") return "off";
@@ -1392,6 +1406,9 @@
   async function prepareSpeakText(text, preset, options) {
     let spoken = normalizeTtsAbbreviations(plainSpeakText(text));
     if (!spoken) return "";
+    if (!options?.corpusLanguage && isHindiCorpus(sessionCorpusLanguage)) {
+      options = { ...options, corpusLanguage: sessionCorpusLanguage };
+    }
 
     // Unified orchestrator path (preferred)
     if (window.TtsOrchestrator?.prepareSpeakRequest && !options?.skipOrchestrator) {
@@ -2620,7 +2637,10 @@
       this.playing = true;
       this.paused = false;
       this.readingStyle = normalizeReadingStyle(options?.readingStyle);
-      this.voicePreset = effectiveVoicePreset(voicePreset, this.readingStyle);
+      sessionCorpusLanguage = options?.corpusLanguage || "en";
+      this.voicePreset = isHindiCorpus(sessionCorpusLanguage)
+        ? hindiVoicePreset(voicePreset)
+        : effectiveVoicePreset(voicePreset, this.readingStyle);
       this.sessionBrowserVoice = null;
       this.pronunciationMode = normalizePronunciationMode(pronunciationMode);
       this.rate = rate || 1;
@@ -2683,7 +2703,10 @@
       this.startIdx = this.idx;
       this.rate = rate || 1;
       this.readingStyle = normalizeReadingStyle(options?.readingStyle);
-      this.voicePreset = effectiveVoicePreset(voicePreset, this.readingStyle);
+      sessionCorpusLanguage = options?.corpusLanguage || "en";
+      this.voicePreset = isHindiCorpus(sessionCorpusLanguage)
+        ? hindiVoicePreset(voicePreset)
+        : effectiveVoicePreset(voicePreset, this.readingStyle);
       this.sessionBrowserVoice = null;
       this.pronunciationMode = normalizePronunciationMode(pronunciationMode);
       this.startOffset = Math.max(0, Number(options?.startOffset) || 0);
@@ -2721,7 +2744,7 @@
           voicePreset: this.voicePreset,
           rate: this.rate,
           pronunciationMode: this.pronunciationMode,
-          corpusLanguage: options?.corpusLanguage || "en",
+          corpusLanguage: sessionCorpusLanguage,
           platformHints: this._platformHints,
           paragraphPauseMs: pauseSettings(this.pauseSettings).paragraph,
           getElement: (id) => (typeof document !== "undefined" ? document.getElementById(id) : null),

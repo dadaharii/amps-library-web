@@ -52,6 +52,11 @@
     return null;
   }
 
+  function prefersHindiDevanagari(options) {
+    return !!options?.preferHindiDevanagari
+      || normalizeExplicitLang(options?.corpusLanguage) === LANGS.HI_DEVA;
+  }
+
   function classifyFromDom(el) {
     if (!el) return null;
     const langAttr = el.getAttribute?.("lang") || el.lang || el.closest?.("[lang]")?.getAttribute?.("lang");
@@ -98,8 +103,8 @@
     if (BENGALI_RE.test(t)) return LANGS.BN;
     if (DEVANAGARI_RE.test(t)) {
       // Devanagari default for AMPS library verse context is Samskrta;
-      // Hindi only when explicitly marked.
-      if (options?.preferHindiDevanagari) return LANGS.HI_DEVA;
+      // Hindi only when explicitly marked or the book itself is Hindi.
+      if (prefersHindiDevanagari(options)) return LANGS.HI_DEVA;
       return LANGS.SA_DEVA;
     }
 
@@ -140,7 +145,7 @@
     const latin = (s.match(/[A-Za-z]/g) || []).length;
     if (dev >= 2 && dev >= latin) {
       return {
-        language: options?.preferHindiDevanagari ? LANGS.HI_DEVA : LANGS.SA_DEVA,
+        language: prefersHindiDevanagari(options) ? LANGS.HI_DEVA : LANGS.SA_DEVA,
         source: "script",
       };
     }
