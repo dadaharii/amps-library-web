@@ -804,7 +804,7 @@
   function replaceReaderHash(full) {
     if (location.hash === full) return;
     try {
-      history.replaceState(null, "", full);
+      history.replaceState(history.state, "", full);
     } catch (_) {
       try { location.replace(full); } catch (__) { location.hash = full; }
     }
@@ -4586,6 +4586,41 @@
     return out;
   }
 
+  const MORE_TAB_ROUTES = ["more","study","sutra-game","shloka-game","journal","settings","stats","glossary","collections","import","presentation-builder","today","companion","ask","smart-search","audio","voice-lab","shloka-recorder","tools","quote-maker","teacher","backup","qa-bank","exam","daily-challenge","socratic-guide","achievements","history","validation-report","about","privacy-data","privacy"];
+
+  // Each history entry carries its in-app depth, so Back can return to the
+  // previous screen without ever stepping out of the app.
+  let navDepth = Number.isFinite(history.state?.ampsDepth) ? history.state.ampsDepth : 0;
+  function stampNavDepth() {
+    try { history.replaceState({ ...(history.state || {}), ampsDepth: navDepth }, ""); } catch (_) { /* */ }
+  }
+  stampNavDepth();
+  window.addEventListener("hashchange", () => {
+    const d = history.state?.ampsDepth;
+    if (Number.isFinite(d)) {
+      navDepth = d;
+    } else {
+      navDepth += 1;
+      stampNavDepth();
+    }
+  });
+
+  function navigateToParent() {
+    if (state.route === "read") navigate("book", { bookId: state.params.parts[1] });
+    else if (state.route !== "more" && MORE_TAB_ROUTES.includes(state.route)) navigate("more");
+    else navigate("library");
+  }
+
+  function goBackInApp() {
+    if (navDepth > 0) {
+      programmaticNav = false;
+      state._navLockUntil = 0;
+      history.back();
+      return;
+    }
+    navigateToParent();
+  }
+
   function renderShell(content, opts) {
     const active = opts?.tab || state.route;
     document.body.classList.toggle("today-screen", state.route === "today");
@@ -4601,7 +4636,7 @@
         <a href="#paths" class="nav-item ${active === "paths" ? "active" : ""}"><span>🛤</span>${T("paths")}</a>
         <a href="#discourses" class="nav-item ${active === "discourses" ? "active" : ""}"><span>📜</span>${T("discourses")}</a>
         <a href="#notebook" class="nav-item ${["notebook","highlights","notes"].includes(active) ? "active" : ""}"><span>📓</span>${T("notebook")}</a>
-        <a href="#more" class="nav-item ${["more","study","sutra-game","shloka-game","journal","settings","stats","glossary","collections","import","presentation-builder","today","companion","ask","smart-search","audio","voice-lab","shloka-recorder","tools","quote-maker","teacher","backup","qa-bank","exam","daily-challenge","socratic-guide","achievements","history","validation-report","about","privacy-data","privacy"].includes(active) ? "active" : ""}"><span>⋯</span>${T("more")}</a>
+        <a href="#more" class="nav-item ${MORE_TAB_ROUTES.includes(active) ? "active" : ""}"><span>⋯</span>${T("more")}</a>
       </nav>
       <div id="selToolbar" class="sel-toolbar hidden"></div>
       <div id="modalRoot"></div>`;
@@ -4619,11 +4654,11 @@
         showMainMenu();
         return;
       }
-      if (state.route === "read") navigate("book", { bookId: state.params.parts[1] });
-      else if (state.route === "presentation-builder") window.AmpsPresentation?.goBack?.();
-      else if (state.route === "sutra-game") navigate("more");
-      else if (["book", "search", "settings", "study", "today", "companion", "smart-search", "audio", "voice-lab", "shloka-recorder", "tools", "quote-maker", "teacher", "backup","qa-bank","exam","daily-challenge","socratic-guide","achievements","history","validation-report","about","privacy-data","privacy","concepts","ask","source-qa","pronunciation"].includes(state.route)) navigate("library");
-      else state.ui.drawer = state.ui.drawer ? null : "menu";
+      if (state.route === "presentation-builder") {
+        window.AmpsPresentation?.goBack?.();
+        return;
+      }
+      goBackInApp();
     });
     document.getElementById("btnSearch")?.addEventListener("click", () => navigate("search"));
     opts?.bind?.();
@@ -9814,7 +9849,7 @@
         if (!presentationBuilderEnabled()) {
           state.route = "library";
           state.params = {};
-          history.replaceState(null, "", "#library");
+          history.replaceState(history.state, "", "#library");
           return renderLibrary();
         }
         return window.AmpsPresentation?.render?.();
@@ -10017,8 +10052,7 @@
       return true;
     }
     if (!["library", "today"].includes(state.route)) {
-      if (history.length > 1) history.back();
-      else navigate("library");
+      goBackInApp();
       return true;
     }
     if (state.route === "today") {
