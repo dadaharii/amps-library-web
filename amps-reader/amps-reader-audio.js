@@ -2073,6 +2073,7 @@
         || (window.TtsPlaybackSession?.END_REASON?.user_stop || "user_stop");
       this.playing = false;
       this.paused = false;
+      this._pauseCut = false;
       this.sessionBrowserVoice = null;
       try { window.TtsQueueController?.stop?.(this._utteranceEndReason); } catch (_) { /* */ }
       window.AmpsApiTts?.stop?.();
@@ -2110,6 +2111,16 @@
       try {
         if (this.synth?.speaking && !this.synth.paused) this.synth.pause();
       } catch (_) { /* */ }
+      // Android TTS has no pause: cut the utterance now; the queue chunk
+      // speaker sees _pauseCut and replays from the last spoken word on resume.
+      if (this.useNative() && this._cutOnPause) {
+        this._pauseCut = true;
+        this._clearWordFallback();
+        try {
+          const native = getNativeTts();
+          if (native?.stop) native.stop().catch?.(() => {});
+        } catch (_) { /* */ }
+      }
       return true;
     },
 
@@ -2477,6 +2488,10 @@
         }, 120);
       }
       for (let attempt = 0; attempt < 3; attempt++) {
+        if (this._pauseCut) {
+          this._clearWordFallback();
+          return false;
+        }
         try {
           await plugin.speak({
             text,
@@ -2878,6 +2893,8 @@
         const self = this;
         const narrate = this.readingStyle !== "normal";
         const pauses = pauseSettings(this.pauseSettings);
+        const queueRun = (this._queueRun = (this._queueRun || 0) + 1);
+        this._cutOnPause = true;
         const results = await window.TtsQueueController.playParagraphList(list, {
           origin: options?.origin || "reader",
           bookId: options?.bookId,
@@ -2927,13 +2944,33 @@
             };
             const emitWord = self._followChunk(req);
             if (self.useNative()) {
-              const ok = await self.speakNative(req.processedText || req.text, (req.rate || self.rate) * (prosody?.rateMultiplier || 1), preset, (start) => emitWord(start), {
-                allowChunks: false,
-                lockVoice: true,
-                pitch: prosody?.pitch,
-                contentLanguage: req.language,
-                forceEnglishLang: req.language === "en",
-              });
+              const fullSpoken = String(req.processedText || req.text || "");
+              let from = 0;
+              let resumeAt = 0;
+              let ok = false;
+              for (;;) {
+                self._pauseCut = false;
+                const offset = from;
+                ok = await self.speakNative(fullSpoken.slice(offset), (req.rate || self.rate) * (prosody?.rateMultiplier || 1), preset, (start) => {
+                  resumeAt = offset + (Number(start) || 0);
+                  emitWord(resumeAt);
+                }, {
+                  allowChunks: false,
+                  lockVoice: true,
+                  pitch: prosody?.pitch,
+                  contentLanguage: req.language,
+                  forceEnglishLang: req.language === "en",
+                });
+                if (ok || !self._pauseCut || !self.playing) break;
+                await self._waitWhilePaused();
+                if (!self.playing) break;
+                from = resumeAt;
+                if (!fullSpoken.slice(from).trim()) {
+                  ok = true;
+                  break;
+                }
+              }
+              self._pauseCut = false;
               if (ok) await breathe();
               // Native path: treat false as cancel/error; true as natural_end when still playing
               if (!ok) {
@@ -2974,6 +3011,10 @@
             };
           },
         });
+        if (queueRun === this._queueRun) {
+          this._cutOnPause = false;
+          this._pauseCut = false;
+        }
         this.playing = false;
         highlightSentenceIn(null, 0, 0);
         if (onHighlight) onHighlight(-1);
