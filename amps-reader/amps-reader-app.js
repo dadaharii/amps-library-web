@@ -4879,6 +4879,36 @@
       en: "caryacarya-3",
       hi: "caryacarya-3-hindi",
     }),
+    "ananda-vacanamrtam-11": Object.freeze({
+      familyId: "ananda-vacanamrtam-11",
+      en: "ananda-vacanamrtam-11",
+      hi: "ananda-vacanamrtam-11-hi",
+    }),
+    "ananda-vacanamrtam-13": Object.freeze({
+      familyId: "ananda-vacanamrtam-13",
+      en: "ananda-vacanamrtam-13",
+      hi: "ananda-vacanamrtam-13-hi",
+    }),
+    "ananda-vacanamrtam-14": Object.freeze({
+      familyId: "ananda-vacanamrtam-14",
+      en: "ananda-vacanamrtam-14",
+      hi: "ananda-vacanamrtam-14-hi",
+    }),
+    "ananda-vacanamrtam-33": Object.freeze({
+      familyId: "ananda-vacanamrtam-33",
+      en: "ananda-vacanamrtam-33",
+      hi: "ananda-vacanamrtam-33-hi",
+    }),
+    "ananda-vacanamrtam-34": Object.freeze({
+      familyId: "ananda-vacanamrtam-34",
+      en: "ananda-vacanamrtam-34",
+      hi: "ananda-vacanamrtam-34-hi",
+    }),
+    "in-the-land-of-hattamala-1": Object.freeze({
+      familyId: "in-the-land-of-hattamala-1",
+      en: "in-the-land-of-hattamala-1",
+      hi: "in-the-land-of-hattamala-hi",
+    }),
   });
 
   function bookEditionFamily(bookId) {
