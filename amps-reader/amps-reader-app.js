@@ -3079,7 +3079,7 @@
       alert("Audio download is not ready. Reopen the app and try again.");
       return;
     }
-    const book = await loadBook(bookId);
+    const book = await loadReaderEditionBook(bookId);
     const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     const paragraphs = (ch?.paragraphs || []).filter(p => String(p?.text || "").trim());
     if (!paragraphs.length) return;
@@ -3134,7 +3134,7 @@
       alert("Audio generation is not ready. Reopen the app and try again.");
       return;
     }
-    const book = await loadBook(bookId);
+    const book = await loadReaderEditionBook(bookId);
     const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     const paragraphs = (ch?.paragraphs || []).filter(p => String(p?.text || "").trim());
     if (!paragraphs.length) return;
@@ -3166,6 +3166,8 @@
 
   function speechCorpusLanguage(bookId, book, speakTexts) {
     const lang = String(book?.editionLanguage || book?.language || "").toLowerCase();
+    const packLang = String(book?.languagePack?.lang || "").toLowerCase();
+    if (packLang === "hi" && book?.languagePack?.mode === "translation_only") return "hi-Deva";
     if (lang === "hi" || lang.startsWith("hi-") || /-(hi|hindi)$/.test(String(bookId || ""))) return "hi-Deva";
     if (bookLanguage() !== "hi") return "en";
     const sample = (speakTexts || []).join(" ");
@@ -3189,7 +3191,7 @@
       return;
     }
     window.AmpsAudio.prime?.();
-    const book = await loadBook(bookId);
+    const book = await loadReaderEditionBook(bookId);
     const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     if (!ch?.paragraphs?.length) return;
     const style = normalizeTtsReadingStyle(readingStyle || state.settings.ttsReadingStyle);
@@ -3882,7 +3884,7 @@
     window.AmpsAudio.prime?.();
     ensureMyVoicePronunciationMode();
     enableSanskritPronunciationIfOff();
-    const book = await loadBook(bookId);
+    const book = await loadReaderEditionBook(bookId);
     const startParagraphId = state.ui.activeParaId
       || visibleReaderParaId()
       || state.audioProgress[audioProgressKey(bookId, chapterId)]?.paraId
@@ -5455,6 +5457,18 @@
     };
   }
 
+  /** Book as shown in the reader (Hindi pack applied), so audio speaks what is on screen. */
+  async function loadReaderEditionBook(bookId) {
+    const book = await loadBook(bookId);
+    try {
+      const active = await activeBookEdition(bookId);
+      if (active?.pack) return translatedReaderBook(book, active);
+    } catch (err) {
+      console.warn("AMPS language pack unavailable for audio:", err);
+    }
+    return book;
+  }
+
   function packTranslation(pack, id, sourceText) {
     const result = packSegment(pack, id, sourceText);
     return result?.text || null;
@@ -6042,6 +6056,7 @@
     document.querySelectorAll("[data-book-language]").forEach(button => {
       button.addEventListener("click", () => {
         const lang = button.dataset.bookLanguage || "en";
+        if (document.body.classList.contains("tts-reading")) stopTtsPlayback();
         state.settings.bookLanguage = lang;
         state.settings.bookLanguageDisplayMode = lang === "en" ? "english_only" : "translation_only";
         state.ui.pageIndex = 0;
@@ -7331,7 +7346,7 @@
     const chapterId = state.params.parts[2];
     if (!bookId || !chapterId || state.route !== "read") return;
     try {
-      const book = await loadBook(bookId);
+      const book = await loadReaderEditionBook(bookId);
       const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
       if (!ch) return;
       const pid = activeReaderParaId(ch.paragraphs[0]?.id);
