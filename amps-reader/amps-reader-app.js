@@ -2390,12 +2390,46 @@
               if (res.ok) patchSamskrtaShlokaCatalog(c, await res.json());
             } catch (_) { /* catalog patch optional */ }
           }
+          await loadDiscourseEditions();
           state.catalog = c;
           return c;
         })
         .finally(() => { catalogPromise = null; });
     }
     return catalogPromise;
+  }
+
+  const discourseEditions = { loaded: false, hiToEn: new Map(), enToHi: new Map(), books: new Set() };
+
+  async function loadDiscourseEditions() {
+    if (discourseEditions.loaded) return;
+    try {
+      const res = await fetch(readerAssetUrl("data/discourse-editions.json"), { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      for (const pair of data?.pairs || []) {
+        if (!pair?.hi || !pair?.en) continue;
+        if (!discourseEditions.hiToEn.has(pair.hi)) discourseEditions.hiToEn.set(pair.hi, pair.en);
+        if (!discourseEditions.enToHi.has(pair.en)) discourseEditions.enToHi.set(pair.en, pair.hi);
+        discourseEditions.books.add(pair.hi.split("/")[0]);
+        discourseEditions.books.add(pair.en.split("/")[0]);
+      }
+      discourseEditions.loaded = true;
+    } catch (_) { /* discourse pairs optional */ }
+  }
+
+  function discourseEditionPair(bookId, chapterId) {
+    const key = `${bookId}/${chapterId}`;
+    const hi = discourseEditions.enToHi.get(key);
+    if (hi) return { en: key, hi };
+    const en = discourseEditions.hiToEn.get(key);
+    if (en) return { en, hi: key };
+    return null;
+  }
+
+  function discourseRefHref(ref) {
+    const slash = ref.indexOf("/");
+    return `#read/${ref.slice(0, slash)}/${encodeURIComponent(ref.slice(slash + 1))}`;
   }
 
   async function ensureSearchCatalog() {
@@ -4932,13 +4966,24 @@
 
   function bookEditionSwitchHtml(bookId, chapterId) {
     const family = bookEditionFamily(bookId);
-
-    if (!family) return "";
-
-    const activeHindi = bookId === family.hi;
     const ch = String(chapterId || "").trim();
-    const enHref = ch ? `#read/${family.en}/${encodeURIComponent(ch)}` : `#book/${family.en}`;
-    const hiHref = ch ? `#read/${family.hi}/${encodeURIComponent(ch)}` : `#book/${family.hi}`;
+    const pair = ch ? discourseEditionPair(bookId, ch) : null;
+
+    if (!family && !pair) return "";
+
+    const activeHindi = pair ? pair.hi === `${bookId}/${ch}` : bookId === family.hi;
+    let enHref;
+    let hiHref;
+    if (pair) {
+      enHref = discourseRefHref(pair.en);
+      hiHref = discourseRefHref(pair.hi);
+    } else if (ch && !discourseEditions.books.has(family.en) && !discourseEditions.books.has(family.hi)) {
+      enHref = `#read/${family.en}/${encodeURIComponent(ch)}`;
+      hiHref = `#read/${family.hi}/${encodeURIComponent(ch)}`;
+    } else {
+      enHref = activeHindi || !ch ? `#book/${family.en}` : `#read/${family.en}/${encodeURIComponent(ch)}`;
+      hiHref = !activeHindi || !ch ? `#book/${family.hi}` : `#read/${family.hi}/${encodeURIComponent(ch)}`;
+    }
 
     return `<section class="reader-edition-bar book-edition-switch"
       aria-label="Book language">
