@@ -460,7 +460,6 @@
     }
   }
 
-
   function isDiscoursePdfAllowed() {
     if (window.AmpsLicense?.isEnforced?.() && !window.AmpsLicense?.isLicensed?.()) return false;
     return state.settings.discoursePdfAllowed !== false;
@@ -839,7 +838,7 @@
   function replaceReaderHash(full) {
     if (location.hash === full) return;
     try {
-      history.replaceState(history.state, "", full);
+      history.replaceState(null, "", full);
     } catch (_) {
       try { location.replace(full); } catch (__) { location.hash = full; }
     }
@@ -2329,23 +2328,7 @@
   function isDiscourseDevanagariVersePara(p) {
     if (!p) return false;
     if (p.contentType === "verse" || p.renderType === "shloka") return true;
-    const IT = window.AmpsIndicText;
-    if (IT?.looksLikeVerse?.(p.text)) return true;
-    return isRoleShlokaVerseLine(p);
-  }
-
-  /** Short Devanagari lines the source tagged as shloka (songs, dohas without dandas). */
-  function isRoleShlokaVerseLine(p) {
-    if (String(p?.displayRole || "").toLowerCase() !== "shloka") return false;
-    const text = String(p.text || "").trim();
-    if (!text || text.length > 120 || !/[\u0900-\u097f]/.test(text)) return false;
-    return !window.AmpsIndicText?.looksLikeProse?.(text);
-  }
-
-  /** Source tagged the paragraph as shloka but it reads as ordinary Hindi prose. */
-  function isMisTaggedShlokaProse(p) {
-    if (String(p?.displayRole || "").toLowerCase() !== "shloka") return false;
-    return !!window.AmpsIndicText?.looksLikeProse?.(p.text);
+    return !!window.AmpsIndicText?.looksLikeVerse?.(p.text);
   }
 
   function renderDiscourseDevanagariVerse(text, ch) {
@@ -2425,46 +2408,12 @@
               if (res.ok) patchSamskrtaShlokaCatalog(c, await res.json());
             } catch (_) { /* catalog patch optional */ }
           }
-          await loadDiscourseEditions();
           state.catalog = c;
           return c;
         })
         .finally(() => { catalogPromise = null; });
     }
     return catalogPromise;
-  }
-
-  const discourseEditions = { loaded: false, hiToEn: new Map(), enToHi: new Map(), books: new Set() };
-
-  async function loadDiscourseEditions() {
-    if (discourseEditions.loaded) return;
-    try {
-      const res = await fetch(readerAssetUrl("data/discourse-editions.json"), { cache: "no-store" });
-      if (!res.ok) return;
-      const data = await res.json();
-      for (const pair of data?.pairs || []) {
-        if (!pair?.hi || !pair?.en) continue;
-        if (!discourseEditions.hiToEn.has(pair.hi)) discourseEditions.hiToEn.set(pair.hi, pair.en);
-        if (!discourseEditions.enToHi.has(pair.en)) discourseEditions.enToHi.set(pair.en, pair.hi);
-        discourseEditions.books.add(pair.hi.split("/")[0]);
-        discourseEditions.books.add(pair.en.split("/")[0]);
-      }
-      discourseEditions.loaded = true;
-    } catch (_) { /* discourse pairs optional */ }
-  }
-
-  function discourseEditionPair(bookId, chapterId) {
-    const key = `${bookId}/${chapterId}`;
-    const hi = discourseEditions.enToHi.get(key);
-    if (hi) return { en: key, hi };
-    const en = discourseEditions.hiToEn.get(key);
-    if (en) return { en, hi: key };
-    return null;
-  }
-
-  function discourseRefHref(ref) {
-    const slash = ref.indexOf("/");
-    return `#read/${ref.slice(0, slash)}/${encodeURIComponent(ref.slice(slash + 1))}`;
   }
 
   async function ensureSearchCatalog() {
@@ -3114,7 +3063,7 @@
       alert("Audio download is not ready. Reopen the app and try again.");
       return;
     }
-    const book = await loadReaderEditionBook(bookId);
+    const book = await loadBook(bookId);
     const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     const paragraphs = (ch?.paragraphs || []).filter(p => String(p?.text || "").trim());
     if (!paragraphs.length) return;
@@ -3169,7 +3118,7 @@
       alert("Audio generation is not ready. Reopen the app and try again.");
       return;
     }
-    const book = await loadReaderEditionBook(bookId);
+    const book = await loadBook(bookId);
     const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     const paragraphs = (ch?.paragraphs || []).filter(p => String(p?.text || "").trim());
     if (!paragraphs.length) return;
@@ -3199,18 +3148,6 @@
       : `Chapter audio generated: ${generated} paragraphs.`);
   }
 
-  function speechCorpusLanguage(bookId, book, speakTexts) {
-    const lang = String(book?.editionLanguage || book?.language || "").toLowerCase();
-    const packLang = String(book?.languagePack?.lang || "").toLowerCase();
-    if (packLang === "hi" && book?.languagePack?.mode === "translation_only") return "hi-Deva";
-    if (lang === "hi" || lang.startsWith("hi-") || /-(hi|hindi)$/.test(String(bookId || ""))) return "hi-Deva";
-    if (bookLanguage() !== "hi") return "en";
-    const sample = (speakTexts || []).join(" ");
-    const dev = (sample.match(/[\u0900-\u097F]/g) || []).length;
-    const latin = (sample.match(/[A-Za-z]/g) || []).length;
-    return dev > latin ? "hi-Deva" : "en";
-  }
-
   async function startReaderAudio(readingStyle, continueLast, startParaId, startOffset) {
     const bookId = state.params.parts[1];
     const chapterId = state.params.parts[2];
@@ -3226,21 +3163,17 @@
       return;
     }
     window.AmpsAudio.prime?.();
-    const book = await loadReaderEditionBook(bookId);
+    const book = await loadBook(bookId);
     const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     if (!ch?.paragraphs?.length) return;
     const style = normalizeTtsReadingStyle(readingStyle || state.settings.ttsReadingStyle);
     state.settings.ttsReadingStyle = style;
     if (style === "pravachan") enableSanskritPronunciationIfOff();
     const apiTts = activeApiTtsConfig();
-    const { speakTexts, paragraphChanda } = buildParagraphSpeakPlan(bookId, ch);
-    const corpusLanguage = speechCorpusLanguage(bookId, book, speakTexts);
-    const voicePreset = corpusLanguage === "hi-Deva"
-      ? normalizeTtsVoice(state.settings.ttsVoice)
-      : window.AmpsAudio?.effectiveVoicePreset?.(
-        normalizeTtsVoice(state.settings.ttsVoice),
-        style
-      ) || normalizeTtsVoice(state.settings.ttsVoice);
+    const voicePreset = window.AmpsAudio?.effectiveVoicePreset?.(
+      normalizeTtsVoice(state.settings.ttsVoice),
+      style
+    ) || normalizeTtsVoice(state.settings.ttsVoice);
     const requestedIdx = startParaId ? ch.paragraphs.findIndex(p => p.id === startParaId) : -1;
     const visibleIdx = ch.paragraphs.findIndex(p => p.id === visibleReaderParaId());
     const rec = state.audioProgress[audioProgressKey(bookId, ch.id)];
@@ -3256,6 +3189,7 @@
         : 0;
     const rate = effectiveSpeechRate(style, apiTts);
     const pauseSettings = chapterAudioPauseSettings();
+    const { speakTexts, paragraphChanda } = buildParagraphSpeakPlan(bookId, ch);
     state.ui.audioPaused = false;
     saveState();
     setTtsToolbarState(true, style);
@@ -3384,7 +3318,6 @@
               pauseSettings,
               paragraphChanda: [paragraphChanda[i]],
               apiTts,
-              corpusLanguage,
             }
           );
           return ok !== false;
@@ -3407,7 +3340,6 @@
         pauseSettings,
         paragraphChanda,
         apiTts,
-        corpusLanguage,
       }
     );
     if (ok === false) {
@@ -3919,7 +3851,7 @@
     window.AmpsAudio.prime?.();
     ensureMyVoicePronunciationMode();
     enableSanskritPronunciationIfOff();
-    const book = await loadReaderEditionBook(bookId);
+    const book = await loadBook(bookId);
     const startParagraphId = state.ui.activeParaId
       || visibleReaderParaId()
       || state.audioProgress[audioProgressKey(bookId, chapterId)]?.paraId
@@ -4511,23 +4443,6 @@
     return state.catalog?.books?.find(b => b.id === id);
   }
 
-  /** Phase 5: when license server URL is set, block books outside plan entitlements. Offline = always allowed. */
-  function guardOpenBook(bookId, bookHint) {
-    if (!window.AmpsLicense?.isEnforced?.()) return true;
-    const meta = bookHint || bookById(bookId) || { id: bookId, title: bookId };
-    if (typeof window.AmpsLicense.requireBookAccess === "function") {
-      return window.AmpsLicense.requireBookAccess(meta);
-    }
-    return window.AmpsLicense.isLicensed?.() !== false;
-  }
-
-  function bookAccessLocked(bookMeta) {
-    if (!window.AmpsLicense?.isEnforced?.()) return false;
-    if (!window.AmpsLicense?.isLicensed?.()) return true;
-    if (typeof window.AmpsLicense.canAccessBook !== "function") return false;
-    return !window.AmpsLicense.canAccessBook(bookMeta || {});
-  }
-
   function catalogBookEntryFromShloka(book) {
     if (!book?.id) return null;
     const sk = String(book.series || "Samskrta Shloka").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "samskrta-shloka";
@@ -4621,41 +4536,6 @@
     return out;
   }
 
-  const MORE_TAB_ROUTES = ["more","study","sutra-game","shloka-game","journal","settings","stats","glossary","collections","import","presentation-builder","today","companion","ask","smart-search","audio","voice-lab","shloka-recorder","tools","quote-maker","teacher","backup","qa-bank","exam","daily-challenge","socratic-guide","achievements","history","validation-report","about","privacy-data","privacy"];
-
-  // Each history entry carries its in-app depth, so Back can return to the
-  // previous screen without ever stepping out of the app.
-  let navDepth = Number.isFinite(history.state?.ampsDepth) ? history.state.ampsDepth : 0;
-  function stampNavDepth() {
-    try { history.replaceState({ ...(history.state || {}), ampsDepth: navDepth }, ""); } catch (_) { /* */ }
-  }
-  stampNavDepth();
-  window.addEventListener("hashchange", () => {
-    const d = history.state?.ampsDepth;
-    if (Number.isFinite(d)) {
-      navDepth = d;
-    } else {
-      navDepth += 1;
-      stampNavDepth();
-    }
-  });
-
-  function navigateToParent() {
-    if (state.route === "read") navigate("book", { bookId: state.params.parts[1] });
-    else if (state.route !== "more" && MORE_TAB_ROUTES.includes(state.route)) navigate("more");
-    else navigate("library");
-  }
-
-  function goBackInApp() {
-    if (navDepth > 0) {
-      programmaticNav = false;
-      state._navLockUntil = 0;
-      history.back();
-      return;
-    }
-    navigateToParent();
-  }
-
   function renderShell(content, opts) {
     const active = opts?.tab || state.route;
     document.body.classList.toggle("today-screen", state.route === "today");
@@ -4671,7 +4551,7 @@
         <a href="#paths" class="nav-item ${active === "paths" ? "active" : ""}"><span>🛤</span>${T("paths")}</a>
         <a href="#discourses" class="nav-item ${active === "discourses" ? "active" : ""}"><span>📜</span>${T("discourses")}</a>
         <a href="#notebook" class="nav-item ${["notebook","highlights","notes"].includes(active) ? "active" : ""}"><span>📓</span>${T("notebook")}</a>
-        <a href="#more" class="nav-item ${MORE_TAB_ROUTES.includes(active) ? "active" : ""}"><span>⋯</span>${T("more")}</a>
+        <a href="#more" class="nav-item ${["more","study","sutra-game","shloka-game","journal","settings","stats","glossary","collections","import","presentation-builder","today","companion","ask","smart-search","audio","voice-lab","shloka-recorder","tools","quote-maker","teacher","backup","qa-bank","exam","daily-challenge","socratic-guide","achievements","history","validation-report","about","privacy-data","privacy"].includes(active) ? "active" : ""}"><span>⋯</span>${T("more")}</a>
       </nav>
       <div id="selToolbar" class="sel-toolbar hidden"></div>
       <div id="modalRoot"></div>`;
@@ -4689,11 +4569,11 @@
         showMainMenu();
         return;
       }
-      if (state.route === "presentation-builder") {
-        window.AmpsPresentation?.goBack?.();
-        return;
-      }
-      goBackInApp();
+      if (state.route === "read") navigate("book", { bookId: state.params.parts[1] });
+      else if (state.route === "presentation-builder") window.AmpsPresentation?.goBack?.();
+      else if (state.route === "sutra-game") navigate("more");
+      else if (["book", "search", "settings", "study", "today", "companion", "smart-search", "audio", "voice-lab", "shloka-recorder", "tools", "quote-maker", "teacher", "backup","qa-bank","exam","daily-challenge","socratic-guide","achievements","history","validation-report","about","privacy-data","privacy","concepts","ask","source-qa","pronunciation"].includes(state.route)) navigate("library");
+      else state.ui.drawer = state.ui.drawer ? null : "menu";
     });
     document.getElementById("btnSearch")?.addEventListener("click", () => navigate("search"));
     opts?.bind?.();
@@ -4732,18 +4612,6 @@
   // AMPS_AV9_BILINGUAL_V1
   // One visible library family, separate language-edition files.
   const BOOK_EDITION_FAMILIES = Object.freeze({
-    // वर्ण विज्ञान ↔ Varńa Vijinána (Unicode DOCX, 21 discourses 1983)
-    "varna-vijinana": Object.freeze({
-      familyId: "varna-vijinana",
-      en: "varna-vijinana",
-      hi: "varna-vijinana-hi",
-    }),
-    // आनन्द मार्ग — प्रारम्भिक दर्शन ↔ Ananda Marga: Elementary Philosophy (IDML 2018)
-    "ananda-marga-elementary-philosophy": Object.freeze({
-      familyId: "ananda-marga-elementary-philosophy",
-      en: "ananda-marga-elementary-philosophy",
-      hi: "ananda-marga-elementary-philosophy-hi",
-    }),
     // HOLD (no switch): AV01-hi wrong source; AV02-hi misbind/absent.
     "ananda-vacanamrtam-04": Object.freeze({
       familyId: "ananda-vacanamrtam-04",
@@ -4915,21 +4783,6 @@
       en: "subhasita-samgraha-15",
       hi: "subhasita-samgraha-15-hi",
     }),
-    "subhasita-samgraha-16": Object.freeze({
-      familyId: "subhasita-samgraha-16",
-      en: "subhasita-samgraha-16",
-      hi: "subhasita-samgraha-16-hi",
-    }),
-    "subhasita-samgraha-17": Object.freeze({
-      familyId: "subhasita-samgraha-17",
-      en: "subhasita-samgraha-17",
-      hi: "subhasita-samgraha-17-hi",
-    }),
-    "subhasita-samgraha-18": Object.freeze({
-      familyId: "subhasita-samgraha-18",
-      en: "subhasita-samgraha-18",
-      hi: "subhasita-samgraha-18-hi",
-    }),
     "prout-in-a-nutshell-01": Object.freeze({
       familyId: "prout-in-a-nutshell-01",
       en: "prout-in-a-nutshell-01",
@@ -4995,41 +4848,6 @@
       en: "namah-shivaya-shantaya",
       hi: "namah-shivaya-shantaya-hi",
     }),
-    "caryacarya-3": Object.freeze({
-      familyId: "caryacarya-3",
-      en: "caryacarya-3",
-      hi: "caryacarya-3-hindi",
-    }),
-    "ananda-vacanamrtam-11": Object.freeze({
-      familyId: "ananda-vacanamrtam-11",
-      en: "ananda-vacanamrtam-11",
-      hi: "ananda-vacanamrtam-11-hi",
-    }),
-    "ananda-vacanamrtam-13": Object.freeze({
-      familyId: "ananda-vacanamrtam-13",
-      en: "ananda-vacanamrtam-13",
-      hi: "ananda-vacanamrtam-13-hi",
-    }),
-    "ananda-vacanamrtam-14": Object.freeze({
-      familyId: "ananda-vacanamrtam-14",
-      en: "ananda-vacanamrtam-14",
-      hi: "ananda-vacanamrtam-14-hi",
-    }),
-    "ananda-vacanamrtam-33": Object.freeze({
-      familyId: "ananda-vacanamrtam-33",
-      en: "ananda-vacanamrtam-33",
-      hi: "ananda-vacanamrtam-33-hi",
-    }),
-    "ananda-vacanamrtam-34": Object.freeze({
-      familyId: "ananda-vacanamrtam-34",
-      en: "ananda-vacanamrtam-34",
-      hi: "ananda-vacanamrtam-34-hi",
-    }),
-    "in-the-land-of-hattamala-1": Object.freeze({
-      familyId: "in-the-land-of-hattamala-1",
-      en: "in-the-land-of-hattamala-1",
-      hi: "in-the-land-of-hattamala-hi",
-    }),
   });
 
   function bookEditionFamily(bookId) {
@@ -5053,24 +4871,13 @@
 
   function bookEditionSwitchHtml(bookId, chapterId) {
     const family = bookEditionFamily(bookId);
+
+    if (!family) return "";
+
+    const activeHindi = bookId === family.hi;
     const ch = String(chapterId || "").trim();
-    const pair = ch ? discourseEditionPair(bookId, ch) : null;
-
-    if (!family && !pair) return "";
-
-    const activeHindi = pair ? pair.hi === `${bookId}/${ch}` : bookId === family.hi;
-    let enHref;
-    let hiHref;
-    if (pair) {
-      enHref = discourseRefHref(pair.en);
-      hiHref = discourseRefHref(pair.hi);
-    } else if (ch && !discourseEditions.books.has(family.en) && !discourseEditions.books.has(family.hi)) {
-      enHref = `#read/${family.en}/${encodeURIComponent(ch)}`;
-      hiHref = `#read/${family.hi}/${encodeURIComponent(ch)}`;
-    } else {
-      enHref = activeHindi || !ch ? `#book/${family.en}` : `#read/${family.en}/${encodeURIComponent(ch)}`;
-      hiHref = !activeHindi || !ch ? `#book/${family.hi}` : `#read/${family.hi}/${encodeURIComponent(ch)}`;
-    }
+    const enHref = ch ? `#read/${family.en}/${encodeURIComponent(ch)}` : `#book/${family.en}`;
+    const hiHref = ch ? `#read/${family.hi}/${encodeURIComponent(ch)}` : `#book/${family.hi}`;
 
     return `<section class="reader-edition-bar book-edition-switch"
       aria-label="Book language">
@@ -5182,15 +4989,11 @@
     if (!scope) return;
     scope.querySelectorAll("[data-book]").forEach(el => {
       if (el.dataset.ch) return;
-      el.addEventListener("click", () => {
-        if (!guardOpenBook(el.dataset.book)) return;
-        navigate("book", { bookId: el.dataset.book });
-      });
+      el.addEventListener("click", () => navigate("book", { bookId: el.dataset.book }));
     });
     scope.querySelectorAll("[data-resume-book]").forEach(el => {
       el.addEventListener("click", e => {
         e.stopPropagation();
-        if (!guardOpenBook(el.dataset.resumeBook)) return;
         const resume = readingResumeParams(el.dataset.resumeBook);
         if (resume) navigate("read", resume);
         });
@@ -5293,16 +5096,14 @@
     const displayTitle = localizedBookCardTitle(b);
     const hasEdition = displayTitle !== (b.title || "");
     const alpha = titleAlphaLetter(displayTitle || b.title);
-    const locked = bookAccessLocked(b);
-    return `<button type="button" class="book-card${locked ? " book-card-locked" : ""}" data-book="${esc(b.id)}"${alpha ? ` data-alpha="${alpha}"` : ""}${locked ? ' aria-label="Locked by subscription"' : ""}>
+    return `<button type="button" class="book-card" data-book="${esc(b.id)}"${alpha ? ` data-alpha="${alpha}"` : ""}>
       ${bookCoverHtml(hasEdition ? { ...b, title: displayTitle } : b, "card")}
       <div class="book-card-body">
         <h3>${esc(displayTitle || b.title)} ${isFavoriteBook(b.id) ? "★" : ""}</h3>
         <p>${b.chapterCount || "?"} chapters · ${b.pointCount || "?"} study points</p>
         ${hasEdition ? `<span class="pill edition-pill">हिन्दी · Official translation</span>` : ""}
-        ${locked ? `<span class="pill pill-locked">Locked</span>` : ""}
         ${pct ? `<div class="mini-progress"><div class="mini-progress-fill" style="width:${pct}%"></div></div>` : ""}
-        ${prog?.chapterId && !locked ? `<span class="pill pill-resume" data-resume-book="${esc(b.id)}">Continue reading</span>` : ""}
+        ${prog?.chapterId ? `<span class="pill pill-resume" data-resume-book="${esc(b.id)}">Continue reading</span>` : ""}
       </div>
     </button>`;
   }
@@ -5311,23 +5112,6 @@
     const snap = routeSnapshot();
     const bookId = snap.parts[1];
     if (!bookId || snap.route !== "book") return;
-    if (!guardOpenBook(bookId)) {
-      if (renderStale(gen) || routeChanged(snap)) return;
-      renderShell(`<div class="pad">
-        <h2>Subscription required</h2>
-        <p class="muted">This book is not included in your current plan. Activate a license or upgrade your subscription.</p>
-        <button type="button" class="btn btn-gold" id="btnBackLibLocked">Library</button>
-        <button type="button" class="btn btn-ghost" id="btnOpenLicenseSettings">License settings</button>
-      </div>`, {
-        title: "Locked",
-        tab: "library",
-        bind: () => {
-          document.getElementById("btnBackLibLocked")?.addEventListener("click", () => navigate("library"));
-          document.getElementById("btnOpenLicenseSettings")?.addEventListener("click", () => navigate("settings"));
-        },
-      });
-      return;
-    }
     let book;
     try {
       book = await loadBook(bookId);
@@ -5525,18 +5309,6 @@
       lang,
       mode: bookLanguageDisplayMode(lang),
     };
-  }
-
-  /** Book as shown in the reader (Hindi pack applied), so audio speaks what is on screen. */
-  async function loadReaderEditionBook(bookId) {
-    const book = await loadBook(bookId);
-    try {
-      const active = await activeBookEdition(bookId);
-      if (active?.pack) return translatedReaderBook(book, active);
-    } catch (err) {
-      console.warn("AMPS language pack unavailable for audio:", err);
-    }
-    return book;
   }
 
   function packTranslation(pack, id, sourceText) {
@@ -6126,7 +5898,6 @@
     document.querySelectorAll("[data-book-language]").forEach(button => {
       button.addEventListener("click", () => {
         const lang = button.dataset.bookLanguage || "en";
-        if (document.body.classList.contains("tts-reading")) stopTtsPlayback();
         state.settings.bookLanguage = lang;
         state.settings.bookLanguageDisplayMode = lang === "en" ? "english_only" : "translation_only";
         state.ui.pageIndex = 0;
@@ -6164,19 +5935,6 @@
     const bookId = snap.parts[1];
     const chapterId = snap.parts[2];
     if (!bookId || snap.route !== "read") return;
-    if (!guardOpenBook(bookId)) {
-      if (renderStale(gen) || routeChanged(snap)) return;
-      renderShell(`<div class="pad">
-        <h2>Subscription required</h2>
-        <p class="muted">This book is not included in your current plan.</p>
-        <button type="button" class="btn btn-gold" id="btnBackLibLockedRead">Library</button>
-      </div>`, {
-        title: "Locked",
-        tab: "library",
-        bind: () => document.getElementById("btnBackLibLockedRead")?.addEventListener("click", () => navigate("library")),
-      });
-      return;
-    }
     let book;
     try {
       book = await loadBook(bookId);
@@ -6572,6 +6330,11 @@
       if (!isShlokaVerses && fnApi()?.appendStructuredRefs) {
         paraBody = fnApi().appendStructuredRefs(paraBody, p, ch, esc);
       }
+      const keepVerseLines = isShloka || discourseDevVerse || discourseRomanShloka || isShlokaVerses
+        || p.contentType === "verse" || p.renderType === "shloka";
+      if (!keepVerseLines && !semanticBlockBody && paraBody.includes("\n")) {
+        paraBody = paraBody.replace(/\n{2,}/g, "<br><br>").replace(/\n/g, " ");
+      }
       const hindiPackProse = isHindiPackProseParagraph(p, book, activeLanguage);
       if (hindiPackProse && !semanticBlockBody) {
         paraBody = `<p class="amps-hindi-prose" lang="${esc(p.lang || activeLanguage?.lang || "hi")}">${paraBody}</p>`;
@@ -6588,8 +6351,7 @@
       const paragraphTag = p.renderType === "heading2" ? "h2" : "p";
       const bodyTag = semanticBlockBody || hindiPackProse || discourseDevVerse || discourseCombinedUnit ? "div" : paragraphTag;
       const bodyClass = semanticBlockBody || hindiPackProse || discourseDevVerse || discourseCombinedUnit ? "para-text rich-language-blocks" : "para-text";
-      const misTaggedShlokaProse = isMisTaggedShlokaProse(p);
-      const paragraphRole = misTaggedShlokaProse ? "prose" : String(p.displayRole || p.role || "").toLowerCase();
+      const paragraphRole = String(p.displayRole || p.role || "").toLowerCase();
       const isTitlePageRole = ["title", "volume", "author", "publisher"].includes(paragraphRole);
       const paragraphIsHeading = (
         !isTitlePageRole && (
@@ -6601,7 +6363,8 @@
         )
       );
       const paragraphCentered = !paragraphIsHeading && (
-        (!misTaggedShlokaProse && (p.alignment === "center" || p.align === "center"))
+        p.alignment === "center"
+        || p.align === "center"
         || paragraphRole === "shloka"
         || paragraphRole === "author"
         || isTitlePageRole
@@ -6858,7 +6621,7 @@
         <div class="pravachan-panel">
           <label>Reader audio mode
             <select id="setTtsReadingStyle">
-              <option value="human" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "human" ? "selected" : ""}>Podcast narration (recommended)</option>
+              <option value="human" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "human" ? "selected" : ""}>Human discourse (recommended)</option>
               <option value="normal" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "normal" ? "selected" : ""}>Normal Reading</option>
               <option value="pravachan" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "pravachan" ? "selected" : ""}>Pravachan-style Reading</option>
             </select>
@@ -7416,7 +7179,7 @@
     const chapterId = state.params.parts[2];
     if (!bookId || !chapterId || state.route !== "read") return;
     try {
-      const book = await loadReaderEditionBook(bookId);
+      const book = await loadBook(bookId);
       const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
       if (!ch) return;
       const pid = activeReaderParaId(ch.paragraphs[0]?.id);
@@ -8038,7 +7801,6 @@
     el.innerHTML = html;
     el.querySelectorAll(".search-hit").forEach(btn => {
       btn.addEventListener("click", () => {
-        if (!guardOpenBook(btn.dataset.book)) return;
         if (btn.dataset.ch) {
           navigate("read", {
             bookId: btn.dataset.book,
@@ -8277,7 +8039,6 @@
         <a href="#backup" class="more-item"><span>B</span><strong>Backup</strong><small>Export, restore, cloud endpoint</small></a>
         <a href="#validation-report" class="more-item"><span>V</span><strong>Content Report</strong><small>Library validation summary</small></a>
         <a href="#offline" class="more-item"><span>✓</span><strong>Offline &amp; Downloads</strong><small>Shell status, packs, storage</small></a>
-        ${window.AmpsUpdateCheck?.isAndroidApp?.() ? `<button type="button" class="more-item" id="btnCheckAppUpdate"><span>⟳</span><strong>Check for updates</strong><small>Installed version ${esc(window.AmpsUpdateCheck.currentVersion() || "?")}</small></button>` : ""}
         <a href="#about" class="more-item"><span>i</span><strong>About & Privacy</strong><small>Publisher, policy, attribution</small></a>
         <a href="#privacy-data" class="more-item"><span>⚿</span><strong>Privacy &amp; local data</strong><small>Export or delete on-device data</small></a>
         <a href="legal/support.html" class="more-item"><span>?</span><strong>Support</strong><small>Contact and help links</small></a>
@@ -8295,9 +8056,6 @@
           a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
           a.download = "amps-reader-backup.json";
           a.click();
-        });
-        document.getElementById("btnCheckAppUpdate")?.addEventListener("click", () => {
-          window.AmpsUpdateCheck?.check({ manual: true });
         });
       },
     });
@@ -8822,8 +8580,7 @@
         normalizeTtsVoice(state.settings.ttsVoice),
         i,
         (charStart) => onPresentWord(charStart),
-        sanskritPronunciationMode(),
-        { corpusLanguage: speechCorpusLanguage(bookId, book, paras.map(p => p.text)) }
+        sanskritPronunciationMode()
       );
     }
 
@@ -9884,7 +9641,7 @@
         if (!presentationBuilderEnabled()) {
           state.route = "library";
           state.params = {};
-          history.replaceState(history.state, "", "#library");
+          history.replaceState(null, "", "#library");
           return renderLibrary();
         }
         return window.AmpsPresentation?.render?.();
@@ -9988,7 +9745,7 @@
   loadState();
   applyReaderSettingsLive();
   window.AmpsLicense?.init?.({
-    state, saveState, esc, renderFromState, navigate, renderShell,
+    state, saveState, esc, renderFromState, navigate,
   });
   window.AmpsReaderUI?.install?.({ esc, renderFromState, navigate, dispatchSheet: dispatchReaderSheetAction });
   bindContinuousReadingChrome();
@@ -10087,7 +9844,8 @@
       return true;
     }
     if (!["library", "today"].includes(state.route)) {
-      goBackInApp();
+      if (history.length > 1) history.back();
+      else navigate("library");
       return true;
     }
     if (state.route === "today") {
