@@ -3112,21 +3112,23 @@
       .topbar { padding: 0 0.5rem; }
       .topbar-title { font-size: 0.88rem; }
     }
-    /* Shloka lines stay a verse: centered, italic, never justified. */
+    /* Ordinary paragraphs stay full width. Only a shloka is centered and italic. */
+    .reader-para:not(.content-verse):not(.shloka-entry):not(.discourse-shloka-entry):not(.ananda-sutra-entry):not(.shloka-verse-entry) > .para-text {
+      display: block;
+      width: auto;
+      max-width: none;
+      font-style: normal;
+      white-space: normal;
+    }
     .reader-para.content-verse > .para-text,
     .reader-para.shloka-entry > .para-text,
     .reader-para.discourse-shloka-entry > .para-text,
-    .reader-para.reviewed-shloka-group > .para-text,
     .reader-para.content-verse .shloka-line:not(.shloka-meaning),
     .reader-para.shloka-entry .shloka-line:not(.shloka-meaning),
-    .reader-para.discourse-shloka-entry .shloka-line:not(.shloka-meaning),
-    .reader-para.discourse-shloka-entry .shloka-dev,
-    .reader-para.shloka-entry .shloka-dev {
+    .reader-para.discourse-shloka-entry .shloka-line:not(.shloka-meaning) {
       display: block;
-      width: fit-content;
+      width: auto;
       max-width: 100%;
-      margin-left: auto !important;
-      margin-right: auto !important;
       text-align: center !important;
       text-align-last: center !important;
       text-justify: none !important;
@@ -3134,15 +3136,23 @@
       hyphens: manual !important;
       -webkit-hyphens: manual !important;
       font-style: italic !important;
-      font-style: oblique 10deg !important;
       font-synthesis: style !important;
-      line-height: 1.45;
+      white-space: pre-line;
+      line-height: 1.55;
+    }
+    .reader-para.content-shloka_meaning > .para-text,
+    .reader-para.content-shloka-meaning > .para-text {
+      font-style: normal !important;
+      text-align: start !important;
+      text-align-last: start !important;
+      text-justify: auto !important;
+      white-space: pre-line;
     }
   </style>
   <link rel="stylesheet" href="presentation-builder/presentation-builder.css" />
   <link rel="stylesheet" href="amps-reader-productivity.css" />
   <link rel="stylesheet" href="tts/tts-sync.css?v=152" />
-  <link rel="stylesheet" href="amps-reader-language-packs.css?v=shlokaCenter1" />
+  <link rel="stylesheet" href="amps-reader-language-packs.css?v=shlokaPara2" />
   <link rel="stylesheet" href="amps-reader-roman-samskrta.css">
   <link rel="stylesheet" href="amps-reader-book-media.css">
   <link rel="stylesheet" href="amps-reader-section-notices.css">
