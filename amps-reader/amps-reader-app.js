@@ -395,7 +395,7 @@
   }
 
   function saveState() {
-    localStorage.setItem(STORAGE, JSON.stringify({
+    const payload = {
       migrated: true,
       settings: state.settings,
       progress: state.progress,
@@ -423,8 +423,43 @@
       shlokaGame: { scores: state.shlokaGame?.scores || {}, cardStats: state.shlokaGame?.cardStats || {}, lastChapter: state.shlokaGame?.lastChapter, lastGameType: state.shlokaGame?.lastGameType, lastQuizMode: state.shlokaGame?.lastQuizMode, lastSpeed: state.shlokaGame?.lastSpeed, lastPriority: state.shlokaGame?.lastPriority, flashFront: state.shlokaGame?.flashFront },
       presentationBuilder: window.AmpsPresentationStore?.serialize(state),
       license: state.license,
-    }));
+    };
+    const withoutDownloads = {
+      ...payload,
+      importedBooks: {},
+      presentationBuilder: undefined,
+    };
+    const essentials = {
+      migrated: true,
+      settings: payload.settings,
+      progress: payload.progress,
+      bookmarks: payload.bookmarks,
+      recent: payload.recent,
+      license: payload.license,
+    };
+    const quota = (err) => {
+      const name = String(err?.name || "");
+      const message = String(err?.message || "");
+      return name === "QuotaExceededError" || /quota/i.test(message);
+    };
+    for (const body of [payload, withoutDownloads, essentials]) {
+      try {
+        localStorage.setItem(STORAGE, JSON.stringify(body));
+        return;
+      } catch (err) {
+        if (!quota(err)) throw err;
+      }
+    }
+    try {
+      localStorage.removeItem(STORAGE);
+      localStorage.setItem(STORAGE, JSON.stringify(essentials));
+    } catch (err) {
+      const friendly = new Error("This phone's storage for the app is full. Remove the app website data in Settings, then activate again.");
+      friendly.cause = err;
+      throw friendly;
+    }
   }
+
 
   function isDiscoursePdfAllowed() {
     if (window.AmpsLicense?.isEnforced?.() && !window.AmpsLicense?.isLicensed?.()) return false;
