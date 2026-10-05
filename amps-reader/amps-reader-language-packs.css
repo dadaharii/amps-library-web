@@ -493,3 +493,30 @@
   color: inherit;
   opacity: 1;
 }
+
+/* Shloka lines stay a verse on the phone: centered and italic, never stretched. */
+.reader-para.content-verse > .para-text,
+.reader-para.shloka-entry > .para-text,
+.reader-para.discourse-shloka-entry > .para-text,
+.reader-para.reviewed-shloka-group > .para-text,
+.reader-para.content-verse .shloka-line:not(.shloka-meaning),
+.reader-para.shloka-entry .shloka-line:not(.shloka-meaning),
+.reader-para.discourse-shloka-entry .shloka-line:not(.shloka-meaning),
+.reader-para.discourse-shloka-entry .shloka-dev,
+.reader-para.shloka-entry .shloka-dev {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  text-align-last: center !important;
+  text-justify: none !important;
+  word-spacing: normal !important;
+  hyphens: manual !important;
+  -webkit-hyphens: manual !important;
+  font-style: italic !important;
+  font-style: oblique 10deg !important;
+  font-synthesis: style !important;
+  line-height: 1.45;
+}
