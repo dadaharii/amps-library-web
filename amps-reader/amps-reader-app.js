@@ -4612,6 +4612,12 @@
   // AMPS_AV9_BILINGUAL_V1
   // One visible library family, separate language-edition files.
   const BOOK_EDITION_FAMILIES = Object.freeze({
+    // नारी मर्यादा ↔ The Awakening of Women
+    "the-awakening-of-women": Object.freeze({
+      familyId: "the-awakening-of-women",
+      en: "the-awakening-of-women",
+      hi: "the-awakening-of-women-hi",
+    }),
     // HOLD (no switch): AV01-hi wrong source; AV02-hi misbind/absent.
     "ananda-vacanamrtam-04": Object.freeze({
       familyId: "ananda-vacanamrtam-04",
