@@ -213,6 +213,40 @@
     .hero-cover-wrap { display: flex; justify-content: center; width: 100%; }
     .hero-book-meta { margin: 0; font-size: 0.82rem; }
     .hero-book-detail .hero-actions { justify-content: center; margin-top: 0.25rem; width: 100%; }
+    .hero.hero-book-detail {
+      background: #F03B04;
+      color: #2a1008;
+    }
+    .hero.hero-book-detail::after {
+      background: linear-gradient(90deg, transparent, #6a1c08, transparent);
+    }
+    .hero.hero-book-detail h1,
+    .hero.hero-book-detail .muted {
+      color: #2a1008;
+    }
+    .hero.hero-book-detail .hero-book-meta { color: #4a1c10; }
+    .hero.hero-book-detail .book-edition-switch {
+      width: auto;
+      max-width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 6px;
+      background: #fff;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .hero.hero-book-detail .btn-ghost,
+    [data-theme="light"] .hero.hero-book-detail .btn-ghost,
+    [data-theme="sepia"] .hero.hero-book-detail .btn-ghost,
+    [data-theme="dark"] .hero.hero-book-detail .btn-ghost,
+    [data-theme="navy"] .hero.hero-book-detail .btn-ghost,
+    [data-theme="contrast"] .hero.hero-book-detail .btn-ghost,
+    [data-theme="light"] .main .hero.hero-book-detail .btn-ghost {
+      background: rgba(255,255,255,0.92);
+      color: #2a1008;
+      border-color: rgba(255,255,255,0.55);
+    }
     .book-card-body { padding: 0.85rem 1rem; flex: 1; min-width: 0; }
     .book-card h3 { margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 600; line-height: 1.3; }
     .book-card p { margin: 0; font-size: 0.78rem; color: var(--text-muted); }
@@ -3242,7 +3276,7 @@
     <script src="amps-reader-canonical-nav.js"></script>
     <script src="amps-reader-canonical-binding.js"></script>
     <script src="amps-reader-canonical-occurrences-index.js"></script>
-<script src="amps-reader-app.js?v=nariMaryada1"></script>
+<script src="amps-reader-app.js?v=flameCover1"></script>
   <script src="amps-reader-language-packs.js" defer></script>
   <script src="amps-reader-book-media.js"></script>
   <script src="amps-reader-section-notices.js"></script>

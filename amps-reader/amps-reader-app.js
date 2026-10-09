@@ -4872,7 +4872,7 @@
 
   // AMPS_LANGUAGE_SELECTOR_STATIC_LABEL_V1
   function languageSelectorLabelHtml() {
-    return '<span class="reader-edition-status">Select language</span>';
+    return "";
   }
 
   function bookEditionSwitchHtml(bookId, chapterId) {
