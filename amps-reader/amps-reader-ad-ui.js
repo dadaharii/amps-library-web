@@ -85,42 +85,62 @@
     return raw.slice(Math.max(0, idx - 50), idx + q.length + 80);
   }
 
-  async function fastSearch(catalog, q, limit) {
+  async function fastSearch(catalog, q, limit, options) {
     const hits = [];
-    const manifest = catalog.searchManifest || catalog.books;
-    const books = Array.isArray(manifest) ? manifest : catalog.books;
-    const bookList = [...books];
-    bookList.sort((a, b) => {
-      const idA = a.id || a;
-      const idB = b.id || b;
-      if (idA === "samskrta-shloka") return -1;
-      if (idB === "samskrta-shloka") return 1;
-      return 0;
-    });
-
-    for (const b of bookList) {
-      const id = b.id || b;
-      if (hits.length >= limit) break;
-      try {
-        const rows = searchShardRows(await searchShard(id));
-        rows.forEach(row => {
-          if (hits.length >= limit) return;
-          const body = row.t || row.text || "";
-          if (!textMatchesQuery(body, q)) return;
-          hits.push({
-            bookId: id,
-            bookTitle: catalog.books.find(x => x.id === id)?.title || id,
-            chapterId: row.c,
-            chapterTitle: row.chapterTitle,
-            paraId: row.p,
-            snippet: searchSnippet(body, q),
-          });
-        });
-      } catch (_) { /* skip */ }
+    const books = [...(catalog?.books || [])];
+    let list;
+    if (options?.bookIds?.length) {
+      const want = new Set(options.bookIds);
+      list = books.filter(b => want.has(b.id));
+    } else {
+      const titled = books.filter(b => textMatchesQuery(
+        [b.title, b.subtitle, b.series, String(b.id || "").replace(/-/g, " "), ...(b.searchKeywords || [])].filter(Boolean).join(" "),
+        q
+      ));
+      list = titled.length ? titled.slice(0, 8) : books;
     }
-    return hits;
+    if (list === books) {
+      list = [...books];
+      list.sort((a, b) => {
+        if (a.id === "samskrta-shloka") return -1;
+        if (b.id === "samskrta-shloka") return 1;
+        return 0;
+      });
+    }
+    const queue = list.slice();
+    const cap = limit || 40;
+    let stop = false;
+    async function worker() {
+      while (!stop && hits.length < cap && queue.length) {
+        const book = queue.shift();
+        if (!book) return;
+        const id = book.id || book;
+        try {
+          const rows = searchShardRows(await searchShard(id));
+          if (stop || hits.length >= cap) return;
+          for (const row of rows) {
+            if (hits.length >= cap) {
+              stop = true;
+              break;
+            }
+            const body = row.t || row.text || "";
+            if (!textMatchesQuery(body, q)) continue;
+            hits.push({
+              bookId: id,
+              bookTitle: books.find(x => x.id === id)?.title || id,
+              chapterId: row.c,
+              chapterTitle: row.chapterTitle,
+              paraId: row.p,
+              snippet: searchSnippet(body, q),
+            });
+          }
+        } catch (_) { /* skip missing shards */ }
+      }
+    }
+    const workers = Math.min(queue.length, list.length <= 8 ? list.length || 1 : 6);
+    await Promise.all(Array.from({ length: workers }, () => worker()));
+    return hits.slice(0, cap);
   }
-
   function globalGlossaryLookup(q) {
     if (!glossaryIndex || !q) return [];
     const ql = q.toLowerCase();

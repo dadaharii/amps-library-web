@@ -7757,42 +7757,9 @@
     });
   }
 
-  async function doSearch(q) {
-    const el = document.getElementById("searchResults");
-    if (!el || !q || q.length < 2) {
-      if (el) el.innerHTML = `<p class="muted pad">Type at least 2 characters</p>`;
-      return;
-    }
-    el.innerHTML = `<p class="muted pad">Searching…</p>`;
-    await ensureSearchCatalog();
-    const titleHits = (state.catalog.discourses || []).filter(d =>
-      textMatchesQuery(d.title, q) || textMatchesQuery(d.bookTitle, q) || textMatchesQuery(d.series, q)
-    ).slice(0, 40);
+  let librarySearchGeneration = 0;
 
-    const bookHits = (state.catalog.books || []).filter(b => textMatchesQuery(bookSearchBlob(b), q));
-
-    let textHits = [];
-    let semanticHits = [];
-    if (window.AmpsAdUI?.fastSearch) {
-      textHits = await window.AmpsAdUI.fastSearch(state.catalog, q, 60);
-      const bookMeta = id => state.catalog.books.find(b => b.id === id);
-      textHits = textHits.map(h => ({
-        ...h,
-        chapterTitle: h.chapterTitle || h.chapterId,
-        bookTitle: h.bookTitle || bookMeta(h.bookId)?.title,
-        series: bookMeta(h.bookId)?.series,
-      }));
-      if (window.AmpsEnhance?.rankSearchHits) {
-        textHits = window.AmpsEnhance.rankSearchHits(textHits, q, state.catalog);
-      }
-      if (window.AmpsProductivity?.rankSearchHits) {
-        textHits = window.AmpsProductivity.rankSearchHits(textHits, q);
-      }
-    }
-    if (window.AmpsProductivity?.semanticLibrarySearch) {
-      semanticHits = await window.AmpsProductivity.semanticLibrarySearch(state.catalog, q, 25);
-    }
-
+  function paintLibrarySearch(el, q, bookHits, titleHits, semanticHits, textHits, textStatus) {
     let html = "";
     if (bookHits.length) {
       html += `<section class="section"><h2 class="section-head">Books (${bookHits.length})</h2>`;
@@ -7828,6 +7795,7 @@
       });
       html += `</section>`;
     }
+    if (textStatus) html += `<p class="muted pad">${esc(textStatus)}</p>`;
     if (!html) html = `<p class="muted pad">No results for "${esc(q)}"</p>`;
     el.innerHTML = html;
     el.querySelectorAll(".search-hit").forEach(btn => {
@@ -7841,6 +7809,50 @@
         } else navigate("book", { bookId: btn.dataset.book });
       });
     });
+  }
+
+  async function doSearch(q) {
+    const el = document.getElementById("searchResults");
+    if (!el || !q || q.length < 2) {
+      if (el) el.innerHTML = `<p class="muted pad">Type at least 2 characters</p>`;
+      return;
+    }
+    const generation = ++librarySearchGeneration;
+    el.innerHTML = `<p class="muted pad">Searching…</p>`;
+    await ensureSearchCatalog();
+    if (generation !== librarySearchGeneration) return;
+    const titleHits = (state.catalog.discourses || []).filter(d =>
+      textMatchesQuery(d.title, q) || textMatchesQuery(d.bookTitle, q) || textMatchesQuery(d.series, q)
+    ).slice(0, 40);
+    const bookHits = (state.catalog.books || []).filter(b => textMatchesQuery(bookSearchBlob(b), q));
+    const narrow = bookHits.length > 0 && bookHits.length <= 6;
+    paintLibrarySearch(el, q, bookHits, titleHits, [], [], narrow || bookHits.length ? "" : "Searching the text…");
+    if (bookHits.length > 6) return;
+
+    let textHits = [];
+    if (window.AmpsAdUI?.fastSearch) {
+      textHits = await window.AmpsAdUI.fastSearch(
+        state.catalog,
+        q,
+        narrow ? 20 : 40,
+        narrow ? { bookIds: bookHits.map(b => b.id) } : undefined
+      );
+      if (window.AmpsEnhance?.rankSearchHits) textHits = window.AmpsEnhance.rankSearchHits(textHits, q, state.catalog);
+      if (window.AmpsProductivity?.rankSearchHits) textHits = window.AmpsProductivity.rankSearchHits(textHits, q);
+      const bookMeta = id => state.catalog.books.find(b => b.id === id);
+      textHits = textHits.map(h => ({
+        ...h,
+        chapterTitle: h.chapterTitle || h.chapterId,
+        bookTitle: h.bookTitle || bookMeta(h.bookId)?.title,
+        series: bookMeta(h.bookId)?.series,
+      }));
+    }
+    if (generation !== librarySearchGeneration) return;
+    paintLibrarySearch(el, q, bookHits, titleHits, [], textHits, "");
+    if (bookHits.length || textHits.length >= 8 || !window.AmpsProductivity?.semanticLibrarySearch) return;
+    const semanticHits = await window.AmpsProductivity.semanticLibrarySearch(state.catalog, q, 12);
+    if (generation !== librarySearchGeneration) return;
+    paintLibrarySearch(el, q, bookHits, titleHits, semanticHits, textHits, "");
   }
 
   function snippetHighlight(snippet, q) {
