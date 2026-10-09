@@ -4789,6 +4789,31 @@
       en: "subhasita-samgraha-15",
       hi: "subhasita-samgraha-15-hi",
     }),
+    "subhasita-samgraha-19": Object.freeze({
+      familyId: "subhasita-samgraha-19",
+      en: "subhasita-samgraha-19",
+      hi: "subhasita-samgraha-19-hi",
+    }),
+    "subhasita-samgraha-20": Object.freeze({
+      familyId: "subhasita-samgraha-20",
+      en: "subhasita-samgraha-20",
+      hi: "subhasita-samgraha-20-hi",
+    }),
+    "subhasita-samgraha-21": Object.freeze({
+      familyId: "subhasita-samgraha-21",
+      en: "subhasita-samgraha-21",
+      hi: "subhasita-samgraha-21-hi",
+    }),
+    "subhasita-samgraha-24": Object.freeze({
+      familyId: "subhasita-samgraha-24",
+      en: "subhasita-samgraha-24",
+      hi: "subhasita-samgraha-24-hi",
+    }),
+    "subhasita-samgraha-25": Object.freeze({
+      familyId: "subhasita-samgraha-25",
+      en: "subhasita-samgraha-25",
+      hi: "subhasita-samgraha-25-hi",
+    }),
     "prout-in-a-nutshell-01": Object.freeze({
       familyId: "prout-in-a-nutshell-01",
       en: "prout-in-a-nutshell-01",
