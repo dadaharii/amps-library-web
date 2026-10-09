@@ -9767,7 +9767,7 @@
       document.getElementById("app").innerHTML = `<div class="pad">
         <h2>Could not load library</h2>
         <p class="muted">${esc(err.message || String(err))}</p>
-        <p class="muted">Try a hard refresh (Cmd+Shift+R) or clear site data for localhost.</p>
+        <p class="muted">Tap Reload. If this page stays, close the tab and open the link again.</p>
         <button type="button" class="btn btn-gold" id="btnReloadApp">Reload</button>
         <button type="button" class="btn btn-ghost" id="btnClearApp">Clear saved data</button>
       </div>`;
@@ -9788,7 +9788,7 @@
   loadState();
   applyReaderSettingsLive();
   window.AmpsLicense?.init?.({
-    state, saveState, esc, renderFromState, navigate,
+    state, saveState, esc, renderFromState, navigate, renderShell,
   });
   window.AmpsReaderUI?.install?.({ esc, renderFromState, navigate, dispatchSheet: dispatchReaderSheetAction });
   bindContinuousReadingChrome();

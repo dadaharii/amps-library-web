@@ -313,11 +313,20 @@
   }
 
   function renderGatePage() {
-    api.renderShell(renderGateHtml(), {
+    const html = renderGateHtml();
+    const opts = {
       title: "Activate",
       tab: "library",
       bind: bindGateForm,
-    });
+    };
+    if (typeof api.renderShell === "function") {
+      api.renderShell(html, opts);
+      return;
+    }
+    const root = document.getElementById("app");
+    if (!root) return;
+    root.innerHTML = html;
+    bindGateForm();
   }
 
   function showActivationModal(opts) {
