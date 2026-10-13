@@ -4618,6 +4618,12 @@
       en: "the-awakening-of-women",
       hi: "the-awakening-of-women-hi",
     }),
+    // आनन्द मार्ग — प्रारम्भिक दर्शन ↔ Ananda Marga: Elementary Philosophy
+    "ananda-marga-elementary-philosophy": Object.freeze({
+      familyId: "ananda-marga-elementary-philosophy",
+      en: "ananda-marga-elementary-philosophy",
+      hi: "ananda-marga-elementary-philosophy-hi",
+    }),
     // HOLD (no switch): AV01-hi wrong source; AV02-hi misbind/absent.
     "ananda-vacanamrtam-04": Object.freeze({
       familyId: "ananda-vacanamrtam-04",
