@@ -136,7 +136,15 @@
 }
 
 .reader-edition-bar .btn[data-book-language] {
-  min-width: 6.5rem;
+  width: 7.4rem !important;
+  min-width: 7.4rem !important;
+  max-width: 7.4rem !important;
+  height: 2.55rem !important;
+  min-height: 2.55rem !important;
+  padding: 0 0.4rem !important;
+  flex: 0 0 7.4rem !important;
+  box-sizing: border-box !important;
+  line-height: 1 !important;
   color: #2b241d !important;
   -webkit-text-fill-color: #2b241d !important;
   background: #fffdf6 !important;

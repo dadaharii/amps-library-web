@@ -224,18 +224,45 @@
     .hero-cover-wrap { display: flex; justify-content: center; width: 100%; }
     .hero-book-meta { margin: 0; font-size: 0.95rem; color: inherit; }
     .hero-book-detail .hero-actions { justify-content: center; margin-top: 0.25rem; width: 100%; }
-    .hero-book-detail .book-edition-switch {
-      display: flex !important;
+    .hero-book-detail .book-edition-switch,
+    .hero-book-detail > .reader-edition-bar {
+      display: inline-flex !important;
       order: 4;
-      width: 100%;
+      width: max-content;
       max-width: 100%;
+      min-height: 0;
+      align-self: center;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 2;
       border: 0;
       border-radius: 10px;
-      padding: 6px;
+      padding: 4px;
       background: #fff;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
+    }
+    .main-reader > .book-edition-switch,
+    .main-reader > .reader-edition-bar {
+      position: sticky;
+      top: calc(var(--topbar-h) + 48px);
+      z-index: 94;
+      display: flex !important;
+      width: max-content !important;
+      max-width: calc(100% - 1.5rem);
+      min-height: 0;
+      align-self: center;
+      box-sizing: border-box;
+      margin: 0.65rem auto;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding: 4px;
+      border: 0;
+      border-radius: 10px;
+      background: #fff;
     }
     .book-card-body { padding: 0.85rem 1rem; flex: 1; min-width: 0; }
     .book-card h3 { margin: 0 0 0.25rem; font-size: 0.95rem; font-weight: 600; line-height: 1.3; }
@@ -3343,7 +3370,7 @@
   <link rel="stylesheet" href="presentation-builder/presentation-builder.css" />
   <link rel="stylesheet" href="amps-reader-productivity.css" />
   <link rel="stylesheet" href="tts/tts-sync.css?v=152" />
-  <link rel="stylesheet" href="amps-reader-language-packs.css?v=shlokaPara2" />
+  <link rel="stylesheet" href="amps-reader-language-packs.css?v=langPill1" />
   <link rel="stylesheet" href="amps-reader-roman-samskrta.css">
   <link rel="stylesheet" href="amps-reader-book-media.css">
   <link rel="stylesheet" href="amps-reader-section-notices.css">
