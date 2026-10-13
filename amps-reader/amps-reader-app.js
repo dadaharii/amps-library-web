@@ -184,8 +184,8 @@
     route: "library",
     params: {},
     settings: {
-      theme: "navy",
-      landingThemeApplied: false,
+      theme: "sepia",
+      readerThemeChosen: false,
       libraryLanguage: "en",
       fontSize: 18,
       lineHeight: 1.75,
@@ -291,10 +291,9 @@
       if (!raw) return;
       const saved = JSON.parse(raw);
       Object.assign(state.settings, saved.settings || {});
-      if (!saved.settings?.landingThemeApplied && (!saved.settings?.theme || saved.settings.theme === "sepia")) {
-        state.settings.theme = "navy";
+      if (!saved.settings?.readerThemeChosen && state.settings.theme === "navy") {
+        state.settings.theme = "sepia";
       }
-      state.settings.landingThemeApplied = true;
       // Re-baseline pauses saved under earlier defaults onto the conventional
       // comma / full-stop / paragraph rhythm.
       if (PAUSE_DEFAULT_HISTORY.comma.includes(state.settings.ttsCommaPause)) state.settings.ttsCommaPause = 180;
@@ -397,7 +396,7 @@
         state.notes = old.notes || state.notes;
         if (old.study?.cards) state.study.cards = old.study.cards;
       }
-      if (!saved.settings?.landingThemeApplied) saveState();
+      if (!saved.settings?.readerThemeChosen && saved.settings?.theme === "navy") saveState();
     } catch (_) { /* ignore */ }
   }
 
@@ -4942,6 +4941,39 @@
     ).join("")}</div>`;
   }
 
+  function readerThemes() {
+    return [
+      ["sepia", "Sepia", "#f4ecd8", "#2c2416"],
+      ["light", "Light", "#f8f9fc", "#1a1f2e"],
+      ["navy", "Navy", "#071426", "#edf4fb"],
+      ["dark", "Dark", "#121820", "#e8ecf4"],
+      ["contrast", "Contrast", "#000000", "#ffffff"],
+    ];
+  }
+
+  function readerThemePickerHtml() {
+    const current = state.settings.theme || "sepia";
+    return `<div class="theme-picker" role="radiogroup" aria-label="Reading theme">${readerThemes().map(([id, label, bg, ink]) =>
+      `<button type="button" class="theme-swatch${current === id ? " active" : ""}" data-reader-theme="${id}" role="radio" aria-checked="${current === id ? "true" : "false"}" style="--swatch-bg:${bg};--swatch-ink:${ink}"><span class="theme-swatch-chip" aria-hidden="true">Aa</span><span class="theme-swatch-label">${label}</span></button>`
+    ).join("")}</div>`;
+  }
+
+  function bindReaderThemePicker() {
+    document.querySelectorAll("[data-reader-theme]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        state.settings.theme = btn.dataset.readerTheme || "sepia";
+        state.settings.readerThemeChosen = true;
+        saveState();
+        applyReaderSettingsLive();
+        document.querySelectorAll("[data-reader-theme]").forEach(el => {
+          const on = el.dataset.readerTheme === state.settings.theme;
+          el.classList.toggle("active", on);
+          el.setAttribute("aria-checked", on ? "true" : "false");
+        });
+      });
+    });
+  }
+
   // AMPS_LANGUAGE_SELECTOR_STATIC_LABEL_V1
   function languageSelectorLabelHtml() {
     return "";
@@ -6585,11 +6617,9 @@
             `<option value="${k}" ${state.settings.typoPreset === k ? "selected" : ""}>${k}</option>`).join("")}
           </select>
         </label>
-        <label>Theme
-          <select id="setTheme">${["light", "sepia", "navy", "dark", "contrast"].map(t =>
-            `<option value="${t}" ${state.settings.theme === t ? "selected" : ""}>${t}</option>`).join("")}
-          </select>
-        </label>
+        <div class="settings-theme">Theme
+          ${readerThemePickerHtml()}
+        </div>
         <label>Font size <span id="fontVal">${state.settings.fontSize}</span>
           <input type="range" id="setFont" min="14" max="26" value="${state.settings.fontSize}" />
         </label>
@@ -6986,11 +7016,7 @@
       saveState();
       applyReaderSettingsLive();
     });
-    document.getElementById("setTheme")?.addEventListener("change", e => {
-      state.settings.theme = e.target.value;
-      saveState();
-      applyReaderSettingsLive();
-    });
+    bindReaderThemePicker();
     document.getElementById("setFont")?.addEventListener("input", e => {
       state.settings.fontSize = +e.target.value;
       document.getElementById("fontVal").textContent = e.target.value;
@@ -8415,6 +8441,12 @@
     let body = `<section class="hero hero-compact"><h1>Settings & Sync</h1>
       <p class="hero-sub">Local backup plus cloud sync when license server URL is configured</p></section>
       <div class="settings-panel">
+        <h2 class="settings-section-title">Reading</h2>
+        <div class="settings-theme">Theme
+          ${readerThemePickerHtml()}
+        </div>
+        <p class="muted">Sepia is the reading page. The Today page keeps its own dark landing look.</p>
+        <hr class="settings-divider" />
         <h2 class="settings-section-title">Audio & Pronunciation</h2>
         <label>Voice
           <span class="tts-voice-row">${ttsVoiceSelectHtml("settingsTtsVoice")}
@@ -8465,6 +8497,7 @@
       title: "Settings",
       tab: "settings",
       bind: () => {
+        bindReaderThemePicker();
         bindTtsVoiceSelect("settingsTtsVoice", "btnSettingsTtsPreview");
         bindTtsPronunciationSelect("settingsTtsPronunciation", "settingsTtsVoiceHint", "settingsTtsVoice");
         bindSanskritSpeechRateSelect("settingsSanskritSpeechRate");

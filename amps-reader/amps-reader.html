@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" data-theme="navy">
+<html lang="en" data-theme="sepia">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>AMPS Library</title>
-  <meta name="theme-color" content="#071426" />
+  <meta name="theme-color" content="#e85d04" />
   <meta name="description" content="Premium Ananda Marga book library — read, search, highlight, note, study, play and reflect." />
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
@@ -985,14 +985,6 @@
       content: ""; position: absolute; top: 0.34rem; width: 1.45rem; height: 0.18rem;
       border-radius: 999px; background: var(--gold);
     }
-    .bottomnav {
-      background: #faf6ec;
-      color: #2c2416;
-      border-top: 1px solid #d4c9a8;
-      box-shadow: 0 -8px 24px rgba(0,0,0,0.18);
-    }
-    .bottomnav .nav-item { color: #6b5d45; }
-    .bottomnav .nav-item.active { color: #a67c00; }
 
     .search-hit {
       display: block; width: 100%; text-align: left; padding: 0.85rem 1rem;
@@ -3193,6 +3185,72 @@
     [data-theme="navy"] .more-item small {
       color: #aab7c8;
     }
+    body.today-screen {
+      background: linear-gradient(180deg, #071426 0%, #0b1e35 42%, #0f172a 100%);
+      background-attachment: fixed;
+      color: #e8eef8;
+    }
+    body.today-screen .topbar {
+      background: rgba(7, 20, 38, 0.94);
+      border-bottom-color: rgba(148, 163, 184, 0.18);
+      color: #e8eef8;
+    }
+    body.today-screen .icon-btn:hover { background: rgba(255,255,255,0.08); }
+    body.today-screen .today-main,
+    body.today-screen .section-head,
+    body.today-screen .topbar-title { color: #e8eef8; }
+    body.today-screen .today-main .quote-card,
+    body.today-screen .today-main .today-tile,
+    body.today-screen .today-main .more-item {
+      background: rgba(15, 33, 56, 0.94);
+      border-color: rgba(148, 163, 184, 0.24);
+      color: #e8eef8;
+    }
+    body.today-screen .today-main .muted,
+    body.today-screen .today-main .today-tile span,
+    body.today-screen .today-main .more-item small { color: #aab7c8; }
+    body.today-screen .bottomnav {
+      background: #faf6ec;
+      color: #2c2416;
+      border-top-color: #d4c9a8;
+    }
+    body.today-screen .bottomnav .nav-item { color: #6b5d45; }
+    body.today-screen .bottomnav .nav-item.active { color: #a67c00; }
+    .theme-picker {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.45rem;
+      margin-top: 0.4rem;
+    }
+    .theme-swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.35rem 0.25rem 0.45rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .theme-swatch-chip {
+      width: 100%;
+      min-height: 2.6rem;
+      border-radius: 8px;
+      background: var(--swatch-bg);
+      color: var(--swatch-ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, Palatino, serif;
+      font-weight: 700;
+      border: 1px solid rgba(0,0,0,0.15);
+    }
+    .theme-swatch-label { font-size: 0.68rem; font-weight: 700; }
+    .theme-swatch.active { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    @media (max-width: 520px) {
+      .theme-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
     .lib-lang-filter {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3307,7 +3365,7 @@
     <script src="amps-reader-canonical-nav.js"></script>
     <script src="amps-reader-canonical-binding.js"></script>
     <script src="amps-reader-canonical-occurrences-index.js"></script>
-<script src="amps-reader-app.js?v=libLang1"></script>
+<script src="amps-reader-app.js?v=themePick1"></script>
   <script src="amps-reader-language-packs.js" defer></script>
   <script src="amps-reader-book-media.js"></script>
   <script src="amps-reader-section-notices.js"></script>
