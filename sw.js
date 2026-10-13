@@ -1,4 +1,4 @@
-const CACHE = "amps-library-v155";
+const CACHE = "amps-library-v156";
 const ASSETS = [
   "./",
   "./amps-reader/amps-reader.html",
