@@ -4616,13 +4616,14 @@
   function renderShell(content, opts) {
     const active = opts?.tab || state.route;
     document.body.classList.toggle("today-screen", state.route === "today");
+    document.body.classList.toggle("reader-screen", state.route === "read");
     document.getElementById("app").innerHTML = `
       <header class="topbar">
         <button type="button" class="icon-btn" id="btnBack" aria-label="${state.route === "library" ? "Menu" : "Back"}">${state.route === "library" && active === "library" ? "☰" : "←"}</button>
         <div class="topbar-title">${opts?.title || "AMPS Reader"}</div>
         <button type="button" class="icon-btn" id="btnSearch" aria-label="Search">⌕</button>
       </header>
-      ${textSizeBarHtml()}
+      ${state.route === "read" ? "" : textSizeBarHtml()}
       <main class="main ${opts?.className || ""}">${content}</main>
       <nav class="bottomnav" aria-label="Main">
         <a href="#library" class="nav-item ${active === "library" ? "active" : ""}"><span>📚</span>${T("library")}</a>
@@ -6047,11 +6048,11 @@
     const placementClass = placement === "top" ? "reader-chapter-nav-top" : "reader-chapter-nav-bottom";
     return `<nav class="reader-chapter-nav ${placementClass}" aria-label="Chapter navigation">
       ${prev
-        ? `<button type="button" class="btn btn-ghost reader-ch-nav reader-ch-nav-prev" data-ch-nav="prev" data-book="${esc(bookId)}" data-ch="${esc(prev.id)}"><span class="reader-ch-nav-label-long">← Previous Chapter</span><span class="reader-ch-nav-label-short">‹ Previous</span></button>`
+        ? `<button type="button" class="btn btn-ghost reader-ch-nav reader-ch-nav-prev" data-ch-nav="prev" data-book="${esc(bookId)}" data-ch="${esc(prev.id)}"><span class="reader-ch-nav-label-long">← Previous</span><span class="reader-ch-nav-label-short">← Previous</span></button>`
         : `<span class="reader-ch-nav-spacer" aria-hidden="true"></span>`}
       <span class="reader-chapter-nav-pos"><span class="reader-ch-nav-label-long">${esc(posLong)}</span><span class="reader-ch-nav-label-short">${esc(posShort)}</span></span>
       ${next
-        ? `<button type="button" class="btn btn-gold reader-ch-nav reader-ch-nav-next" data-ch-nav="next" data-book="${esc(bookId)}" data-ch="${esc(next.id)}"><span class="reader-ch-nav-label-long">Next Chapter →</span><span class="reader-ch-nav-label-short">Next ›</span></button>`
+        ? `<button type="button" class="btn btn-gold reader-ch-nav reader-ch-nav-next" data-ch-nav="next" data-book="${esc(bookId)}" data-ch="${esc(next.id)}"><span class="reader-ch-nav-label-long">Next →</span><span class="reader-ch-nav-label-short">Next →</span></button>`
         : `<span class="reader-ch-nav-spacer" aria-hidden="true"></span>`}
     </nav>`;
   }
@@ -6264,11 +6265,17 @@
     };
     const chunks = [`
       <div class="reader-progress"><div class="reader-progress-fill" style="width:${prog.pct}%"></div></div>
-      ${bookEditionSwitchHtml(bookId, ch.id)}
       ${renderReadingReturnBar()}
-      ${window.AmpsReaderUI?.toolbarHtml?.(toolbarOpts) || ""}
-      ${readerEditionBarHtml(bookId, activeLanguage)}
-      ${renderChapterNavHtml({ bookId, chIdx, chapterTotal: book.chapters.length, prev, next, placement: "top" })}
+      <section class="reader-command" aria-label="Reading controls">
+        ${window.AmpsReaderUI?.toolbarHtml?.(toolbarOpts) || ""}
+        <div class="reader-command-controls">
+          ${textSizeBarHtml()}
+          ${bookEditionSwitchHtml(bookId, ch.id)}
+          ${readerEditionBarHtml(bookId, activeLanguage)}
+        </div>
+        ${renderChapterNavHtml({ bookId, chIdx, chapterTotal: book.chapters.length, prev, next, placement: "top" })}
+        ${window.AmpsProductivity?.smarterResumeHtml?.(bookId, ch, book) || ""}
+      </section>
       ${window.AmpsProductivity?.readerExtrasHtml?.(bookId, ch, book) || ""}
       ${showShlokaScriptBar ? renderShlokaScriptBar() : ""}
       ${showShlokaScriptBar ? (window.AmpsShlokaStudy?.studyBarHtml?.(state.settings) || "") : ""}

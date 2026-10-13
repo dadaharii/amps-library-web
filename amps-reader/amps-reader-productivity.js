@@ -181,15 +181,19 @@
     const prog = api.state.progress[bookId];
     if (!prog?.chapterId) return "";
     const pct = prog.pct != null ? Math.round(prog.pct) : null;
-    const label = prog.chapterId === ch.id ? "Continue this chapter" : `Resume ${prog.chapterId}`;
+    const elsewhere = prog.chapterId !== ch.id;
+    const resumeCh = (book?.chapters || []).find(c => c.id === prog.chapterId);
+    const resumeTitle = String(resumeCh?.title || "").trim();
     const listen = api.state.audioProgress?.[bookId + "|" + ch.id];
-    let extra = "";
-    if (listen?.paraId) extra = " · audio bookmark saved";
-  if (pct != null) extra = ` · ${pct}% of book` + extra;
+    if (!elsewhere && !listen?.paraId) return "";
+    const label = elsewhere
+      ? `Continue from ${resumeTitle || "your last place"}`
+      : "Continue this chapter";
+    const extra = pct != null ? ` · ${pct}% of the book` : "";
     return `<div class="reader-resume-banner" id="readerResumeBanner">
       <span>${esc(label)}${extra}</span>
-      <div>
-        ${prog.chapterId !== ch.id ? `<button type="button" class="btn btn-gold btn-sm" data-resume-ch="${esc(prog.chapterId)}">Jump to last chapter</button>` : ""}
+      <div class="reader-resume-actions">
+        ${elsewhere ? `<button type="button" class="btn btn-gold btn-sm" data-resume-ch="${esc(prog.chapterId)}">Go there</button>` : ""}
         ${listen?.paraId ? `<button type="button" class="btn btn-ghost btn-sm" id="btnResumeAudio">Continue listening</button>` : ""}
       </div>
     </div>`;
@@ -383,7 +387,6 @@
     }
     return `<div class="reader-layout-split">
       <div class="reader-main-col">
-      ${smarterResumeHtml(bookId, ch, book)}
       ${chapterSearchBarHtml()}`;
   }
 
@@ -956,6 +959,7 @@
   window.AmpsProductivity = {
     install,
     todayExtrasHtml,
+    smarterResumeHtml,
     readerExtrasHtml,
     readerSplitCloseHtml,
     bindReader,
