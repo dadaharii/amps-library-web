@@ -5272,10 +5272,10 @@
     let body = `
       <section class="hero hero-book-detail">
         <div class="hero-cover-wrap">${bookCoverHtml(meta || book, "hero")}</div>
-        ${bookEditionSwitchHtml(bookId)}
         <h1>${esc(titleWithHindiPart(book))}</h1>
+        <p class="hero-book-meta">${esc(metaLine)}</p>
         ${activeLanguage?.entry ? `<p class="hero-book-meta muted">${esc(activeLanguage.pack?.nativeName || activeLanguage.entry.nativeName || activeLanguage.lang)} · ${esc(editionStatusText(activeLanguage))}</p>` : ""}
-        <p class="hero-book-meta muted">${esc(metaLine)}</p>
+        ${bookEditionSwitchHtml(bookId)}
         ${readerEditionBarHtml(bookId, activeLanguage)}
         <div class="hero-actions">
           <button type="button" class="btn btn-ghost" id="btnBackLib">← Library</button>
