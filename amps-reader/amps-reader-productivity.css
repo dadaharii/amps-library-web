@@ -129,6 +129,15 @@
   font-size: 0.88rem;
 }
 .reader-study-body ol, .reader-study-body ul { padding-left: 1.2rem; }
+.study-summary-block { margin: 0.7rem 0 0.85rem; }
+.study-summary-block h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8b6914;
+}
+.study-summary-block li { margin: 0.28rem 0; line-height: 1.45; }
 .reader-study-body .muted { font-size: 0.8rem; }
 .reader-study-card {
   border: 1px solid var(--border, #e8dfd0);

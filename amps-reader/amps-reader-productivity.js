@@ -209,23 +209,85 @@
     </div>`;
   }
 
-  function chapterSummaryBullets(book, chapterId, ch) {
-    const summary = window.AmpsStudy?.summarizeChapter?.(book, chapterId);
-    if (summary?.bullets?.length) return summary.bullets;
-    if (ch?.paragraphs?.length) {
-      return ch.paragraphs.slice(0, 8).map(p => (p.summary?.[0] || p.text || "").slice(0, 160)).filter(Boolean);
+  function chapterSentences(ch) {
+    const out = [];
+    const seen = new Set();
+    for (const p of ch?.paragraphs || []) {
+      const raw = String(p.text || "").replace(/\s+/g, " ").trim();
+      if (!raw) continue;
+      const parts = raw.split(/(?<=[.!?।])\s+/);
+      for (const part of parts) {
+        const s = part.replace(/\s+/g, " ").trim();
+        if (s.length < 48) continue;
+        const key = s.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        out.push(s.length > 320 ? s.slice(0, 317).trim() + "…" : s);
+      }
     }
-    return [];
+    return out;
+  }
+
+  function chapterPracticeSummary(ch) {
+    const sentences = chapterSentences(ch);
+    const rejected = (s) => /\b(wrongly|so-called|no definition|very much mistaken|distorted most|hypocrisy|such an interpretation|according to this|followers of such|champions of non-violence|merely causes confusion|low-born|not permissible)\b|गलत|तथाकथित|यह परिभाषा नहीं/i.test(s);
+    const whyRe = /\b(because|therefore|so that|in order to|hence|thus|otherwise|impossible|contrary|as a result|not identical)\b|क्योंकि|इसलिए|अतः|इसलिये|कारण|ताकि|नहीं तो/i;
+    const howRe = /\b(should|must|ought|have to|one will have to|will have to guide|best course|practis|practice|select|before killing|follow the path|make every endeavour)\b|चाहिए|करना ही|पालन|साधना कर/i;
+    const whatRe = /\b(means|is called|correct meaning|amounts to|not identical|known as)\b|का अर्थ|कहते हैं|कहलात|अर्थात/i;
+    const turn = sentences.findIndex(s => /correct meaning|true ahim|clearly understood|not at all difficult to follow/i.test(s));
+    const early = (i) => turn >= 3 && i < turn;
+    const used = new Set();
+    const take = (re, limit, mode) => {
+      const picked = [];
+      sentences.forEach((s, i) => {
+        if (picked.length >= limit || used.has(i) || !re.test(s)) return;
+        if (mode === "what" && early(i) && picked.length) return;
+        if (mode === "what" && rejected(s)) return;
+        if (mode === "how" && (early(i) || rejected(s) || /if this is conceived|suicide|bricks, sand|have to be stopped|stop breathing|commit suicide/i.test(s))) return;
+        if (mode === "why" && /not permissible|use of a plough/i.test(s)) return;
+        if (mode === "why" && !early(i) && rejected(s)) return;
+        used.add(i);
+        picked.push(s);
+      });
+      return picked;
+    };
+    const what = take(whatRe, 3, "what");
+    const why = take(whyRe, 3, "why");
+    const how = take(howRe, 3, "how");
+    const fill = (bucket, limit, fromEnd) => {
+      if (bucket.length >= 2) return;
+      const order = sentences.map((s, i) => i).filter(i => !used.has(i) && !rejected(sentences[i]));
+      const queue = fromEnd ? order.reverse() : order;
+      for (const i of queue) {
+        if (bucket.length >= limit) break;
+        used.add(i);
+        bucket.push(sentences[i]);
+      }
+    };
+    if (what.length < 2) fill(what, 2, false);
+    if (why.length < 2) fill(why, 2, false);
+    if (how.length < 2) fill(how, 2, true);
+    return { what, why, how };
+  }
+
+  function studySummaryHtml(book, ch) {
+    const groups = chapterPracticeSummary(ch);
+    const block = (title, items) => {
+      if (!items.length) return "";
+      return `<section class="study-summary-block"><h4>${title}</h4><ul>${items.map(s => `<li>${esc(s)}</li>`).join("")}</ul></section>`;
+    };
+    return `<p class="muted">${esc(book?.title || "")} · ${esc(ch?.title || "")}</p>
+      <p class="muted">From this chapter only.</p>
+      ${block("What", groups.what)}
+      ${block("Why", groups.why)}
+      ${block("How to practise", groups.how)}
+      <button type="button" class="btn btn-ghost btn-sm" id="btnStudyOpenCompanion">Full companion view</button>`;
   }
 
   function studyPanelBodyHtml(tab, bookId, chapterId, book, ch) {
     try {
       if (tab === "summary") {
-        const bullets = chapterSummaryBullets(book, chapterId, ch);
-        return `<p class="muted">${esc(book?.title || "")} · ${esc(ch?.title || "")}</p>
-          <h4>Key points</h4>
-          <ol>${bullets.slice(0, 8).map(s => `<li>${esc(s)}</li>`).join("") || "<li class='muted'>No summary yet</li>"}</ol>
-          <button type="button" class="btn btn-ghost btn-sm" id="btnStudyOpenCompanion">Full companion view</button>`;
+        return studySummaryHtml(book, ch);
       }
       if (tab === "notes") {
         const notes = chapterNotes(bookId, chapterId);
