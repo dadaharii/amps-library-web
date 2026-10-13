@@ -2318,7 +2318,7 @@
           .replace(/\]+\.?\s*$/, "")
           .replace(/[|।॥]+\s*$/g, "")
           .trim();
-        const mark = i % 2 === 0 ? (fmt.PADA_PIPE || "|") : "||";
+        const mark = i % 2 === 0 ? (fmt.PADA_PIPE || "|") : ".";
         return body + mark;
       }).join("\n");
     } else {

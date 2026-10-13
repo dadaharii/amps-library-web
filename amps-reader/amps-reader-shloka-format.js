@@ -50,11 +50,15 @@
     return segments;
   }
 
+  function closeRomanVerse(text) {
+    return String(text || "").replace(/\s*\|\|(?=\s*$)/gm, ".");
+  }
+
   function romanMark(end, isLast) {
     if (end === ",") return PADA_PIPE;
     if (end === ";" || end === "\n") return PADA_PIPE;
-    if (end === ".") return "||";
-    return isLast ? "||" : PADA_PIPE;
+    if (end === ".") return ".";
+    return isLast ? "." : PADA_PIPE;
   }
 
   function indicMark(end, isLast) {
@@ -117,10 +121,10 @@
   function formatRomanDisplay(roman) {
     const charted = scholarlyRomanToAmpsChart(roman);
     const { prefix, body } = stripSutraPrefix(charted);
-    if (hasPadaMarks(body)) return prefix + body;
+    if (hasPadaMarks(body)) return closeRomanVerse(prefix + body);
     const segments = splitRomanParts(body);
-    if (!segments.length) return String(charted || "").trim();
-    return prefix + applyMarksFromSegments(segments, romanMark);
+    if (!segments.length) return closeRomanVerse(String(charted || "").trim());
+    return closeRomanVerse(prefix + applyMarksFromSegments(segments, romanMark));
   }
 
   /** Convert IAST / scholarly glyphs to AMPS chart Roman Samskrta (always). */
@@ -282,7 +286,7 @@
     if (!ln) return "";
     if (hasPadaMarks(ln)) return ln;
     if (kind === "roman") {
-      return formatRomanDisplay(ln);
+      return hasPadaMarks(ln) ? closeRomanVerse(ln) : formatRomanDisplay(ln);
     }
     if (kind === "dev" || kind === "bng" || kind === "or" || kind === "pa" || kind === "kn") {
       if (lineCount > 1) {
