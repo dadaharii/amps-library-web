@@ -4704,6 +4704,11 @@
       en: "ananda-marga-elementary-philosophy",
       hi: "ananda-marga-elementary-philosophy-hi",
     }),
+    "discourses-on-krsna-and-the-giita": Object.freeze({
+      familyId: "discourses-on-krsna-and-the-giita",
+      en: "discourses-on-krsna-and-the-giita",
+      hi: "discourses-on-krsna-and-the-giita-hi",
+    }),
     // HOLD (no switch): AV01-hi wrong source; AV02-hi misbind/absent.
     "ananda-vacanamrtam-04": Object.freeze({
       familyId: "ananda-vacanamrtam-04",
