@@ -184,7 +184,9 @@
     route: "library",
     params: {},
     settings: {
-      theme: "sepia",
+      theme: "navy",
+      landingThemeApplied: false,
+      libraryLanguage: "en",
       fontSize: 18,
       lineHeight: 1.75,
       fontFamily: "serif",
@@ -289,6 +291,10 @@
       if (!raw) return;
       const saved = JSON.parse(raw);
       Object.assign(state.settings, saved.settings || {});
+      if (!saved.settings?.landingThemeApplied && (!saved.settings?.theme || saved.settings.theme === "sepia")) {
+        state.settings.theme = "navy";
+      }
+      state.settings.landingThemeApplied = true;
       // Re-baseline pauses saved under earlier defaults onto the conventional
       // comma / full-stop / paragraph rhythm.
       if (PAUSE_DEFAULT_HISTORY.comma.includes(state.settings.ttsCommaPause)) state.settings.ttsCommaPause = 180;
@@ -391,6 +397,7 @@
         state.notes = old.notes || state.notes;
         if (old.study?.cards) state.study.cards = old.study.cards;
       }
+      if (!saved.settings?.landingThemeApplied) saveState();
     } catch (_) { /* ignore */ }
   }
 
@@ -1909,7 +1916,7 @@
       if (!s?.id) return;
       const books = (s.books || [])
         .map(b => (b?.id ? bookById(b.id) || b : null))
-        .filter(b => b?.id && (!bookEditionFamily(b.id) || b.id === bookEditionFamily(b.id).en))
+        .filter(libraryBookVisible)
         .filter(b => b?.id && (!q || textMatchesQuery(bookSearchBlob(b), q) || textMatchesQuery(s.title, q)));
       if (!books.length) return;
       const seriesL = titleAlphaLetter(s.title);
@@ -1939,6 +1946,7 @@
         if (!s?.id) continue;
         const books = (s.books || [])
           .map(b => (b?.id ? bookById(b.id) || b : null))
+          .filter(libraryBookVisible)
           .filter(b => b?.id && (!q || textMatchesQuery(bookSearchBlob(b), q) || textMatchesQuery(s.title, q)));
         const matchBook = books.find(b => titleAlphaLetter(b.title) === L);
         const matchSeries = titleAlphaLetter(s.title) === L;
@@ -4901,6 +4909,39 @@
     return bookEditionFamily(bookId)?.familyId || bookId;
   }
 
+  function bookCatalogLanguage(book) {
+    const id = String(book?.id || "");
+    const family = bookEditionFamily(id);
+    if (family?.hi && id === family.hi) return "hi";
+    if (family?.en && id === family.en) return "en";
+    if (/(^|-)hi$/.test(id) || book?.language === "hi" || book?.lang === "hi") return "hi";
+    return "en";
+  }
+
+  function libraryLanguageFilter() {
+    const value = state.settings.libraryLanguage;
+    return value === "hi" || value === "both" ? value : "en";
+  }
+
+  function libraryBookVisible(book) {
+    if (!book?.id) return false;
+    const filter = libraryLanguageFilter();
+    if (filter === "both") return true;
+    return bookCatalogLanguage(book) === filter;
+  }
+
+  function libraryLanguageFilterHtml() {
+    const current = libraryLanguageFilter();
+    const options = [
+      ["en", "English only"],
+      ["hi", "Hindi only"],
+      ["both", "Both"],
+    ];
+    return `<div class="lib-lang-filter" role="group" aria-label="Title language">${options.map(([id, label]) =>
+      `<button type="button" class="lib-lang-opt${current === id ? " active" : ""}" data-lib-lang="${id}" aria-pressed="${current === id ? "true" : "false"}">${label}</button>`
+    ).join("")}</div>`;
+  }
+
   // AMPS_LANGUAGE_SELECTOR_STATIC_LABEL_V1
   function languageSelectorLabelHtml() {
     return "";
@@ -4939,7 +4980,7 @@
       .sort((a, b) => (b[1].updated || 0) - (a[1].updated || 0))
       .slice(0, 5)
       .map(([bookId]) => bookById(bookId))
-      .filter(Boolean);
+      .filter(libraryBookVisible);
     let html = "";
 
     const qotd = F()?.quoteOfTheDay(state.catalog);
@@ -4954,7 +4995,7 @@
 
     // Newly catalogued books (addedAt) — front of library so they are easy to find.
     const recentlyAdded = [...(state.catalog.books || [])]
-      .filter(b => b?.id && b.addedAt && (!bookEditionFamily(b.id) || b.id === bookEditionFamily(b.id).en))
+      .filter(b => b?.id && b.addedAt && libraryBookVisible(b))
       .sort((a, b) => String(b.addedAt).localeCompare(String(a.addedAt)))
       .slice(0, 8)
       .map(b => bookById(b.id) || b)
@@ -4965,7 +5006,7 @@
       html += `</div></section>`;
     }
 
-    const favBooks = (state.favorites.books || []).map(bookById).filter(Boolean);
+    const favBooks = (state.favorites.books || []).map(bookById).filter(libraryBookVisible);
     if (favBooks.length && !q) {
       html += `<section class="section"><h2 class="section-head">Favorites</h2><div class="book-grid">`;
       favBooks.forEach(b => { html += bookCard(b, state.progress[b.id]); });
@@ -4980,7 +5021,7 @@
       html += `</div></section>`;
     }
 
-    const recentIds = state.recent.map(bookById).filter(Boolean).slice(0, 8);
+    const recentIds = state.recent.map(bookById).filter(libraryBookVisible).slice(0, 8);
     if (recentIds.length && !q) {
       html += `<section class="section"><h2 class="section-head">Recently opened</h2><div class="chip-row">`;
       recentIds.forEach(b => {
@@ -4999,7 +5040,7 @@
       if (!s?.id) return;
       const books = (s.books || [])
         .map(b => (b?.id ? bookById(b.id) || b : null))
-        .filter(b => b?.id && (!bookEditionFamily(b.id) || b.id === bookEditionFamily(b.id).en))
+        .filter(libraryBookVisible)
         .filter(b => b?.id && (!q || textMatchesQuery(bookSearchBlob(b), q) || textMatchesQuery(s.title, q)))
         .sort((a, b) => {
           // Phase2C: numeric volume ascending within series (ignore addedAt / title alpha).
@@ -5082,11 +5123,12 @@
     const todayMin = window.AmpsStats?.todayMinutes(state.stats) || 0;
     const streak = window.AmpsStats?.streak(state.stats) || 0;
     const q = state.params.q || "";
+    const shownBooks = (state.catalog.books || []).filter(libraryBookVisible).length;
     let body = `
       <section class="hero">
         <p class="hero-eyebrow">Ananda Marga Pracaraka Samgha</p>
         <h1>Sacred Library</h1>
-        <p class="hero-sub">${state.catalog.bookCount} books · ${state.catalog.discourseCount} discourses · ${state.catalog.glossaryTermCount || "?"} glossary terms</p>
+        <p class="hero-sub">${shownBooks} books · ${state.catalog.discourseCount} discourses · ${state.catalog.glossaryTermCount || "?"} glossary terms</p>
         <div class="stats-inline"><span>${todayMin} min ${T("todayGoal")}</span> · <span>${streak} ${T("streak")}</span>
           <a href="#stats" class="link">${T("stats")}</a></div>
         <div class="hero-actions">
@@ -5104,6 +5146,7 @@
         <div class="search-bar">
           <input type="text" inputmode="search" autocomplete="off" id="libSearch" placeholder="Search books & discourses…" value="${esc(q)}" />
         </div>
+        ${libraryLanguageFilterHtml()}
         <div id="libAlphaNavHost">${renderAlphaNav(libraryAlphaPresentSet(q), {
           id: "libAlphaNav",
           mode: "library",
@@ -5121,6 +5164,13 @@
         document.getElementById("libSearch")?.addEventListener("input", e => {
           state.params.q = e.target.value;
           updateLibraryBrowse();
+        });
+        document.querySelectorAll("[data-lib-lang]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            state.settings.libraryLanguage = btn.dataset.libLang || "en";
+            saveState();
+            renderLibrary();
+          });
         });
         bindLibraryBrowse();
       },
@@ -5836,15 +5886,9 @@
 
   function localizedBookCardTitle(book) {
     const lang = bookLanguage();
-    if (!book?.id || lang === "en") {
-      // Phase2C: one visible family card — prefer Hindi series/volume title when present.
-      const fam = bookEditionFamily(book?.id);
-      if (fam && book.id === fam.en) {
-        const hi = bookById(fam.hi);
-        if (hi && /[\u0900-\u097F]/.test(String(hi.title || ""))) return titleWithHindiPart(hi);
-      }
-      if (/[\u0900-\u097F]/.test(String(book.title || ""))) return titleWithHindiPart(book);
-      return book?.title || "";
+    const filter = libraryLanguageFilter();
+    if (!book?.id || filter === "en" || filter === "both" || lang === "en") {
+      return titleWithHindiPart(book) || book?.title || "";
     }
     const cached = languagePackCache[`${book.id}:${lang}`];
     const packed = cached?.pack?.metadata?.title;
