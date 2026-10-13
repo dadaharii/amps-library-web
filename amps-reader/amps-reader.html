@@ -20,6 +20,8 @@
       --reader-size: 18px;
       --reader-lh: 1.75;
       --topbar-h: 52px;
+      --text-scale: 1;
+      --text-size-bar-h: 4.4rem;
       --nav-h: 64px;
       --shadow-soft: 0 10px 30px rgba(0,0,0,0.08);
       --shadow-strong: 0 18px 48px rgba(0,0,0,0.18);
@@ -96,6 +98,66 @@
     .icon-btn { width: 40px; height: 40px; border-radius: var(--radius-sm); font-size: 1.1rem; display: flex; align-items: center; justify-content: center; }
     .icon-btn:hover { background: var(--surface-2); }
     .icon-btn:active { transform: scale(0.96); }
+    html { font-size: calc(16px * var(--text-scale, 1)); }
+    .text-size-bar {
+      position: sticky;
+      top: var(--topbar-h);
+      z-index: 98;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: var(--text-size-bar-h);
+      margin: 0;
+      padding: 0.4rem 0.75rem;
+      background: #faf6ec;
+      border-bottom: 1px solid #d4c9a8;
+      color: #2c2416;
+    }
+    .text-size-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 6.4rem;
+      min-height: 3.15rem;
+      padding: 0.25rem 0.85rem;
+      border-radius: 10px;
+      border: 1px solid #74624f;
+      background: #fffdf6;
+      color: #2c2416;
+      -webkit-text-fill-color: #2c2416;
+      font-weight: 800;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .text-size-btn small {
+      margin-top: 0.18rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .text-size-btn-up {
+      background: linear-gradient(135deg, #d4af37, #a67c00);
+      color: #1a1410;
+      -webkit-text-fill-color: #1a1410;
+      border-color: #8b6914;
+    }
+    .text-size-btn:disabled { opacity: 0.38; }
+    .text-size-label {
+      min-width: 8.5rem;
+      text-align: center;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #2c2416;
+      -webkit-text-fill-color: #2c2416;
+    }
+    body.today-screen .text-size-bar {
+      background: #faf6ec;
+      color: #2c2416;
+      border-bottom-color: #d4c9a8;
+    }
 
     .main { width: 100%; max-width: 720px; min-width: 0; margin: 0 auto; padding: 0 1rem 2rem; }
     .main > * { max-width: 100%; min-width: 0; }
@@ -247,7 +309,7 @@
     .main-reader > .book-edition-switch,
     .main-reader > .reader-edition-bar {
       position: sticky;
-      top: calc(var(--topbar-h) + 48px);
+      top: calc(var(--topbar-h) + var(--text-size-bar-h) + 3.6rem);
       z-index: 94;
       display: flex !important;
       width: max-content !important;
@@ -326,7 +388,7 @@
 
     /* Reader */
     .reader-toolbar-wrap {
-      position: sticky; top: var(--topbar-h); z-index: 95;
+      position: sticky; top: calc(var(--topbar-h) + var(--text-size-bar-h)); z-index: 95;
       background: var(--surface);
       border-bottom: 1px solid var(--border);
     }
@@ -3460,7 +3522,7 @@
     <script src="amps-reader-canonical-nav.js"></script>
     <script src="amps-reader-canonical-binding.js"></script>
     <script src="amps-reader-canonical-occurrences-index.js"></script>
-<script src="amps-reader-app.js?v=themePick2"></script>
+<script src="amps-reader-app.js?v=textSize1"></script>
   <script src="amps-reader-language-packs.js" defer></script>
   <script src="amps-reader-book-media.js"></script>
   <script src="amps-reader-section-notices.js"></script>

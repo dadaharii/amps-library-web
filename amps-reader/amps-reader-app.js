@@ -2653,9 +2653,79 @@
     refreshReaderSheet();
   }
 
+  const TEXT_SIZE_STEPS = [14, 16, 18, 22, 26, 32, 40];
+
+  function textSizeName(px) {
+    const n = Number(px) || 18;
+    if (n <= 15) return "Smaller";
+    if (n <= 19) return "Medium";
+    if (n <= 23) return "Large";
+    if (n <= 28) return "Larger";
+    if (n <= 35) return "Extra large";
+    return "Largest";
+  }
+
+  function textSizeLabel(px) {
+    return textSizeName(px);
+  }
+
+  function clampFontSize(px) {
+    return Math.max(14, Math.min(40, Math.round(Number(px) || 18)));
+  }
+
+  function textScaleFor(px) {
+    const n = clampFontSize(px);
+    return Math.round((1 + (n - 18) * 0.035) * 100) / 100;
+  }
+
+  function textSizeBarHtml() {
+    const px = clampFontSize(state.settings.fontSize);
+    return `<div class="text-size-bar" role="group" aria-label="Text size">
+      <button type="button" class="text-size-btn" data-text-step="-1" aria-label="Decrease text size"${px <= 14 ? " disabled" : ""}>A−<small>Smaller</small></button>
+      <span class="text-size-label" data-text-size-label>${textSizeLabel(px)}</span>
+      <button type="button" class="text-size-btn text-size-btn-up" data-text-step="1" aria-label="Increase text size"${px >= 40 ? " disabled" : ""}>A+<small>Larger</small></button>
+    </div>`;
+  }
+
+  function refreshTextSizeControls() {
+    const px = clampFontSize(state.settings.fontSize);
+    document.querySelectorAll("[data-text-size-label]").forEach(el => { el.textContent = textSizeLabel(px); });
+    document.querySelectorAll("[data-text-step='-1']").forEach(el => { el.disabled = px <= 14; });
+    document.querySelectorAll("[data-text-step='1']").forEach(el => { el.disabled = px >= 40; });
+    const fv = document.getElementById("fontVal");
+    if (fv) fv.textContent = String(px);
+    const slider = document.getElementById("setFont");
+    if (slider) slider.value = String(px);
+  }
+
+  function setFontSize(px) {
+    state.settings.fontSize = clampFontSize(px);
+    saveState();
+    applyReaderSettingsLive();
+    refreshTextSizeControls();
+  }
+
+  function stepTextSize(dir) {
+    const cur = clampFontSize(state.settings.fontSize);
+    const next = dir > 0
+      ? (TEXT_SIZE_STEPS.find(n => n > cur) || 40)
+      : ([...TEXT_SIZE_STEPS].reverse().find(n => n < cur) || 14);
+    setFontSize(next);
+  }
+
+  function bindTextSizeControls(root) {
+    (root || document).querySelectorAll("[data-text-step]").forEach(btn => {
+      if (btn.dataset.textBound) return;
+      btn.dataset.textBound = "1";
+      btn.addEventListener("click", () => stepTextSize(Number(btn.dataset.textStep)));
+    });
+  }
+
   function applyReaderSettingsLive() {
     const s = state.settings;
+    s.fontSize = clampFontSize(s.fontSize);
     document.documentElement.dataset.theme = s.theme;
+    document.documentElement.style.setProperty("--text-scale", String(textScaleFor(s.fontSize)));
     document.documentElement.style.setProperty("--reader-size", s.fontSize + "px");
     document.documentElement.style.setProperty("--reader-lh", s.lineHeight);
     document.documentElement.style.setProperty("--reader-brightness", (s.brightness || 100) + "%");
@@ -4552,6 +4622,7 @@
         <div class="topbar-title">${opts?.title || "AMPS Reader"}</div>
         <button type="button" class="icon-btn" id="btnSearch" aria-label="Search">⌕</button>
       </header>
+      ${textSizeBarHtml()}
       <main class="main ${opts?.className || ""}">${content}</main>
       <nav class="bottomnav" aria-label="Main">
         <a href="#library" class="nav-item ${active === "library" ? "active" : ""}"><span>📚</span>${T("library")}</a>
@@ -4583,6 +4654,7 @@
       else state.ui.drawer = state.ui.drawer ? null : "menu";
     });
     document.getElementById("btnSearch")?.addEventListener("click", () => navigate("search"));
+    bindTextSizeControls();
     opts?.bind?.();
   }
 
@@ -6621,7 +6693,7 @@
           ${readerThemePickerHtml()}
         </div>
         <label>Font size <span id="fontVal">${state.settings.fontSize}</span>
-          <input type="range" id="setFont" min="14" max="26" value="${state.settings.fontSize}" />
+          <input type="range" id="setFont" min="14" max="40" value="${clampFontSize(state.settings.fontSize)}" />
         </label>
         <label>Line height
           <input type="range" id="setLh" min="1.4" max="2.2" step="0.05" value="${state.settings.lineHeight}" />
@@ -7018,10 +7090,7 @@
     });
     bindReaderThemePicker();
     document.getElementById("setFont")?.addEventListener("input", e => {
-      state.settings.fontSize = +e.target.value;
-      document.getElementById("fontVal").textContent = e.target.value;
-      document.documentElement.style.setProperty("--reader-size", e.target.value + "px");
-      saveState();
+      setFontSize(+e.target.value);
     });
     document.getElementById("setLh")?.addEventListener("input", e => {
       state.settings.lineHeight = +e.target.value;
@@ -8445,7 +8514,7 @@
         <div class="settings-theme">Theme
           ${readerThemePickerHtml()}
         </div>
-        <p class="muted">Sepia is the reading page. The Today page keeps its own dark landing look.</p>
+        <p class="muted">Sepia is the reading page. The Today page keeps its own dark landing look. Use Smaller and Larger at the top of every page. Largest is easier to read.</p>
         <hr class="settings-divider" />
         <h2 class="settings-section-title">Audio & Pronunciation</h2>
         <label>Voice
