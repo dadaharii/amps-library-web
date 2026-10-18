@@ -131,16 +131,31 @@
     const closes = p => isRoleShloka(p) || /(?:[’”"']|।\s*।|॥)\s*[।]?\s*$/.test(String(p?.text || "").trim());
     const isInner = p => {
       const t = String(p?.text || "").trim();
-      return t.length > 0 && t.length <= 80 && isDevanagariText(t) && !looksLikeProse(t);
+      if (!t || t.length > 80 || !isDevanagariText(t)) return false;
+      const core = t.replace(/^[\s“”"‘’'«»]+/u, "").replace(/[\s“”"‘’'«»]+$/u, "").trim();
+      if (!core || looksLikeProse(core)) return false;
+      if (/अर्थात्|भावार्थ|व्युत्पत्ति|पूछा/.test(core)) return false;
+      if (/(?:^|\s)(?:है|हैं|ने)(?:[ः:])?(?=\s|$)/.test(core)) return false;
+      return true;
     };
     for (let i = 0; i < paras.length; i += 1) {
-      if (!isAnchor(paras[i]) || !opens(paras[i])) continue;
+      // The first pada of a quoted stanza often has no danda, so it is not an anchor.
+      const canStart = opens(paras[i]) && (isAnchor(paras[i]) || isInner(paras[i]));
+      if (!canStart) continue;
       for (let j = i + 1; j < paras.length && j - i <= 7; j += 1) {
-        if (isAnchor(paras[j]) && closes(paras[j])) {
-          if (j - i >= 2) for (let k = i; k <= j; k += 1) out.push(k);
+        if (closes(paras[j]) && (isAnchor(paras[j]) || isInner(paras[j]))) {
+          let hasAnchor = isAnchor(paras[i]) || isAnchor(paras[j]);
+          let blocked = false;
+          for (let k = i + 1; k < j; k += 1) {
+            if (isAnchor(paras[k])) hasAnchor = true;
+            else if (!isInner(paras[k])) blocked = true;
+          }
+          if (!blocked && hasAnchor) {
+            for (let k = i; k <= j; k += 1) out.push(k);
+          }
           break;
         }
-        if (!isInner(paras[j])) break;
+        if (!isInner(paras[j]) && !isAnchor(paras[j])) break;
       }
     }
     return out;
