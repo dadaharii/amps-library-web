@@ -41,41 +41,41 @@
       --bg: #f4ecd8; --surface: #faf6ec; --surface-2: #ebe3cf;
       --border: #d4c9a8; --text: #2c2416; --text-muted: #6b5d45;
       --hero-bg: linear-gradient(145deg, #2c2416 0%, #4a3728 45%, #1a1410 100%);
-      --shloka-bg: #f0e6d0; --shloka-border: #8b6914; --shloka-roman: #3d2e1a;
-      --shloka-dev: #5c3d1e; --shloka-bng: #6b2d5b;
-      --shloka-or: #4a3d6b; --shloka-pa: #3d4a6b; --shloka-kn: #3d5a4a;
+      --shloka-bg: #f0e6d0; --shloka-border: #8b6914; --shloka-ink: #8a6410;
+      --shloka-roman: var(--shloka-ink); --shloka-dev: var(--shloka-ink); --shloka-bng: var(--shloka-ink);
+      --shloka-or: var(--shloka-ink); --shloka-pa: var(--shloka-ink); --shloka-kn: var(--shloka-ink);
     }
     [data-theme="light"] {
       --bg: #f8f9fc; --surface: #fff; --surface-2: #eef1f8;
       --border: #dde2ef; --text: #1a1f2e; --text-muted: #5c6478;
       --hero-bg: linear-gradient(145deg, #1e3a5f, #2d4a6f, #0f172a);
-      --shloka-bg: #f5f0e6; --shloka-border: #9a7b1c; --shloka-roman: #3a3020;
-      --shloka-dev: #5c3d1e; --shloka-bng: #6b2d5b;
-      --shloka-or: #4a3d6b; --shloka-pa: #3d4a6b; --shloka-kn: #3d5a4a;
+      --shloka-bg: #f5f0e6; --shloka-border: #9a7b1c; --shloka-ink: #8a6410;
+      --shloka-roman: var(--shloka-ink); --shloka-dev: var(--shloka-ink); --shloka-bng: var(--shloka-ink);
+      --shloka-or: var(--shloka-ink); --shloka-pa: var(--shloka-ink); --shloka-kn: var(--shloka-ink);
     }
     [data-theme="dark"] {
       --bg: #0f1419; --surface: #1a222d; --surface-2: #242d3a;
       --border: #2e3a4a; --text: #e8ecf4; --text-muted: #8b95a8;
       --hero-bg: linear-gradient(145deg, #0a0e14, #1a222d, #000);
-      --shloka-bg: #252018; --shloka-border: #c9a227; --shloka-roman: #e8dcc8;
-      --shloka-dev: #e0c9a0; --shloka-bng: #d4a8c8;
-      --shloka-or: #c8b8e0; --shloka-pa: #b8c8e0; --shloka-kn: #b8d8c8;
+      --shloka-bg: #252018; --shloka-border: #c9a227; --shloka-ink: #e6c34a;
+      --shloka-roman: var(--shloka-ink); --shloka-dev: var(--shloka-ink); --shloka-bng: var(--shloka-ink);
+      --shloka-or: var(--shloka-ink); --shloka-pa: var(--shloka-ink); --shloka-kn: var(--shloka-ink);
     }
     [data-theme="navy"] {
       --bg: #071426; --surface: #0d2036; --surface-2: #142b47;
       --border: #29445f; --text: #edf4fb; --text-muted: #a7b7c9;
       --hero-bg: linear-gradient(145deg, #071426, #12365a 55%, #0a1728);
-      --shloka-bg: #10253d; --shloka-border: #c9a227; --shloka-roman: #f3ead4;
-      --shloka-dev: #f0d9ad; --shloka-bng: #e0b8d4;
-      --shloka-or: #d6c4ef; --shloka-pa: #c1d2ef; --shloka-kn: #c4e2d1;
+      --shloka-bg: #10253d; --shloka-border: #c9a227; --shloka-ink: #e6c34a;
+      --shloka-roman: var(--shloka-ink); --shloka-dev: var(--shloka-ink); --shloka-bng: var(--shloka-ink);
+      --shloka-or: var(--shloka-ink); --shloka-pa: var(--shloka-ink); --shloka-kn: var(--shloka-ink);
     }
     [data-theme="contrast"] {
       --bg: #000; --surface: #111; --surface-2: #1a1a1a;
       --border: #fff; --text: #fff; --text-muted: #ccc;
       --hero-bg: linear-gradient(145deg, #000, #222, #000);
-      --shloka-bg: #1a1a1a; --shloka-border: #ffcc00; --shloka-roman: #fff;
-      --shloka-dev: #fff; --shloka-bng: #fff;
-      --shloka-or: #fff; --shloka-pa: #fff; --shloka-kn: #fff;
+      --shloka-bg: #1a1a1a; --shloka-border: #ffcc00; --shloka-ink: #ffcc00;
+      --shloka-roman: var(--shloka-ink); --shloka-dev: var(--shloka-ink); --shloka-bng: var(--shloka-ink);
+      --shloka-or: var(--shloka-ink); --shloka-pa: var(--shloka-ink); --shloka-kn: var(--shloka-ink);
     }
     * { box-sizing: border-box; }
     html, body {
@@ -1946,6 +1946,14 @@
       font-size: 1.14rem;
       color: var(--shloka-dev, #5c3d1e);
     }
+    .reader-para.shloka-entry > .para-text,
+    .reader-para.discourse-shloka-entry > .para-text,
+    .reader-para.shloka-verse-entry .shloka-line:not(.shloka-meaning),
+    .reader-para.content-verse .shloka-line:not(.shloka-meaning),
+    .reader-para.shloka-entry .shloka-line:not(.shloka-meaning),
+    .reader-para.discourse-shloka-entry .shloka-line:not(.shloka-meaning) {
+      color: var(--shloka-ink, #c9a227) !important;
+    }
     .shloka-bng {
       font-family: "Noto Sans Bengali", "Vrinda", sans-serif;
       font-size: 1.1rem;
@@ -3677,7 +3685,7 @@
   <link rel="stylesheet" href="presentation-builder/presentation-builder.css" />
   <link rel="stylesheet" href="amps-reader-productivity.css?v=studySum1" />
   <link rel="stylesheet" href="tts/tts-sync.css?v=152" />
-  <link rel="stylesheet" href="amps-reader-language-packs.css?v=langPill1" />
+  <link rel="stylesheet" href="amps-reader-language-packs.css?v=shloka-gold1" />
   <link rel="stylesheet" href="amps-reader-roman-samskrta.css">
   <link rel="stylesheet" href="amps-reader-book-media.css">
   <link rel="stylesheet" href="amps-reader-section-notices.css">
