@@ -186,7 +186,7 @@
     settings: {
       theme: "sepia",
       readerThemeChosen: false,
-      libraryLanguage: "en",
+      libraryLanguage: "both",
       fontSize: 18,
       lineHeight: 1.75,
       fontFamily: "serif",
@@ -293,6 +293,11 @@
       Object.assign(state.settings, saved.settings || {});
       if (!saved.settings?.readerThemeChosen && state.settings.theme === "navy") {
         state.settings.theme = "sepia";
+      }
+      // The old default hid Hindi editions. Show every packaged book until
+      // the reader explicitly picks English or Hindi.
+      if (!saved.settings?.libraryLanguageChosen) {
+        state.settings.libraryLanguage = "both";
       }
       // Re-baseline pauses saved under earlier defaults onto the conventional
       // comma / full-stop / paragraph rhythm.
@@ -669,6 +674,32 @@
       (typeof raw === "string" ? { paraId: raw, label: "" } : raw);
   }
 
+  function isReviewedShlokaLine(para) {
+    return para?.renderType === "shloka";
+  }
+
+  /** Consecutive shloka lines are one verse. The open link belongs on the last line. */
+  function reviewedShlokaRunLink(bookId, chapterId, paragraphs, index) {
+    const list = paragraphs || [];
+    const para = list[index];
+    if (!isReviewedShlokaLine(para)) return null;
+    if (isReviewedShlokaLine(list[index + 1])) return { atEnd: false };
+    let hit = null;
+    let fromParaId = para.id;
+    for (let k = index; k >= 0; k -= 1) {
+      const cur = list[k];
+      if (!isReviewedShlokaLine(cur)) break;
+      const raw = state.shlokaSourceIndex?.[shlokaSourceLookupKey(bookId, chapterId, cur.id)];
+      const curHit = window.AmpsShlokaDeepNav?.normalizeSourceIndexEntry?.(raw) ||
+        (typeof raw === "string" ? { paraId: raw, label: "" } : raw);
+      if (curHit?.paraId) {
+        hit = curHit;
+        fromParaId = cur.id;
+      }
+    }
+    return { atEnd: true, hit, fromParaId };
+  }
+
   function hasSamskrtaSemanticBlock(blocks) {
     return Array.isArray(blocks) && blocks.some(block => {
       const type = String(block?.type || "");
@@ -844,7 +875,7 @@
   function replaceReaderHash(full) {
     if (location.hash === full) return;
     try {
-      history.replaceState(null, "", full);
+      history.replaceState(history.state, "", full);
     } catch (_) {
       try { location.replace(full); } catch (__) { location.hash = full; }
     }
@@ -1262,7 +1293,8 @@
     if (!hit?.paraId || bookId === "samskrta-shloka") return "";
     const occ = sourceOccurrenceId(hit.paraId, chapterId, paraId);
     const centered = opts.centered ? " source-shloka-actions-centered" : "";
-    return `<div class="source-shloka-actions${centered}">
+    const groupedWait = opts.hidden ? " source-shloka-actions-grouped-wait" : "";
+    return `<div class="source-shloka-actions${centered}${groupedWait}">
       <button type="button" class="shloka-open-from-source amps-samskrta-open-link"
         data-shloka-para="${esc(hit.paraId)}"
         data-occurrence="${esc(occ)}"
@@ -2335,7 +2367,23 @@
   function isDiscourseDevanagariVersePara(p) {
     if (!p) return false;
     if (p.contentType === "verse" || p.renderType === "shloka") return true;
-    return !!window.AmpsIndicText?.looksLikeVerse?.(p.text);
+    const IT = window.AmpsIndicText;
+    if (IT?.looksLikeVerse?.(p.text)) return true;
+    return isRoleShlokaVerseLine(p);
+  }
+
+  /** Short Devanagari lines the source tagged as shloka (songs, dohas without dandas). */
+  function isRoleShlokaVerseLine(p) {
+    if (String(p?.displayRole || "").toLowerCase() !== "shloka") return false;
+    const text = String(p.text || "").trim();
+    if (!text || text.length > 120 || !/[\u0900-\u097f]/.test(text)) return false;
+    return !window.AmpsIndicText?.looksLikeProse?.(text);
+  }
+
+  /** Source tagged the paragraph as shloka but it reads as ordinary Hindi prose. */
+  function isMisTaggedShlokaProse(p) {
+    if (String(p?.displayRole || "").toLowerCase() !== "shloka") return false;
+    return !!window.AmpsIndicText?.looksLikeProse?.(p.text);
   }
 
   function renderDiscourseDevanagariVerse(text, ch) {
@@ -2415,12 +2463,46 @@
               if (res.ok) patchSamskrtaShlokaCatalog(c, await res.json());
             } catch (_) { /* catalog patch optional */ }
           }
+          await loadDiscourseEditions();
           state.catalog = c;
           return c;
         })
         .finally(() => { catalogPromise = null; });
     }
     return catalogPromise;
+  }
+
+  const discourseEditions = { loaded: false, hiToEn: new Map(), enToHi: new Map(), books: new Set() };
+
+  async function loadDiscourseEditions() {
+    if (discourseEditions.loaded) return;
+    try {
+      const res = await fetch(readerAssetUrl("data/discourse-editions.json"), { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      for (const pair of data?.pairs || []) {
+        if (!pair?.hi || !pair?.en) continue;
+        if (!discourseEditions.hiToEn.has(pair.hi)) discourseEditions.hiToEn.set(pair.hi, pair.en);
+        if (!discourseEditions.enToHi.has(pair.en)) discourseEditions.enToHi.set(pair.en, pair.hi);
+        discourseEditions.books.add(pair.hi.split("/")[0]);
+        discourseEditions.books.add(pair.en.split("/")[0]);
+      }
+      discourseEditions.loaded = true;
+    } catch (_) { /* discourse pairs optional */ }
+  }
+
+  function discourseEditionPair(bookId, chapterId) {
+    const key = `${bookId}/${chapterId}`;
+    const hi = discourseEditions.enToHi.get(key);
+    if (hi) return { en: key, hi };
+    const en = discourseEditions.hiToEn.get(key);
+    if (en) return { en, hi: key };
+    return null;
+  }
+
+  function discourseRefHref(ref) {
+    const slash = ref.indexOf("/");
+    return `#read/${ref.slice(0, slash)}/${encodeURIComponent(ref.slice(slash + 1))}`;
   }
 
   async function ensureSearchCatalog() {
@@ -2681,9 +2763,9 @@
   function textSizeBarHtml() {
     const px = clampFontSize(state.settings.fontSize);
     return `<div class="text-size-bar" role="group" aria-label="Text size">
-      <button type="button" class="text-size-btn" data-text-step="-1" aria-label="Decrease text size"${px <= 14 ? " disabled" : ""}>A−<small>Smaller</small></button>
+      <button type="button" class="text-size-btn" data-text-step="-1" aria-label="Smaller"${px <= 14 ? " disabled" : ""}>A−</button>
       <span class="text-size-label" data-text-size-label>${textSizeLabel(px)}</span>
-      <button type="button" class="text-size-btn text-size-btn-up" data-text-step="1" aria-label="Increase text size"${px >= 40 ? " disabled" : ""}>A+<small>Larger</small></button>
+      <button type="button" class="text-size-btn text-size-btn-up" data-text-step="1" aria-label="Larger"${px >= 40 ? " disabled" : ""}>A+</button>
     </div>`;
   }
 
@@ -3140,7 +3222,7 @@
       alert("Audio download is not ready. Reopen the app and try again.");
       return;
     }
-    const book = await loadBook(bookId);
+    const book = await loadReaderEditionBook(bookId);
     const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     const paragraphs = (ch?.paragraphs || []).filter(p => String(p?.text || "").trim());
     if (!paragraphs.length) return;
@@ -3195,7 +3277,7 @@
       alert("Audio generation is not ready. Reopen the app and try again.");
       return;
     }
-    const book = await loadBook(bookId);
+    const book = await loadReaderEditionBook(bookId);
     const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     const paragraphs = (ch?.paragraphs || []).filter(p => String(p?.text || "").trim());
     if (!paragraphs.length) return;
@@ -3225,6 +3307,18 @@
       : `Chapter audio generated: ${generated} paragraphs.`);
   }
 
+  function speechCorpusLanguage(bookId, book, speakTexts) {
+    const lang = String(book?.editionLanguage || book?.language || "").toLowerCase();
+    const packLang = String(book?.languagePack?.lang || "").toLowerCase();
+    if (packLang === "hi" && book?.languagePack?.mode === "translation_only") return "hi-Deva";
+    if (lang === "hi" || lang.startsWith("hi-") || /-(hi|hindi)$/.test(String(bookId || ""))) return "hi-Deva";
+    if (bookLanguage() !== "hi") return "en";
+    const sample = (speakTexts || []).join(" ");
+    const dev = (sample.match(/[\u0900-\u097F]/g) || []).length;
+    const latin = (sample.match(/[A-Za-z]/g) || []).length;
+    return dev > latin ? "hi-Deva" : "en";
+  }
+
   async function startReaderAudio(readingStyle, continueLast, startParaId, startOffset) {
     const bookId = state.params.parts[1];
     const chapterId = state.params.parts[2];
@@ -3240,17 +3334,21 @@
       return;
     }
     window.AmpsAudio.prime?.();
-    const book = await loadBook(bookId);
+    const book = await loadReaderEditionBook(bookId);
     const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
     if (!ch?.paragraphs?.length) return;
     const style = normalizeTtsReadingStyle(readingStyle || state.settings.ttsReadingStyle);
     state.settings.ttsReadingStyle = style;
     if (style === "pravachan") enableSanskritPronunciationIfOff();
     const apiTts = activeApiTtsConfig();
-    const voicePreset = window.AmpsAudio?.effectiveVoicePreset?.(
-      normalizeTtsVoice(state.settings.ttsVoice),
-      style
-    ) || normalizeTtsVoice(state.settings.ttsVoice);
+    const { speakTexts, paragraphChanda } = buildParagraphSpeakPlan(bookId, ch);
+    const corpusLanguage = speechCorpusLanguage(bookId, book, speakTexts);
+    const voicePreset = corpusLanguage === "hi-Deva"
+      ? normalizeTtsVoice(state.settings.ttsVoice)
+      : window.AmpsAudio?.effectiveVoicePreset?.(
+        normalizeTtsVoice(state.settings.ttsVoice),
+        style
+      ) || normalizeTtsVoice(state.settings.ttsVoice);
     const requestedIdx = startParaId ? ch.paragraphs.findIndex(p => p.id === startParaId) : -1;
     const visibleIdx = ch.paragraphs.findIndex(p => p.id === visibleReaderParaId());
     const rec = state.audioProgress[audioProgressKey(bookId, ch.id)];
@@ -3266,7 +3364,6 @@
         : 0;
     const rate = effectiveSpeechRate(style, apiTts);
     const pauseSettings = chapterAudioPauseSettings();
-    const { speakTexts, paragraphChanda } = buildParagraphSpeakPlan(bookId, ch);
     state.ui.audioPaused = false;
     saveState();
     setTtsToolbarState(true, style);
@@ -3395,6 +3492,7 @@
               pauseSettings,
               paragraphChanda: [paragraphChanda[i]],
               apiTts,
+              corpusLanguage,
             }
           );
           return ok !== false;
@@ -3417,6 +3515,7 @@
         pauseSettings,
         paragraphChanda,
         apiTts,
+        corpusLanguage,
       }
     );
     if (ok === false) {
@@ -3928,7 +4027,7 @@
     window.AmpsAudio.prime?.();
     ensureMyVoicePronunciationMode();
     enableSanskritPronunciationIfOff();
-    const book = await loadBook(bookId);
+    const book = await loadReaderEditionBook(bookId);
     const startParagraphId = state.ui.activeParaId
       || visibleReaderParaId()
       || state.audioProgress[audioProgressKey(bookId, chapterId)]?.paraId
@@ -4413,6 +4512,19 @@
         });
         return;
       }
+      if (!e.target.closest("button, a, input, textarea, summary, .para-tools")) {
+        const verse = e.target.closest(".reader-para.content-verse, .reader-para.shloka-entry, .reader-para.discourse-shloka-entry");
+        const openBtn = verse?.querySelector?.(".shloka-open-from-source");
+        if (openBtn?.dataset.shlokaPara && e.target.closest(".para-text, .shloka-line, .shloka-verse-block")) {
+          e.preventDefault();
+          e.stopPropagation();
+          goToShlokaFromSource(openBtn.dataset.shlokaPara, {
+            paraId: openBtn.dataset.fromPara || null,
+            occurrenceId: openBtn.dataset.occurrence || null,
+          });
+          return;
+        }
+      }
       const shlokaSourceBtn = e.target.closest(".shloka-source-link");
       if (shlokaSourceBtn?.dataset.book && shlokaSourceBtn.dataset.ch) {
         e.preventDefault();
@@ -4520,6 +4632,23 @@
     return state.catalog?.books?.find(b => b.id === id);
   }
 
+  /** Phase 5: when license server URL is set, block books outside plan entitlements. Offline = always allowed. */
+  function guardOpenBook(bookId, bookHint) {
+    if (!window.AmpsLicense?.isEnforced?.()) return true;
+    const meta = bookHint || bookById(bookId) || { id: bookId, title: bookId };
+    if (typeof window.AmpsLicense.requireBookAccess === "function") {
+      return window.AmpsLicense.requireBookAccess(meta);
+    }
+    return window.AmpsLicense.isLicensed?.() !== false;
+  }
+
+  function bookAccessLocked(bookMeta) {
+    if (!window.AmpsLicense?.isEnforced?.()) return false;
+    if (!window.AmpsLicense?.isLicensed?.()) return false;
+    if (typeof window.AmpsLicense.canAccessBook !== "function") return false;
+    return !window.AmpsLicense.canAccessBook(bookMeta || {});
+  }
+
   function catalogBookEntryFromShloka(book) {
     if (!book?.id) return null;
     const sk = String(book.series || "Samskrta Shloka").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "samskrta-shloka";
@@ -4613,6 +4742,41 @@
     return out;
   }
 
+  const MORE_TAB_ROUTES = ["more","study","sutra-game","shloka-game","journal","settings","stats","glossary","collections","import","presentation-builder","today","companion","ask","smart-search","audio","voice-lab","shloka-recorder","tools","quote-maker","teacher","backup","qa-bank","exam","daily-challenge","socratic-guide","achievements","history","validation-report","about","privacy-data","privacy"];
+
+  // Each history entry carries its in-app depth, so Back can return to the
+  // previous screen without ever stepping out of the app.
+  let navDepth = Number.isFinite(history.state?.ampsDepth) ? history.state.ampsDepth : 0;
+  function stampNavDepth() {
+    try { history.replaceState({ ...(history.state || {}), ampsDepth: navDepth }, ""); } catch (_) { /* */ }
+  }
+  stampNavDepth();
+  window.addEventListener("hashchange", () => {
+    const d = history.state?.ampsDepth;
+    if (Number.isFinite(d)) {
+      navDepth = d;
+    } else {
+      navDepth += 1;
+      stampNavDepth();
+    }
+  });
+
+  function navigateToParent() {
+    if (state.route === "read") navigate("book", { bookId: state.params.parts[1] });
+    else if (state.route !== "more" && MORE_TAB_ROUTES.includes(state.route)) navigate("more");
+    else navigate("library");
+  }
+
+  function goBackInApp() {
+    if (navDepth > 0) {
+      programmaticNav = false;
+      state._navLockUntil = 0;
+      history.back();
+      return;
+    }
+    navigateToParent();
+  }
+
   function renderShell(content, opts) {
     const active = opts?.tab || state.route;
     document.body.classList.toggle("today-screen", state.route === "today");
@@ -4630,7 +4794,7 @@
         <a href="#paths" class="nav-item ${active === "paths" ? "active" : ""}"><span>🛤</span>${T("paths")}</a>
         <a href="#discourses" class="nav-item ${active === "discourses" ? "active" : ""}"><span>📜</span>${T("discourses")}</a>
         <a href="#notebook" class="nav-item ${["notebook","highlights","notes"].includes(active) ? "active" : ""}"><span>📓</span>${T("notebook")}</a>
-        <a href="#more" class="nav-item ${["more","study","sutra-game","shloka-game","journal","settings","stats","glossary","collections","import","presentation-builder","today","companion","ask","smart-search","audio","voice-lab","shloka-recorder","tools","quote-maker","teacher","backup","qa-bank","exam","daily-challenge","socratic-guide","achievements","history","validation-report","about","privacy-data","privacy"].includes(active) ? "active" : ""}"><span>⋯</span>${T("more")}</a>
+        <a href="#more" class="nav-item ${MORE_TAB_ROUTES.includes(active) ? "active" : ""}"><span>⋯</span>${T("more")}</a>
       </nav>
       <div id="selToolbar" class="sel-toolbar hidden"></div>
       <div id="modalRoot"></div>`;
@@ -4648,11 +4812,11 @@
         showMainMenu();
         return;
       }
-      if (state.route === "read") navigate("book", { bookId: state.params.parts[1] });
-      else if (state.route === "presentation-builder") window.AmpsPresentation?.goBack?.();
-      else if (state.route === "sutra-game") navigate("more");
-      else if (["book", "search", "settings", "study", "today", "companion", "smart-search", "audio", "voice-lab", "shloka-recorder", "tools", "quote-maker", "teacher", "backup","qa-bank","exam","daily-challenge","socratic-guide","achievements","history","validation-report","about","privacy-data","privacy","concepts","ask","source-qa","pronunciation"].includes(state.route)) navigate("library");
-      else state.ui.drawer = state.ui.drawer ? null : "menu";
+      if (state.route === "presentation-builder") {
+        window.AmpsPresentation?.goBack?.();
+        return;
+      }
+      goBackInApp();
     });
     document.getElementById("btnSearch")?.addEventListener("click", () => navigate("search"));
     bindTextSizeControls();
@@ -4698,7 +4862,13 @@
       en: "the-awakening-of-women",
       hi: "the-awakening-of-women-hi",
     }),
-    // आनन्द मार्ग — प्रारम्भिक दर्शन ↔ Ananda Marga: Elementary Philosophy
+    // वर्ण विज्ञान ↔ Varńa Vijinána (Unicode DOCX, 21 discourses 1983)
+    "varna-vijinana": Object.freeze({
+      familyId: "varna-vijinana",
+      en: "varna-vijinana",
+      hi: "varna-vijinana-hi",
+    }),
+    // आनन्द मार्ग — प्रारम्भिक दर्शन ↔ Ananda Marga: Elementary Philosophy (IDML 2018)
     "ananda-marga-elementary-philosophy": Object.freeze({
       familyId: "ananda-marga-elementary-philosophy",
       en: "ananda-marga-elementary-philosophy",
@@ -4905,6 +5075,21 @@
       en: "subhasita-samgraha-25",
       hi: "subhasita-samgraha-25-hi",
     }),
+    "subhasita-samgraha-16": Object.freeze({
+      familyId: "subhasita-samgraha-16",
+      en: "subhasita-samgraha-16",
+      hi: "subhasita-samgraha-16-hi",
+    }),
+    "subhasita-samgraha-17": Object.freeze({
+      familyId: "subhasita-samgraha-17",
+      en: "subhasita-samgraha-17",
+      hi: "subhasita-samgraha-17-hi",
+    }),
+    "subhasita-samgraha-18": Object.freeze({
+      familyId: "subhasita-samgraha-18",
+      en: "subhasita-samgraha-18",
+      hi: "subhasita-samgraha-18-hi",
+    }),
     "prout-in-a-nutshell-01": Object.freeze({
       familyId: "prout-in-a-nutshell-01",
       en: "prout-in-a-nutshell-01",
@@ -4970,6 +5155,46 @@
       en: "namah-shivaya-shantaya",
       hi: "namah-shivaya-shantaya-hi",
     }),
+    "caryacarya-3": Object.freeze({
+      familyId: "caryacarya-3",
+      en: "caryacarya-3",
+      hi: "caryacarya-3-hindi",
+    }),
+    "ananda-vacanamrtam-11": Object.freeze({
+      familyId: "ananda-vacanamrtam-11",
+      en: "ananda-vacanamrtam-11",
+      hi: "ananda-vacanamrtam-11-hi",
+    }),
+    "ananda-vacanamrtam-13": Object.freeze({
+      familyId: "ananda-vacanamrtam-13",
+      en: "ananda-vacanamrtam-13",
+      hi: "ananda-vacanamrtam-13-hi",
+    }),
+    "ananda-vacanamrtam-14": Object.freeze({
+      familyId: "ananda-vacanamrtam-14",
+      en: "ananda-vacanamrtam-14",
+      hi: "ananda-vacanamrtam-14-hi",
+    }),
+    "ananda-vacanamrtam-33": Object.freeze({
+      familyId: "ananda-vacanamrtam-33",
+      en: "ananda-vacanamrtam-33",
+      hi: "ananda-vacanamrtam-33-hi",
+    }),
+    "ananda-vacanamrtam-34": Object.freeze({
+      familyId: "ananda-vacanamrtam-34",
+      en: "ananda-vacanamrtam-34",
+      hi: "ananda-vacanamrtam-34-hi",
+    }),
+    "in-the-land-of-hattamala-1": Object.freeze({
+      familyId: "in-the-land-of-hattamala-1",
+      en: "in-the-land-of-hattamala-1",
+      hi: "in-the-land-of-hattamala-hi",
+    }),
+    "microvitum-in-a-nutshell": Object.freeze({
+      familyId: "microvitum-in-a-nutshell",
+      en: "microvitum-in-a-nutshell",
+      hi: "microvitum-in-a-nutshell-hi",
+    }),
   });
 
   function bookEditionFamily(bookId) {
@@ -5007,12 +5232,24 @@
     return bookCatalogLanguage(book) === filter;
   }
 
+  function libraryLanguageCounts() {
+    const books = state.catalog?.books || [];
+    let en = 0;
+    let hi = 0;
+    books.forEach(book => {
+      if (bookCatalogLanguage(book) === "hi") hi += 1;
+      else en += 1;
+    });
+    return { en, hi, all: books.length };
+  }
+
   function libraryLanguageFilterHtml() {
     const current = libraryLanguageFilter();
+    const counts = libraryLanguageCounts();
     const options = [
-      ["en", "English only"],
-      ["hi", "Hindi only"],
-      ["both", "Both"],
+      ["both", `All books (${counts.all})`],
+      ["en", `English (${counts.en})`],
+      ["hi", `हिन्दी (${counts.hi})`],
     ];
     return `<div class="lib-lang-filter" role="group" aria-label="Title language">${options.map(([id, label]) =>
       `<button type="button" class="lib-lang-opt${current === id ? " active" : ""}" data-lib-lang="${id}" aria-pressed="${current === id ? "true" : "false"}">${label}</button>`
@@ -5059,13 +5296,24 @@
 
   function bookEditionSwitchHtml(bookId, chapterId) {
     const family = bookEditionFamily(bookId);
-
-    if (!family) return "";
-
-    const activeHindi = bookId === family.hi;
     const ch = String(chapterId || "").trim();
-    const enHref = ch ? `#read/${family.en}/${encodeURIComponent(ch)}` : `#book/${family.en}`;
-    const hiHref = ch ? `#read/${family.hi}/${encodeURIComponent(ch)}` : `#book/${family.hi}`;
+    const pair = ch ? discourseEditionPair(bookId, ch) : null;
+
+    if (!family && !pair) return "";
+
+    const activeHindi = pair ? pair.hi === `${bookId}/${ch}` : bookId === family.hi;
+    let enHref;
+    let hiHref;
+    if (pair) {
+      enHref = discourseRefHref(pair.en);
+      hiHref = discourseRefHref(pair.hi);
+    } else if (ch && !discourseEditions.books.has(family.en) && !discourseEditions.books.has(family.hi)) {
+      enHref = `#read/${family.en}/${encodeURIComponent(ch)}`;
+      hiHref = `#read/${family.hi}/${encodeURIComponent(ch)}`;
+    } else {
+      enHref = activeHindi || !ch ? `#book/${family.en}` : `#read/${family.en}/${encodeURIComponent(ch)}`;
+      hiHref = !activeHindi || !ch ? `#book/${family.hi}` : `#read/${family.hi}/${encodeURIComponent(ch)}`;
+    }
 
     return `<section class="reader-edition-bar book-edition-switch"
       aria-label="Book language">
@@ -5177,11 +5425,15 @@
     if (!scope) return;
     scope.querySelectorAll("[data-book]").forEach(el => {
       if (el.dataset.ch) return;
-      el.addEventListener("click", () => navigate("book", { bookId: el.dataset.book }));
+      el.addEventListener("click", () => {
+        if (!guardOpenBook(el.dataset.book)) return;
+        navigate("book", { bookId: el.dataset.book });
+      });
     });
     scope.querySelectorAll("[data-resume-book]").forEach(el => {
       el.addEventListener("click", e => {
         e.stopPropagation();
+        if (!guardOpenBook(el.dataset.resumeBook)) return;
         const resume = readingResumeParams(el.dataset.resumeBook);
         if (resume) navigate("read", resume);
         });
@@ -5238,13 +5490,15 @@
       <section class="hero">
         <p class="hero-eyebrow">Ananda Marga Pracaraka Samgha</p>
         <h1>Sacred Library</h1>
-        <p class="hero-sub">${shownBooks} books · ${state.catalog.discourseCount} discourses · ${state.catalog.glossaryTermCount || "?"} glossary terms</p>
+        <p class="hero-sub">${shownBooks === (state.catalog.books || []).length ? shownBooks : `${shownBooks} of ${(state.catalog.books || []).length}`} books · ${state.catalog.discourseCount} discourses · ${state.catalog.glossaryTermCount || "?"} glossary terms</p>
+        ${libraryLanguageFilterHtml()}
         <div class="stats-inline"><span>${todayMin} min ${T("todayGoal")}</span> · <span>${streak} ${T("streak")}</span>
           <a href="#stats" class="link">${T("stats")}</a></div>
         <div class="hero-actions">
           <a href="#today" class="btn btn-gold">Open Today</a>
           <a href="#smart-search" class="btn btn-ghost">Smart Search</a>
         </div>
+        ${window.AmpsLicense?.libraryNoticeHtml?.() || ""}
       </section>
       <section class="premium-actions" aria-label="Quick actions">
         <a href="#audio" class="premium-action"><strong>Listen Queue</strong><span>Pravachan</span></a>
@@ -5256,7 +5510,6 @@
         <div class="search-bar">
           <input type="text" inputmode="search" autocomplete="off" id="libSearch" placeholder="Search books & discourses…" value="${esc(q)}" />
         </div>
-        ${libraryLanguageFilterHtml()}
         <div id="libAlphaNavHost">${renderAlphaNav(libraryAlphaPresentSet(q), {
           id: "libAlphaNav",
           mode: "library",
@@ -5275,9 +5528,11 @@
           state.params.q = e.target.value;
           updateLibraryBrowse();
         });
+        window.AmpsLicense?.bindLibraryNotice?.();
         document.querySelectorAll("[data-lib-lang]").forEach(btn => {
           btn.addEventListener("click", () => {
-            state.settings.libraryLanguage = btn.dataset.libLang || "en";
+            state.settings.libraryLanguage = btn.dataset.libLang || "both";
+            state.settings.libraryLanguageChosen = true;
             saveState();
             renderLibrary();
           });
@@ -5293,14 +5548,16 @@
     const displayTitle = localizedBookCardTitle(b);
     const hasEdition = displayTitle !== (b.title || "");
     const alpha = titleAlphaLetter(displayTitle || b.title);
-    return `<button type="button" class="book-card" data-book="${esc(b.id)}"${alpha ? ` data-alpha="${alpha}"` : ""}>
+    const locked = bookAccessLocked(b);
+    return `<button type="button" class="book-card${locked ? " book-card-locked" : ""}" data-book="${esc(b.id)}"${alpha ? ` data-alpha="${alpha}"` : ""}${locked ? ' aria-label="Locked by subscription"' : ""}>
       ${bookCoverHtml(hasEdition ? { ...b, title: displayTitle } : b, "card")}
       <div class="book-card-body">
         <h3>${esc(displayTitle || b.title)} ${isFavoriteBook(b.id) ? "★" : ""}</h3>
         <p>${b.chapterCount || "?"} chapters · ${b.pointCount || "?"} study points</p>
         ${hasEdition ? `<span class="pill edition-pill">हिन्दी · Official translation</span>` : ""}
+        ${locked ? `<span class="pill pill-locked">Locked</span>` : ""}
         ${pct ? `<div class="mini-progress"><div class="mini-progress-fill" style="width:${pct}%"></div></div>` : ""}
-        ${prog?.chapterId ? `<span class="pill pill-resume" data-resume-book="${esc(b.id)}">Continue reading</span>` : ""}
+        ${prog?.chapterId && !locked ? `<span class="pill pill-resume" data-resume-book="${esc(b.id)}">Continue reading</span>` : ""}
       </div>
     </button>`;
   }
@@ -5309,6 +5566,23 @@
     const snap = routeSnapshot();
     const bookId = snap.parts[1];
     if (!bookId || snap.route !== "book") return;
+    if (!guardOpenBook(bookId)) {
+      if (renderStale(gen) || routeChanged(snap)) return;
+      renderShell(`<div class="pad">
+        <h2>Subscription required</h2>
+        <p class="muted">This book is not included in your current plan. Activate a license or upgrade your subscription.</p>
+        <button type="button" class="btn btn-gold" id="btnBackLibLocked">Library</button>
+        <button type="button" class="btn btn-ghost" id="btnOpenLicenseSettings">License settings</button>
+      </div>`, {
+        title: "Locked",
+        tab: "library",
+        bind: () => {
+          document.getElementById("btnBackLibLocked")?.addEventListener("click", () => navigate("library"));
+          document.getElementById("btnOpenLicenseSettings")?.addEventListener("click", () => navigate("settings"));
+        },
+      });
+      return;
+    }
     let book;
     try {
       book = await loadBook(bookId);
@@ -5506,6 +5780,18 @@
       lang,
       mode: bookLanguageDisplayMode(lang),
     };
+  }
+
+  /** Book as shown in the reader (Hindi pack applied), so audio speaks what is on screen. */
+  async function loadReaderEditionBook(bookId) {
+    const book = await loadBook(bookId);
+    try {
+      const active = await activeBookEdition(bookId);
+      if (active?.pack) return translatedReaderBook(book, active);
+    } catch (err) {
+      console.warn("AMPS language pack unavailable for audio:", err);
+    }
+    return book;
   }
 
   function packTranslation(pack, id, sourceText) {
@@ -6087,8 +6373,27 @@
 
   function bindLanguageEditionControls() {
     document.querySelectorAll("[data-book-language]").forEach(button => {
-      button.addEventListener("click", () => {
+      if (button.dataset.langBound) return;
+      button.dataset.langBound = "1";
+      button.addEventListener("click", (e) => {
+        const href = button.getAttribute("href") || "";
+        if (href.startsWith("#book/") || href.startsWith("#read/")) {
+          e.preventDefault();
+          const parts = href.slice(1).split("/");
+          if (document.body.classList.contains("tts-reading")) stopTtsPlayback();
+          state.ui.pageIndex = 0;
+          if (parts[0] === "read" && parts[1] && parts[2]) {
+            navigate("read", {
+              bookId: decodeURIComponent(parts[1]),
+              chapterId: decodeURIComponent(parts[2]),
+            });
+          } else if (parts[1]) {
+            navigate("book", { bookId: decodeURIComponent(parts[1]) });
+          }
+          return;
+        }
         const lang = button.dataset.bookLanguage || "en";
+        if (document.body.classList.contains("tts-reading")) stopTtsPlayback();
         state.settings.bookLanguage = lang;
         state.settings.bookLanguageDisplayMode = lang === "en" ? "english_only" : "translation_only";
         state.ui.pageIndex = 0;
@@ -6126,6 +6431,19 @@
     const bookId = snap.parts[1];
     const chapterId = snap.parts[2];
     if (!bookId || snap.route !== "read") return;
+    if (!guardOpenBook(bookId)) {
+      if (renderStale(gen) || routeChanged(snap)) return;
+      renderShell(`<div class="pad">
+        <h2>Subscription required</h2>
+        <p class="muted">This book is not included in your current plan.</p>
+        <button type="button" class="btn btn-gold" id="btnBackLibLockedRead">Library</button>
+      </div>`, {
+        title: "Locked",
+        tab: "library",
+        bind: () => document.getElementById("btnBackLibLockedRead")?.addEventListener("click", () => navigate("library")),
+      });
+      return;
+    }
     let book;
     try {
       book = await loadBook(bookId);
@@ -6527,7 +6845,8 @@
       if (!isShlokaVerses && fnApi()?.appendStructuredRefs) {
         paraBody = fnApi().appendStructuredRefs(paraBody, p, ch, esc);
       }
-      const keepVerseLines = isShloka || discourseDevVerse || discourseRomanShloka || isShlokaVerses
+      const displayRoleShloka = String(p.displayRole || "").toLowerCase() === "shloka" && !isMisTaggedShlokaProse(p);
+      const keepVerseLines = isShloka || displayRoleShloka || discourseDevVerse || discourseRomanShloka || isShlokaVerses
         || p.contentType === "verse" || p.renderType === "shloka";
       if (!keepVerseLines && !semanticBlockBody && paraBody.includes("\n")) {
         paraBody = paraBody.replace(/\n{2,}/g, "<br><br>").replace(/\n/g, " ");
@@ -6540,7 +6859,7 @@
       const discourseShlokaClass = (discourseRomanShloka || discourseDevVerse) ? " discourse-shloka-entry" : "";
       const sourceBlurbClass = !discourseRomanShloka && !discourseDevVerse && !isShloka && !hindiPackProse && isSourceBlurbPara(p.text) ? " source-blurb" : "";
       const hasSamskrtaPresentation = (semanticBlockBody && hasSamskrtaSemanticBlock(p.semanticBlocks)) || discourseCombinedUnit;
-      const shlokaClass = (isShloka || isAnandaSutra) && !hindiPackProse && !hasSamskrtaPresentation ? " shloka-entry" : "";
+      const shlokaClass = (isShloka || displayRoleShloka || isAnandaSutra) && !hindiPackProse && !hasSamskrtaPresentation ? " shloka-entry" : "";
       const samskrtaUnitClass = hasSamskrtaPresentation ? " has-samskrta-unit" : "";
       const verseClass = isShlokaVerses ? " shloka-verse-entry" : "";
       const sutraClass = isAnandaSutra ? " ananda-sutra-entry" : "";
@@ -6548,7 +6867,8 @@
       const paragraphTag = p.renderType === "heading2" ? "h2" : "p";
       const bodyTag = semanticBlockBody || hindiPackProse || discourseDevVerse || discourseCombinedUnit ? "div" : paragraphTag;
       const bodyClass = semanticBlockBody || hindiPackProse || discourseDevVerse || discourseCombinedUnit ? "para-text rich-language-blocks" : "para-text";
-      const paragraphRole = String(p.displayRole || p.role || "").toLowerCase();
+      const misTaggedShlokaProse = isMisTaggedShlokaProse(p);
+      const paragraphRole = misTaggedShlokaProse ? "prose" : String(p.displayRole || p.role || "").toLowerCase();
       const isTitlePageRole = ["title", "volume", "author", "publisher"].includes(paragraphRole);
       const paragraphIsHeading = (
         !isTitlePageRole && (
@@ -6560,8 +6880,7 @@
         )
       );
       const paragraphCentered = !paragraphIsHeading && (
-        p.alignment === "center"
-        || p.align === "center"
+        (!misTaggedShlokaProse && (p.alignment === "center" || p.align === "center"))
         || paragraphRole === "shloka"
         || paragraphRole === "author"
         || isTitlePageRole
@@ -6618,15 +6937,23 @@
         : null;
       const indexHitCand = window.AmpsShlokaDeepNav?.normalizeSourceIndexEntry?.(indexHitRaw) ||
         (typeof indexHitRaw === "string" ? { paraId: indexHitRaw, label: "" } : indexHitRaw);
-      const indexHitOk = indexHitCand && (
-        discourseRomanShloka || discourseDevVerse || isShloka
-        || sourceHitMatchesParagraph(indexHitCand, discourseShlokaMergedText || p.text)
-      );
+      // The index key is this exact paragraph, including Devanagari lines
+      // whose Roman label would not appear in the verse text.
+      const indexHitOk = !!(indexHitCand && indexHitCand.paraId);
       const sourceHit = semanticSourceHit || (indexHitOk ? indexHitCand : null);
       const occId = sourceHit?.paraId ? sourceOccurrenceId(sourceHit.paraId, ch.id, p.id) : "";
-      const shlokaCrossLink = sourceHit?.paraId
-        ? (semanticBlockBody ? "" : sourceOpenShlokaChrome(bookId, ch.id, p.id, sourceHit, {
+      const runLink = reviewedShlokaRunLink(
+        bookId,
+        ch.id,
+        ch.paragraphs,
+        ch.paragraphs.findIndex(item => item.id === p.id)
+      );
+      const linkHit = runLink?.atEnd && runLink.hit ? runLink.hit : sourceHit;
+      const linkFromId = runLink?.atEnd && runLink.hit ? runLink.fromParaId : p.id;
+      const shlokaCrossLink = linkHit?.paraId
+        ? (semanticBlockBody ? "" : sourceOpenShlokaChrome(bookId, ch.id, linkFromId, linkHit, {
           centered: !!discourseRomanShloka || !!discourseDevVerse || !!isShloka,
+          hidden: !!(runLink && !runLink.atEnd),
         }))
         : "";
       const occData = occId
@@ -6816,7 +7143,7 @@
         <div class="pravachan-panel">
           <label>Reader audio mode
             <select id="setTtsReadingStyle">
-              <option value="human" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "human" ? "selected" : ""}>Human discourse (recommended)</option>
+              <option value="human" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "human" ? "selected" : ""}>Podcast narration (recommended)</option>
               <option value="normal" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "normal" ? "selected" : ""}>Normal Reading</option>
               <option value="pravachan" ${normalizeTtsReadingStyle(state.settings.ttsReadingStyle) === "pravachan" ? "selected" : ""}>Pravachan-style Reading</option>
             </select>
@@ -7367,7 +7694,7 @@
     const chapterId = state.params.parts[2];
     if (!bookId || !chapterId || state.route !== "read") return;
     try {
-      const book = await loadBook(bookId);
+      const book = await loadReaderEditionBook(bookId);
       const ch = book.chapters.find(c => c.id === chapterId) || book.chapters[0];
       if (!ch) return;
       const pid = activeReaderParaId(ch.paragraphs[0]?.id);
@@ -7957,6 +8284,7 @@
     el.innerHTML = html;
     el.querySelectorAll(".search-hit").forEach(btn => {
       btn.addEventListener("click", () => {
+        if (!guardOpenBook(btn.dataset.book)) return;
         if (btn.dataset.ch) {
           navigate("read", {
             bookId: btn.dataset.book,
@@ -8239,6 +8567,7 @@
         <a href="#backup" class="more-item"><span>B</span><strong>Backup</strong><small>Export, restore, cloud endpoint</small></a>
         <a href="#validation-report" class="more-item"><span>V</span><strong>Content Report</strong><small>Library validation summary</small></a>
         <a href="#offline" class="more-item"><span>✓</span><strong>Offline &amp; Downloads</strong><small>Shell status, packs, storage</small></a>
+        ${window.AmpsUpdateCheck?.isAndroidApp?.() ? `<button type="button" class="more-item" id="btnCheckAppUpdate"><span>⟳</span><strong>Check for updates</strong><small>Installed version ${esc(window.AmpsUpdateCheck.currentVersion() || "?")}</small></button>` : ""}
         <a href="#about" class="more-item"><span>i</span><strong>About & Privacy</strong><small>Publisher, policy, attribution</small></a>
         <a href="#privacy-data" class="more-item"><span>⚿</span><strong>Privacy &amp; local data</strong><small>Export or delete on-device data</small></a>
         <a href="legal/support.html" class="more-item"><span>?</span><strong>Support</strong><small>Contact and help links</small></a>
@@ -8256,6 +8585,9 @@
           a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
           a.download = "amps-reader-backup.json";
           a.click();
+        });
+        document.getElementById("btnCheckAppUpdate")?.addEventListener("click", () => {
+          window.AmpsUpdateCheck?.check({ manual: true });
         });
       },
     });
@@ -8526,7 +8858,7 @@
         <div class="settings-theme">Theme
           ${readerThemePickerHtml()}
         </div>
-        <p class="muted">Sepia is the reading page. The Today page keeps its own dark landing look. Use Smaller and Larger at the top of every page. Largest is easier to read.</p>
+        <p class="muted">Sepia is the reading page. The Today page keeps its own dark landing look. Use A− and A+ at the top of every page. Largest is easier to read.</p>
         <hr class="settings-divider" />
         <h2 class="settings-section-title">Audio & Pronunciation</h2>
         <label>Voice
@@ -8787,7 +9119,8 @@
         normalizeTtsVoice(state.settings.ttsVoice),
         i,
         (charStart) => onPresentWord(charStart),
-        sanskritPronunciationMode()
+        sanskritPronunciationMode(),
+        { corpusLanguage: speechCorpusLanguage(bookId, book, paras.map(p => p.text)) }
       );
     }
 
@@ -9848,7 +10181,7 @@
         if (!presentationBuilderEnabled()) {
           state.route = "library";
           state.params = {};
-          history.replaceState(null, "", "#library");
+          history.replaceState(history.state, "", "#library");
           return renderLibrary();
         }
         return window.AmpsPresentation?.render?.();
@@ -9931,7 +10264,7 @@
       document.getElementById("app").innerHTML = `<div class="pad">
         <h2>Could not load library</h2>
         <p class="muted">${esc(err.message || String(err))}</p>
-        <p class="muted">Tap Reload. If this page stays, close the tab and open the link again.</p>
+        <p class="muted">Try a hard refresh (Cmd+Shift+R) or clear site data for localhost.</p>
         <button type="button" class="btn btn-gold" id="btnReloadApp">Reload</button>
         <button type="button" class="btn btn-ghost" id="btnClearApp">Clear saved data</button>
       </div>`;
@@ -10051,8 +10384,7 @@
       return true;
     }
     if (!["library", "today"].includes(state.route)) {
-      if (history.length > 1) history.back();
-      else navigate("library");
+      goBackInApp();
       return true;
     }
     if (state.route === "today") {
