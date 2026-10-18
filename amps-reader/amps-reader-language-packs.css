@@ -529,6 +529,7 @@
   font-synthesis: style !important;
   white-space: pre-line;
   line-height: 1.55;
+  color: var(--shloka-ink, #c9a227) !important;
 }
 .reader-para.content-shloka_meaning > .para-text,
 .reader-para.content-shloka-meaning > .para-text {
@@ -537,4 +538,22 @@
   text-align-last: start !important;
   text-justify: auto !important;
   white-space: pre-line;
+}
+
+/* One shloka: consecutive lines sit together, and the open link is only on the last line. */
+.source-shloka-actions-grouped-wait { display: none !important; }
+.reader-para.shloka-entry.reviewed-shloka-group {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.reader-para.shloka-entry.reviewed-shloka-group-start {
+  padding-top: 0.55rem;
+}
+.reader-para.shloka-entry.reviewed-shloka-group-end {
+  padding-bottom: 0.45rem;
+}
+.reader-para.shloka-entry.reviewed-shloka-group > .para-text {
+  line-height: 1.32 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
