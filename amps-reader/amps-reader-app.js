@@ -547,6 +547,28 @@
     return String(text || "").replace(/^\(\s*\d+\s*\)\s+/, "");
   }
 
+  function bareDatePlace(s) {
+    return String(s || "")
+      .replace(/\u00a0/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .replace(/^[(\uFF08]+/, "")
+      .replace(/[)\uFF09]+$/, "")
+      .trim();
+  }
+
+  /** Last body line that repeats the Date & place footer. Later short notes stay. */
+  function isTrailingDuplicateDatePlace(paragraphs, index, chapter) {
+    const dp = bareDatePlace(chapter?.datePlace);
+    if (!dp || dp.length < 6) return false;
+    const text = bareDatePlace(paragraphs[index]?.text);
+    if (!text || text !== dp || text.length > 180) return false;
+    for (let i = index + 1; i < paragraphs.length; i += 1) {
+      if (bareDatePlace(paragraphs[i]?.text).length >= 80) return false;
+    }
+    return true;
+  }
+
   /** EE9 cross-publication / compilation notes (shown muted at article end). */
   function isSourceBlurbPara(text) {
     const t = String(text || "").replace(/\s+/g, " ").trim();
@@ -6651,6 +6673,13 @@
       };
     } else for (let vi = 0; vi < paras.length; vi += 1) {
       const p = paras[vi];
+      const chapterParaIndex = pageMode && !isShlokaVerses
+        ? ch.paragraphs.findIndex(item => item.id === p.id)
+        : vi;
+      if (!isShlokaVerses && isTrailingDuplicateDatePlace(ch.paragraphs, chapterParaIndex, ch)) {
+        chunks.push(`<span id="${esc(p.id)}" data-para="${esc(p.id)}" hidden aria-hidden="true"></span>`);
+        continue;
+      }
       const hls = getHighlights(bookId, ch.id, p.id);
       const notes = getNotes(bookId, ch.id, p.id);
       const bookmarked = isBookmarked(bookId, ch.id, p.id);
@@ -9071,7 +9100,7 @@
       return;
     }
 
-    const paras = ch.paragraphs || [];
+    const paras = (ch.paragraphs || []).filter((p, i, all) => !isTrailingDuplicateDatePlace(all, i, ch));
     let idx = 0;
     const theme = state.settings.presentTheme || "light";
     const pdfAllowed = isDiscoursePdfAllowed();
