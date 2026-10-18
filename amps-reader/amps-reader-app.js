@@ -2376,7 +2376,7 @@
   function isRoleShlokaVerseLine(p) {
     if (String(p?.displayRole || "").toLowerCase() !== "shloka") return false;
     const text = String(p.text || "").trim();
-    if (!text || text.length > 120 || !/[\u0900-\u097f]/.test(text)) return false;
+    if (!text || text.length > 400 || !/[\u0900-\u097f]/.test(text)) return false;
     return !window.AmpsIndicText?.looksLikeProse?.(text);
   }
 
@@ -6678,6 +6678,7 @@
       let discourseShlokaMergedText = null;
       let discourseShlokaMergedRoman = null;
       let discourseShlokaSkip = false;
+      let discourseMemberIds = null;
       let discourseVerseIsDev = false;
       let discourseCombinedUnit = false;
       if ((discourseRomanShloka || discourseDevVerse) && !isShlokaVerses) {
@@ -6702,6 +6703,7 @@
           discourseDevVerse = false;
         } else {
           const merged = [String(p.text || "").replace(/^\(\s*\d+\s*\)\s*/, "").trim()];
+          discourseMemberIds = [p.id];
           let j = vi + 1;
           while (j < paras.length) {
             const cand = paras[j];
@@ -6713,6 +6715,7 @@
               : isDiscourseDevanagariVersePara(cand);
             if (!ok) break;
             merged.push(String(cand.text || "").replace(/^\(\s*\d+\s*\)\s*/, "").trim());
+            discourseMemberIds.push(cand.id);
             j += 1;
           }
           // After Dev lines, pull immediately-following Roman verse lines into the same unit
@@ -6932,9 +6935,15 @@
         : "";
       // Prefer reviewed canonical bindings; fall back to shloka-source-index for
       // plain discourse verses (Roman / Devanagari) so SS↔Samskrta nav works both ways.
-      const indexHitRaw = !semanticSourceHit && !isShlokaVerses && bookId !== "samskrta-shloka"
+      let indexHitRaw = !semanticSourceHit && !isShlokaVerses && bookId !== "samskrta-shloka"
         ? state.shlokaSourceIndex?.[shlokaSourceLookupKey(bookId, ch.id, p.id)]
         : null;
+      if (!indexHitRaw && discourseMemberIds && bookId !== "samskrta-shloka") {
+        for (const memberId of discourseMemberIds) {
+          indexHitRaw = state.shlokaSourceIndex?.[shlokaSourceLookupKey(bookId, ch.id, memberId)];
+          if (indexHitRaw) break;
+        }
+      }
       const indexHitCand = window.AmpsShlokaDeepNav?.normalizeSourceIndexEntry?.(indexHitRaw) ||
         (typeof indexHitRaw === "string" ? { paraId: indexHitRaw, label: "" } : indexHitRaw);
       // The index key is this exact paragraph, including Devanagari lines
@@ -6952,7 +6961,7 @@
       const linkFromId = runLink?.atEnd && runLink.hit ? runLink.fromParaId : p.id;
       const shlokaCrossLink = linkHit?.paraId
         ? (semanticBlockBody ? "" : sourceOpenShlokaChrome(bookId, ch.id, linkFromId, linkHit, {
-          centered: !!discourseRomanShloka || !!discourseDevVerse || !!isShloka,
+          centered: !!discourseRomanShloka || !!discourseDevVerse || !!isShloka || displayRoleShloka,
           hidden: !!(runLink && !runLink.atEnd),
         }))
         : "";
